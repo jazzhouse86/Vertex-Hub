@@ -161,7 +161,7 @@
   <!-- HEADER NAV -->
   <header>
     <a href="#" class="brand-icon-link" aria-label="VORTEX Home">
-      <!-- V LOGO HEADER (V-NOTCH INTAGLIO IDENTICA ALLA HERO V) -->
+      <!-- V LOGO HEADER COORDINATA CON HERO OPT 2 -->
       <svg class="v-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldNavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -171,9 +171,14 @@
             <stop offset="78%" stop-color="#FDF0A6"/>
             <stop offset="100%" stop-color="#9A7410"/>
           </linearGradient>
+          <!-- Maschera per taglio su asta sinistra coordinata -->
+          <mask id="vNavCut">
+            <rect x="0" y="0" width="100" height="100" fill="#FFFFFF"/>
+            <rect x="0" y="22" width="45" height="4" fill="#000000"/>
+          </mask>
         </defs>
-        <!-- V con incisione ad intaglio sul tratto sinistro -->
-        <path d="M 10 10 L 25 10 L 42 60 L 50 55 L 58 60 L 75 10 L 90 10 L 50 90 Z" fill="url(#goldNavGrad)"/>
+        <!-- V classica con maschera per taglio orizzontale trasparente -->
+        <path mask="url(#vNavCut)" fill="url(#goldNavGrad)" d="M 10 10 L 32 10 L 50 90 L 68 10 L 90 10 L 50 90 Z"/>
       </svg>
     </a>
 
@@ -200,10 +205,11 @@
     <canvas id="dust-canvas"></canvas>
 
     <div class="hero-content">
-      <!-- VORTEX BRAND SVG CON INCISIONE V-NOTCH SU VETTORE UNICO -->
+      <!-- VORTEX BRAND SVG - IMPLEMENTAZIONE OPZIONE 2 (TAGLIO SOLO SU V) -->
       <div class="hero-logo-container">
         <svg class="hero-logo-svg" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg">
           <defs>
+            <!-- Gradiente Dorato Sincronizzato -->
             <linearGradient id="goldLuxeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#FFF8D6"/>
               <stop offset="22%" stop-color="#FFE082"/>
@@ -211,19 +217,33 @@
               <stop offset="78%" stop-color="#FDF0A6"/>
               <stop offset="100%" stop-color="#9A7410"/>
             </linearGradient>
+
+            <!-- Taglio trasparente applicato SOLO all'asta sinistra della V -->
+            <mask id="vLeftStemCut">
+              <!-- Tutto visibile -->
+              <rect x="0" y="0" width="760" height="100" fill="#FFFFFF"/>
+              <!-- Striscia nera trasparente (spessore 4px) posizionata a y=22 sull'asta sinistra -->
+              <rect x="0" y="22" width="45" height="4" fill="#000000"/>
+            </mask>
           </defs>
+
           <g fill="url(#goldLuxeGrad)">
-            <!-- V con Incisione Notched (Zero maschere, tracciato geometrico unico) -->
-            <path d="M 10 10 L 25 10 L 42 60 L 50 55 L 58 60 L 75 10 L 90 10 L 50 90 Z"/>
+            <!-- V Classica (Geometria pulita con taglio orizzontale trasparente solo sull'asta sinistra) -->
+            <path mask="url(#vLeftStemCut)" d="M 10 10 L 32 10 L 50 90 L 68 10 L 90 10 L 50 90 Z"/>
+
             <!-- O -->
             <path d="M 148 10 C 122 10 106 28 106 50 C 106 72 122 90 148 90 C 174 90 190 72 190 50 C 190 28 174 10 148 10 Z M 148 27 C 160 27 167 36 167 50 C 167 64 160 73 148 73 C 136 73 129 64 129 50 C 129 36 136 27 148 27 Z"/>
+
             <!-- R -->
             <path d="M 208 10 L 250 10 C 270 10 282 20 282 34 C 282 46 272 54 256 56 L 285 90 L 259 90 L 233 58 L 230 58 L 230 90 L 208 90 Z M 230 25 L 230 43 L 246 43 C 256 43 260 38 260 34 C 260 29 256 25 246 25 Z"/>
+
             <!-- T -->
             <polygon points="298,10 362,10 362,26 341,26 341,90 319,90 319,26 298,26"/>
+
             <!-- E -->
             <polygon points="378,10 436,10 436,26 400,26 400,42 428,42 428,58 400,58 400,74 436,74 436,90 378,90"/>
-            <!-- X (Stesso Gradiente Oro Lux) -->
+
+            <!-- X (Oro Lux uniforme) -->
             <polygon points="450,10 474,10 497,46 520,10 544,10 509,50 546,90 522,90 497,54 472,90 448,90 485,50"/>
           </g>
         </svg>
@@ -264,7 +284,7 @@
 
         <div class="insight-box">
           <div class="insight-box-title" data-i18n="div-key-title">Key Takeaway Operativo</div>
-          <p style="color: #CBD5E1; font-size: 0.9rem;" data-i18n="div-key-desc">L'ottimizzazione isolata del taglio crea accumulo nei polmoni intermedi (WIP). Senza un bilanciamento tra regole MRP e capacità a valle, l'aumento di velocità si traduce soltanto in capitale immobilizzato.</p>
+          <p style="color: #CBD5E1; font-size: 0.9rem;" data-i18n="div-key-desc">L'ottimizzazione isolata del taglio crea accumulo nei polone intermedi (WIP). Senza un bilanciamento tra regole MRP e capacità a valle, l'aumento di velocità si traduce soltanto in capitale immobilizzato.</p>
         </div>
 
         <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;" data-i18n="div-p2">
