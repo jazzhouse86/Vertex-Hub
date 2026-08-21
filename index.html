@@ -39,7 +39,7 @@
     }
 
     .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
-    .v-icon-svg { width: 34px; height: 34px; filter: drop-shadow(0px 2px 5px var(--gold-glow)); }
+    .v-icon-svg { width: 34px; height: 34px; filter: drop-shadow(0px 2px 6px var(--gold-glow)); }
 
     .header-right { display: flex; align-items: center; gap: 15px; }
 
@@ -72,10 +72,10 @@
 
     .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
 
-    /* TITOLO VERTEX COERENTE E UNIFICATO IN SVG */
+    /* LOGO VERTEX VETTORIALE UNIFICATO */
     .hero-logo-svg {
-      width: 100%; max-width: 360px; height: auto;
-      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.35)); margin-bottom: 12px;
+      width: 100%; max-width: 480px; height: auto;
+      filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.4)); margin-bottom: 12px;
     }
 
     .hero-tagline {
@@ -160,13 +160,20 @@
   <!-- HEADER -->
   <header>
     <a href="#" class="brand-icon-link">
+      <!-- V ICONICA CON TAGLIO SULL'ASTA SINISTRA IN ALTO -->
       <svg class="v-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#BF953F"/><stop offset="25%" stop-color="#FCF6BA"/><stop offset="50%" stop-color="#B38728"/><stop offset="75%" stop-color="#FBF5B7"/><stop offset="100%" stop-color="#AA771C"/>
+            <stop offset="0%" stop-color="#BF953F"/>
+            <stop offset="25%" stop-color="#FCF6BA"/>
+            <stop offset="50%" stop-color="#B38728"/>
+            <stop offset="75%" stop-color="#FBF5B7"/>
+            <stop offset="100%" stop-color="#AA771C"/>
           </linearGradient>
         </defs>
-        <path d="M50 88 L88 12 L68 12 L50 62 L32 12 L12 12 Z" fill="url(#goldGradNav)"/>
+        <!-- Geometria V con taglio trasparente su asta sinistra -->
+        <path d="M10,12 L28,12 L50,68 L72,12 L90,12 L58,88 L42,88 Z" fill="url(#goldGradNav)"/>
+        <path d="M10,12 L30,12 L21,34 Z" fill="var(--bg-dark)"/>
       </svg>
     </a>
 
@@ -188,13 +195,13 @@
     </div>
   </header>
 
-  <!-- HERO SECTION CON DUST PARTICLES RAFFINATO -->
+  <!-- HERO SECTION CON POLVERE DORATA -->
   <section class="hero">
     <canvas id="dust-canvas"></canvas>
 
     <div class="hero-content">
-      <!-- LOGO VERTEX COMPLETO ED UNIFICATO -->
-      <svg class="hero-logo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+      <!-- SCRITTA VERTEX COMPLETA: LOGO V IDENTICO INTEGRATO -->
+      <svg class="hero-logo-svg" viewBox="0 0 520 90" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#BF953F"/>
@@ -204,8 +211,18 @@
             <stop offset="100%" stop-color="#AA771C"/>
           </linearGradient>
         </defs>
-        <!-- SCRITTA VERTEX MONOLITICA -->
-        <text x="50%" y="62" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="68" letter-spacing="14" fill="url(#goldGradHero)" text-anchor="middle">VERTEX</text>
+        
+        <!-- LETTERA V (Coerente con il logo iconico + taglio in alto a sinistra) -->
+        <g transform="translate(0, 0)">
+          <path d="M10,12 L28,12 L50,68 L72,12 L90,12 L58,88 L42,88 Z" fill="url(#goldGradHero)"/>
+          <!-- Intaglio trasparente -->
+          <polygon points="10,12 30,12 21,34" fill="#030712"/>
+        </g>
+
+        <!-- TESTO ERTEX STILIZZATO NELLO STESSO TRATTO E GRADIENTE -->
+        <g fill="url(#goldGradHero)" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="78" letter-spacing="10">
+          <text x="95" y="76">ERTEX</text>
+        </g>
       </svg>
 
       <div class="hero-tagline">Hub di Cultura Operativa & Supply Chain Excellence</div>
@@ -350,7 +367,7 @@
     <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
   </footer>
 
-  <!-- SCRIPT POLVERE DORATA: DESIGN & RANDOM FLOATING -->
+  <!-- SCRIPT POLVERE DORATA DESIGN -->
   <script>
     const canvas = document.getElementById('dust-canvas');
     const ctx = canvas.getContext('2d');
@@ -370,9 +387,7 @@
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        // Punti piccolissimi ed eleganti (da 0.3px a 1.2px)
         this.size = Math.random() * 0.9 + 0.3;
-        // Movimento lento e casuale su entrambi gli assi (fluttuazione libera)
         this.vx = (Math.random() - 0.5) * 0.25;
         this.vy = (Math.random() - 0.5) * 0.25;
         this.opacity = Math.random() * 0.6 + 0.1;
@@ -383,13 +398,11 @@
         this.x += this.vx;
         this.y += this.vy;
 
-        // Variazione graduale di luminosità
         this.opacity += this.pulse * this.pulseDir;
         if (this.opacity >= 0.75 || this.opacity <= 0.05) {
           this.pulseDir *= -1;
         }
 
-        // Rigenerazione fuori dai bordi
         if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
           this.reset();
         }
@@ -402,7 +415,6 @@
       }
     }
 
-    // Densità misurata per non appesantire il layout
     for (let i = 0; i < 85; i++) {
       particles.push(new FineParticle());
     }
