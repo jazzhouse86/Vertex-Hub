@@ -5,21 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</title>
   
-  <!-- MathJax per il rendering delle formule LaTeX -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { displayAlign: 'center' }
+    };
+  </script>
   <script id="mathjax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
     :root {
-      --bg-dark: #040914;
-      --bg-card: #091322;
-      --bg-card-hover: #101F35;
+      --bg-dark: #030712;
+      --bg-card: #081120;
+      --bg-card-hover: #0F1D33;
       --gold-metallic: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-      --gold-glow: rgba(212, 175, 55, 0.5);
+      --gold-glow: rgba(212, 175, 55, 0.6);
       --text-main: #E2E8F0;
       --text-muted: #94A3B8;
       --border-color: #1E293B;
-      --border-gold: rgba(191, 149, 63, 0.4);
+      --border-gold: rgba(191, 149, 63, 0.5);
       --correct-green: #10B981;
       --wrong-red: #EF4444;
     }
@@ -27,132 +31,129 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
     body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: 40px; overflow-x: hidden; }
 
-    /* HEADER & NAV */
+    /* HEADER */
     header {
-      background-color: rgba(4, 9, 20, 0.95); backdrop-filter: blur(12px);
+      background-color: rgba(3, 7, 18, 0.95); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000;
-      padding: 12px 25px; display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
     }
 
     .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
-    .v-icon-svg { width: 42px; height: 42px; filter: drop-shadow(0px 2px 8px var(--gold-glow)); transition: transform 0.3s; }
-    .brand-icon-link:hover .v-icon-svg { transform: scale(1.08); }
+    .v-icon-svg { width: 38px; height: 38px; filter: drop-shadow(0px 2px 6px var(--gold-glow)); }
 
-    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-right { display: flex; align-items: center; gap: 15px; }
 
-    .lang-switch { display: flex; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
+    .lang-switch { display: flex; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
     .lang-btn { cursor: pointer; padding: 2px 6px; border-radius: 4px; transition: 0.3s; }
-    .lang-btn.active { color: #040914; background: var(--gold-metallic); }
+    .lang-btn.active { color: #030712; background: var(--gold-metallic); }
 
-    .menu-toggle { font-size: 1.5rem; color: #FCF6BA; cursor: pointer; background: none; border: none; display: flex; align-items: center; }
+    .menu-toggle { font-size: 1.5rem; color: #FCF6BA; cursor: pointer; background: none; border: none; }
 
-    /* MENU DROPDOWN ESTENDIBILE */
     .mobile-menu {
       display: none; position: absolute; top: 100%; right: 20px; width: 280px;
       background-color: var(--bg-card); border: 1px solid var(--border-gold);
-      border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); padding: 15px 0; z-index: 1001;
+      border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); padding: 10px 0; z-index: 1001;
     }
     .mobile-menu.open { display: block; }
-    .mobile-menu a { display: block; padding: 12px 20px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .mobile-menu a { display: block; padding: 12px 20px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .mobile-menu a:hover { color: #FCF6BA; background-color: var(--bg-card-hover); }
 
-    /* HERO SECTION CON EFFETTO POLVERE D'ORO */
+    /* HERO SECTION */
     .hero {
-      position: relative; text-align: center; padding: 70px 20px 50px;
-      background: radial-gradient(circle at center, #0C1E36 0%, #040914 85%);
-      border-bottom: 1px solid var(--border-color); margin-bottom: 40px; overflow: hidden;
+      position: relative; text-align: center; padding: 50px 20px 40px;
+      background: radial-gradient(circle at center, #0B1C33 0%, #030712 90%);
+      border-bottom: 1px solid var(--border-gold); margin-bottom: 35px; overflow: hidden;
     }
 
-    /* Polvere d'oro animata */
-    .gold-dust {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, #FCF6BA, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 40px 70px, #BF953F, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 90px 40px, #FFFFFF, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 160px 120px, #FBF5B7, rgba(0,0,0,0));
-      background-repeat: repeat; background-size: 200px 200px; opacity: 0.6; animation: dustMove 20s linear infinite;
+    #dust-canvas {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1;
     }
 
-    @keyframes dustMove { 0% { transform: translateY(0); } 100% { transform: translateY(-200px); } }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
 
-    .hero-brand-container { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; position: relative; z-index: 2; }
-    .hero-logo-v { width: 90px; height: 90px; filter: drop-shadow(0 0 20px var(--gold-glow)); }
-    
-    .hero-logo-esteso {
-      font-size: 5rem; font-weight: 900; letter-spacing: 14px;
-      background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(191, 149, 63, 0.3);
+    .hero-logo-svg {
+      width: 100%; max-width: 380px; height: auto;
+      filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4)); margin-bottom: 10px;
     }
 
-    .hero-tagline { font-size: 1.1rem; font-weight: 700; color: #FCF6BA; max-width: 900px; margin: 0 auto 15px; text-transform: uppercase; letter-spacing: 1.5px; position: relative; z-index: 2; }
-    .hero-proposito { font-size: 1.05rem; color: var(--text-muted); max-width: 950px; margin: 0 auto 25px; line-height: 1.7; position: relative; z-index: 2; text-align: justify; }
+    .hero-tagline {
+      font-size: 1rem; font-weight: 800; color: #FCF6BA;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero-proposito {
+      font-size: 1rem; color: #CBD5E1; line-height: 1.6;
+      margin: 0 auto 25px; text-align: center; font-weight: 400;
+    }
+
+    .hero-proposito strong { color: #FCF6BA; font-weight: 600; }
 
     .btn-gold {
-      display: inline-block; padding: 12px 30px; border-radius: 4px; font-weight: 700; text-decoration: none;
-      background: var(--gold-metallic); color: #040914; border: none; cursor: pointer;
-      box-shadow: 0 0 20px var(--gold-glow); transition: all 0.3s; position: relative; z-index: 2;
+      display: inline-block; padding: 14px 32px; border-radius: 6px; font-weight: 800; text-decoration: none;
+      background: var(--gold-metallic); color: #030712; border: none; cursor: pointer;
+      box-shadow: 0 0 22px var(--gold-glow); transition: all 0.3s; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(253, 246, 186, 0.7); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(253, 246, 186, 0.8); }
 
-    .container { max-width: 1150px; margin: 0 auto; padding: 0 20px; }
-    .section-title { font-size: 1.6rem; color: #FCF6BA; margin-bottom: 25px; border-left: 4px solid #B38728; padding-left: 12px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
+    .section-title { font-size: 1.5rem; color: #FCF6BA; margin-bottom: 20px; border-left: 4px solid #B38728; padding-left: 12px; }
 
-    /* LAYOUT CARD & CONTENUTI MULTIMEDIALI */
-    .card { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 30px; margin-bottom: 40px; }
+    .card { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 25px; margin-bottom: 35px; }
 
-    .media-box {
-      background: #030812; border: 1px solid var(--border-color); border-radius: 6px;
-      padding: 20px; margin: 20px 0; text-align: center;
-    }
-    .comic-illustration {
-      width: 100%; max-width: 500px; height: 220px; margin: 0 auto;
-      background: #0D1A2D; border: 2px dashed #B38728; border-radius: 8px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; color: #FCF6BA;
+    /* CONTENITORE MATH RESPONSIVE (PREVIENE OVERFLOW SU MOBILE VERTICALE) */
+    .math-responsive-wrapper {
+      background: #02050D; border: 1px solid var(--border-color); border-radius: 6px;
+      padding: 15px; margin: 18px 0; text-align: center;
+      overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch;
     }
 
-    /* SCHEDA AUTORE */
+    /* ALTERNATIVA VISUALE: BOX INSIGHT/TAKEAWAY (SENZA FORMULE) */
+    .insight-box {
+      background: rgba(191, 149, 63, 0.08); border-left: 3px solid #FCF6BA;
+      border-radius: 0 6px 6px 0; padding: 15px; margin: 18px 0;
+    }
+    .insight-box-title { color: #FCF6BA; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; }
+
     .author-card {
-      background-color: #030812; border: 1px solid var(--border-color); border-radius: 8px;
-      padding: 20px; margin-top: 30px; display: flex; gap: 20px; align-items: center;
+      background-color: #02050D; border: 1px solid var(--border-color); border-radius: 8px;
+      padding: 18px; margin-top: 25px; display: flex; gap: 15px; align-items: center;
     }
     .author-avatar {
-      width: 60px; height: 60px; border-radius: 50%; background: var(--gold-metallic);
-      display: flex; align-items: center; justify-content: center; color: #040914; font-weight: 800; font-size: 1.2rem; flex-shrink: 0;
+      width: 50px; height: 50px; border-radius: 50%; background: var(--gold-metallic);
+      display: flex; align-items: center; justify-content: center; color: #030712; font-weight: 800; font-size: 1.1rem; flex-shrink: 0;
     }
 
-    /* SALA GIOCHI */
-    .sala-giochi-grid { display: grid; grid-template-columns: 280px 1fr; gap: 25px; }
-    @media (max-width: 900px) { 
-      .sala-giochi-grid { grid-template-columns: 1fr; } 
-      .hero-logo-esteso { font-size: 3rem; letter-spacing: 6px; }
+    .sala-giochi-grid { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
+    @media (max-width: 850px) { 
+      .sala-giochi-grid { grid-template-columns: 1fr; }
+      .author-card { flex-direction: column; text-align: center; }
     }
 
-    .sidebar-historico { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; }
-    .historico-item { padding: 10px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; color: var(--text-muted); }
-    .historico-tag { display: inline-block; padding: 2px 6px; font-size: 0.7rem; background: #101F35; color: #B38728; border-radius: 3px; margin-bottom: 4px; }
+    .sidebar-historico { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 18px; }
+    .historico-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; color: var(--text-muted); }
+    .historico-tag { display: inline-block; padding: 2px 6px; font-size: 0.7rem; background: #0F1D33; color: #B38728; border-radius: 3px; margin-bottom: 4px; }
 
-    .main-game-area { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 25px; }
-    .options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 20px 0; }
-    .option-item { background-color: #030812; border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+    .main-game-area { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 22px; }
+    .options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 18px 0; }
+    .option-item { background-color: #02050D; border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
     .option-item.correct { border-color: var(--correct-green); background-color: rgba(16, 185, 129, 0.15); }
     .option-item.wrong { border-color: var(--wrong-red); background-color: rgba(239, 68, 68, 0.15); }
 
-    /* CHATBOX / CONTATTI */
-    .chatbox-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .chatbox-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .chatbox-form .full-width { grid-column: span 2; }
     .chatbox-input {
-      width: 100%; padding: 12px; background-color: #030812; border: 1px solid var(--border-color);
-      border-radius: 6px; color: var(--text-main); font-size: 0.95rem;
+      width: 100%; padding: 12px; background-color: #02050D; border: 1px solid var(--border-color);
+      border-radius: 6px; color: var(--text-main); font-size: 0.9rem;
     }
     .chatbox-input:focus { border-color: #B38728; outline: none; }
 
-    /* FOOTER BANNER */
     .footer-banner {
-      text-align: center; padding: 30px 20px; margin-top: 50px;
-      border-top: 1px solid var(--border-gold); background: #02050B;
+      text-align: center; padding: 25px 20px; margin-top: 40px;
+      border-top: 1px solid var(--border-gold); background: #010307;
     }
-    .footer-claim { font-size: 1.4rem; font-weight: 800; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 2px; }
+    .footer-claim { font-size: 1.2rem; font-weight: 800; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 2px; }
   </style>
 </head>
 <body>
@@ -160,15 +161,10 @@
   <!-- HEADER -->
   <header>
     <a href="#" class="brand-icon-link">
-      <!-- SVG LOGO CON TAGLIO NETTO V E ORO RIFLETTENTE -->
       <svg class="v-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#BF953F"/>
-            <stop offset="25%" stop-color="#FCF6BA"/>
-            <stop offset="50%" stop-color="#B38728"/>
-            <stop offset="75%" stop-color="#FBF5B7"/>
-            <stop offset="100%" stop-color="#AA771C"/>
+            <stop offset="0%" stop-color="#BF953F"/><stop offset="25%" stop-color="#FCF6BA"/><stop offset="50%" stop-color="#B38728"/><stop offset="75%" stop-color="#FBF5B7"/><stop offset="100%" stop-color="#AA771C"/>
           </linearGradient>
           <mask id="vCutoutNav">
             <rect width="100" height="100" fill="white" />
@@ -180,20 +176,16 @@
     </a>
 
     <div class="header-right">
-      <!-- SELETTORE LINGUA -->
       <div class="lang-switch">
         <span class="lang-btn active" id="btn-it" onclick="setLanguage('it')">🇮🇹 IT</span>
         <span>|</span>
         <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</span>
       </div>
-
-      <!-- BOTTONE MENU ESTENDIBILE -->
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
 
-    <!-- DROPDOWN MENU -->
     <div class="mobile-menu" id="dropdownMenu">
-      <a href="#divulgazioni-section">📚 Divulgazioni (Archivio)</a>
+      <a href="#divulgazioni-section">📚 Divulgazioni</a>
       <a href="#vision-section">🎯 Vision</a>
       <a href="#sala-giochi-section">🎮 Sala Giochi</a>
       <a href="#chi-siamo-section">👥 Chi Siamo</a>
@@ -201,12 +193,12 @@
     </div>
   </header>
 
-  <!-- HERO SECTION CON POLVERE D'ORO -->
+  <!-- HERO SECTION -->
   <section class="hero">
-    <div class="gold-dust"></div>
-    
-    <div class="hero-brand-container">
-      <svg class="hero-logo-v" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <canvas id="dust-canvas"></canvas>
+
+    <div class="hero-content">
+      <svg class="hero-logo-svg" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#BF953F"/>
@@ -220,81 +212,77 @@
             <line x1="42" y1="20" x2="22" y2="28" stroke="black" stroke-width="5" stroke-linecap="round"/>
           </mask>
         </defs>
-        <path d="M50 88 L88 12 L68 12 L50 62 L32 12 L12 12 Z" fill="url(#goldGradHero)" mask="url(#vCutoutHero)" />
+        <g transform="translate(0, 0)">
+          <path d="M50 88 L88 12 L68 12 L50 62 L32 12 L12 12 Z" fill="url(#goldGradHero)" mask="url(#vCutoutHero)" />
+        </g>
+        <text x="105" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="72" letter-spacing="12" fill="url(#goldGradHero)">ERTEX</text>
       </svg>
-      <div class="hero-logo-esteso">ERTEX</div>
+
+      <div class="hero-tagline">Hub di Cultura Operativa & Supply Chain Excellence</div>
+
+      <p class="hero-proposito">
+        Un <strong>osservatorio indipendente</strong> dedicato all'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione, confronto e sperimentazione.
+      </p>
+
+      <a href="#sala-giochi-section" class="btn-gold">Partecipa alla Sfida della Settimana</a>
     </div>
-
-    <div class="hero-tagline">Hub di Cultura Operativa & Supply Chain Excellence</div>
-    
-    <p class="hero-proposito">
-      Un osservatorio indipendente dedicato all'ottimizzazione dei processi nelle PMI. Uniamo fonti, risorse e divertimento con la serietà, la professionalità e l'esperienza del campo, effettuando collegamenti trasversali tra Supply Chain, Procurement, Process Improvement, Qualità, Logistica, <strong>Pianificazione Strategica</strong>, <strong>Performance dell'ERP</strong> e la <strong>Configurazione Avanzata dei Sistemi MRP, MPS e Scheduling</strong>. Tutto orientato al <strong>Totale Controllo dell'Azienda</strong>, votato alla massima soddisfazione del Cliente.
-    </p>
-
-    <a href="#sala-giochi-section" class="btn-gold">Partecipa alla Sfida della Settimana</a>
   </section>
 
   <div class="container">
 
     <!-- VISION SECTION -->
-    <section id="vision-section" style="margin-bottom: 50px;">
-      <h2 class="section-title">🎯 Vision & Scopo del Progetto</h2>
+    <section id="vision-section">
+      <h2 class="section-title">🎯 Vision & Scopo</h2>
       <div class="card">
-        <p style="color: var(--text-muted); line-height: 1.8;">
-          VERTEX nasce per colmare il divario tra la teoria accademica della gestione industriale e la realtà quotidiana dei reparti produttivi. La nostra **Vision** è trasformare la cultura operativa da elemento reattivo a leva strategica e proattiva: integrando metriche quantitative, digitalizzazione ERP e la competenza delle persone sul campo per garantire stabilità, efficienza e competitività nel tempo.
+        <p style="color: var(--text-muted); line-height: 1.7;">
+          VERTEX nasce per condividere cultura operativa reale e abbattere le barriere tra execution d'officina e pianificazione direzionale. Come hub aperto, raccogliamo testimonianze, casi studio ed esperimenti per supportare professionisti e aziende verso la massima efficienza e il controllo consapevole dei processi.
         </p>
       </div>
     </section>
 
-    <!-- CASO STUDIO & DIVULGAZIONE (CON FORMULA E GRAFICI) -->
+    <!-- CASO STUDIO CON LAYOUT DIVERSIFICATO (ALTERNANZA INSIGHT / FORMULA RESPONSIVE) -->
     <section id="divulgazioni-section">
       <h2 class="section-title">💡 Divulgazione Settimanale</h2>
       <article class="card">
         <span style="color: #B38728; font-weight: 700; font-size: 0.85rem;">TOPIC #1 — OPERATIONAL SCHEDULING & MRP PERFORMANCE</span>
-        <h3 style="font-size: 1.7rem; margin: 8px 0 15px; color: #FCF6BA;">Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale</h3>
+        <h3 style="font-size: 1.5rem; margin: 8px 0 12px; color: #FCF6BA;">Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale</h3>
         
-        <p style="color: var(--text-muted); margin-bottom: 15px;">
-          Nelle carpenterie e PMI metalmeccaniche si considera spesso l'impianto laser come il cuore dello stabilimento. Tuttavia, calcolare l'efficienza reale $E$ di un centro di lavoro basandosi solo sulla velocità del ciclo di taglio genera distorsioni nella schedulazione MPS:
+        <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">
+          Nelle carpenterie e PMI metalmeccaniche si considera spesso l'impianto laser come il cuore dello stabilimento. Tuttavia, calcolare l'efficienza reale basandosi solo sulla velocità del ciclo di taglio genera distorsioni nella schedulazione MPS.
         </p>
 
-        <!-- FORMULA LATEX -->
-        <div class="media-box">
-          <p style="color: #FCF6BA; margin-bottom: 8px; font-weight: 600;">Modello di Flusso di Cassa e Saturazione WIP:</p>
+        <!-- INSIGHT BOX INVECE DELLA SOLITA GRAFICA -->
+        <div class="insight-box">
+          <div class="insight-box-title">Key Takeaway Operativo</div>
+          <p style="color: #CBD5E1; font-size: 0.9rem;">L'ottimizzazione isolata del taglio crea accumulo nei polmoni intermedi (WIP). Senza un bilanciamento tra regole MRP e capacità a valle, l'aumento di velocità si traduce soltanto in capitale immobilizzato.</p>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">
+          Quando occorre quantificare la saturazione di sistema, la relazione tra Lead Time e giacenze viene sintetizzata nel seguente indicatore:
+        </p>
+
+        <!-- CONTENITORE RESPONSIVE CON SCROLLBAR PER MATHJAX (PERFETTO PER MOBILE VERTICALE) -->
+        <div class="math-responsive-wrapper">
           $$ E_{system} = \frac{Q_{out} \times T_{lead}}{\sum WIP_{reparti}} \cdot \left(1 - \frac{T_{microfermi}}{T_{disponibile}}\right) $$
         </div>
 
-        <!-- GRAFICO / ILLUSTRAZIONE COMIC SCHEMATICA -->
-        <div class="media-box">
-          <div class="comic-illustration">
-            <div style="font-size: 2rem; margin-bottom: 10px;">⚙️ ➔ 🛑 ➔ 📦</div>
-            <div style="font-weight: 700;">ILLUSTRAZIONE FLUSSO D'OFFICINA</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted); padding: 0 15px;">Laser ad alta velocità vs. Smistamento e Piegatura bloccati = Accumulo WIP indotto</div>
-          </div>
-        </div>
-
-        <p style="color: var(--text-muted); margin-bottom: 15px;">
-          L'ottimizzazione isolata del taglio crea saturazione nei polmoni intermedi. Senza una bilanciata configurazione delle regole di schedulazione sul sistema ERP/MRP, l'aumento di capacità si trasforma esclusivamente in capitale immobilizzato.
-        </p>
-
-        <!-- SCHEDA GUEST CONTRIBUTOR -->
         <div class="author-card">
           <div class="author-avatar">MB</div>
           <div>
             <div style="font-size: 0.75rem; color: #B38728; font-weight: 700; text-transform: uppercase;">Co-Autore & Guest Contributor</div>
-            <div style="font-size: 1.05rem; color: #FCF6BA; font-weight: 700;">Marco Bianchi</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);">Plant Manager & Operations Specialist — Esperto in ottimizzazione reparti di deformazione e assemblaggio.</div>
+            <div style="font-size: 1rem; color: #FCF6BA; font-weight: 700;">Marco Bianchi</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Plant Manager & Operations Specialist — Expert in bilanciamento flussi produttivi.</div>
           </div>
         </div>
       </article>
     </section>
 
     <!-- SALA GIOCHI -->
-    <section id="sala-giochi-section" style="margin-bottom: 50px;">
+    <section id="sala-giochi-section">
       <h2 class="section-title">🎮 Sala Giochi — Sfida Attiva</h2>
       <div class="sala-giochi-grid">
-        
         <aside class="sidebar-historico">
-          <div style="font-weight: 700; color: #FCF6BA; margin-bottom: 12px;">📚 Archivio Sfide</div>
+          <div style="font-weight: 700; color: #FCF6BA; margin-bottom: 10px;">📚 Archivio Sfide</div>
           <div class="historico-item">
             <span class="historico-tag">Settimana 33</span>
             <div style="font-weight: 600;">Calcolo OEE e Microfermi</div>
@@ -306,7 +294,7 @@
         </aside>
 
         <main class="main-game-area">
-          <h3 style="font-size: 1.3rem; color: #FCF6BA; margin-bottom: 8px;">SMED & Riduzione Setup in Officina</h3>
+          <h3 style="font-size: 1.2rem; color: #FCF6BA; margin-bottom: 8px;">SMED & Riduzione Setup in Officina</h3>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 15px;">
             Quali tra le seguenti azioni convertono un'operazione da interna (IED) ad esterna (OED)?
           </p>
@@ -330,73 +318,110 @@
     </section>
 
     <!-- CHI SIAMO -->
-    <section id="chi-siamo-section" style="margin-bottom: 50px;">
+    <section id="chi-siamo-section">
       <h2 class="section-title">👥 Chi Siamo</h2>
       <div class="card">
-        <p style="color: var(--text-muted); margin-bottom: 20px;">
-          VERTEX è sostenuto da una Board multidisciplinare di professionisti d'azienda, manager e specialisti di processo.
+        <p style="color: var(--text-muted); margin-bottom: 18px; font-size: 0.95rem;">
+          VERTEX è curato da una Board indipendente di professionisti d'azienda, responsabili di produzione e specialisti di processo.
         </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-          <div style="background: #030812; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+          <div style="background: #02050D; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
             <div style="color: #FCF6BA; font-weight: 700;">Founder & Chief Editor</div>
-            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 5px;">Specialista in Process Improvement, Supply Chain Control & Architetture ERP/MRP.</div>
+            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Specialista in Process Improvement, Supply Chain Control & Architetture ERP/MRP.</div>
           </div>
-          <div style="background: #030812; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
+          <div style="background: #02050D; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
             <div style="color: #FCF6BA; font-weight: 700;">Board Guest Contributors</div>
-            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 5px;">Rete di Plant Manager, Buyer, Responsabili Logistica e Quality Engineer.</div>
+            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Rete di Plant Manager, Buyer, Responsabili Logistica e Quality Engineer.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTATTI & MESSENGER CHATBOX -->
+    <!-- CONTATTI -->
     <section id="contatti-section">
       <h2 class="section-title">✉️ Contatti & Messenger</h2>
       <div class="card">
-        <p style="color: var(--text-muted); margin-bottom: 20px;">
-          Vuoi proporre un tema d'analisi, richiedere informazioni o candidarti come Guest Contributor? Invia un messaggio diretto alla redazione:
+        <p style="color: var(--text-muted); margin-bottom: 18px; font-size: 0.95rem;">
+          Vuoi inviare un contributo o contattare la redazione dell'Hub? Compila il modulo sottostante:
         </p>
 
-        <form class="chatbox-form" onsubmit="event.preventDefault(); alert('Messaggio inviato con successo!');">
+        <form class="chatbox-form" onsubmit="event.preventDefault(); alert('Messaggio inviato alla redazione!');">
           <input type="text" class="chatbox-input" placeholder="Nome" required>
           <input type="text" class="chatbox-input" placeholder="Cognome" required>
           <input type="email" class="chatbox-input full-width" placeholder="Indirizzo Email" required>
-          <textarea class="chatbox-input full-width" rows="4" placeholder="Inserisci qui il tuo messaggio o la tua richiesta..." required></textarea>
-          <button class="btn-gold full-width" type="submit" style="margin-top: 10px;">Invia Messaggio</button>
+          <textarea class="chatbox-input full-width" rows="3" placeholder="Scrivi il tuo messaggio..." required></textarea>
+          <button class="btn-gold full-width" type="submit" style="margin-top: 8px;">Invia Messaggio</button>
         </form>
       </div>
     </section>
 
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer-banner">
     <div class="footer-claim">Connettiamo Idee e Professionisti</div>
-    <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
+    <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
   </footer>
 
   <script>
-    // Toggle Menu
-    function toggleMenu() {
-      const menu = id('dropdownMenu');
-      menu.classList.toggle('open');
+    const canvas = document.getElementById('dust-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2.5 + 0.5;
+        this.speedY = -(Math.random() * 0.4 + 0.1);
+        this.opacity = Math.random() * 0.8 + 0.2;
+        this.fade = Math.random() * 0.008 + 0.002;
+      }
+      update() {
+        this.y += this.speedY;
+        this.opacity -= this.fade;
+        if (this.opacity <= 0 || this.y < 0) {
+          this.reset();
+          this.y = canvas.height;
+        }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(252, 246, 186, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
 
-    function id(e) { return document.getElementById(e); }
+    for (let i = 0; i < 65; i++) { particles.push(new Particle()); }
 
-    // Simulazione Cambio Lingua
+    function animateDust() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animateDust);
+    }
+    animateDust();
+
+    function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('open'); }
+
     function setLanguage(lang) {
       if(lang === 'it') {
-        id('btn-it').classList.add('active');
-        id('btn-en').classList.remove('active');
+        document.getElementById('btn-it').classList.add('active');
+        document.getElementById('btn-en').classList.remove('active');
       } else {
-        id('btn-en').classList.add('active');
-        id('btn-it').classList.remove('active');
+        document.getElementById('btn-en').classList.add('active');
+        document.getElementById('btn-it').classList.remove('active');
         alert("English version coming soon!");
       }
     }
 
-    // Quiz Check
     function checkQuiz() {
       const items = document.querySelectorAll('.option-item');
       items.forEach(item => {
@@ -406,7 +431,7 @@
         else if (cb.checked && !isCorrect) item.classList.add('wrong');
         else if (!cb.checked && isCorrect) item.classList.add('wrong');
       });
-      id('user-result-box').innerText = "Risposta registrata! Le opzioni corrette sono la 1 e la 3.";
+      document.getElementById('user-result-box').innerText = "Risposta registrata! Le opzioni corrette sono la 1 e la 3.";
     }
   </script>
 </body>
