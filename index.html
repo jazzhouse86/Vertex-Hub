@@ -19,11 +19,11 @@
       --bg-card: #081120;
       --bg-card-hover: #0F1D33;
       --gold-metallic: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-      --gold-glow: rgba(212, 175, 55, 0.6);
+      --gold-glow: rgba(212, 175, 55, 0.4);
       --text-main: #E2E8F0;
       --text-muted: #94A3B8;
       --border-color: #1E293B;
-      --border-gold: rgba(191, 149, 63, 0.5);
+      --border-gold: rgba(191, 149, 63, 0.4);
       --correct-green: #10B981;
       --wrong-red: #EF4444;
     }
@@ -39,7 +39,7 @@
     }
 
     .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
-    .v-icon-svg { width: 38px; height: 38px; filter: drop-shadow(0px 2px 6px var(--gold-glow)); }
+    .v-icon-svg { width: 34px; height: 34px; filter: drop-shadow(0px 2px 5px var(--gold-glow)); }
 
     .header-right { display: flex; align-items: center; gap: 15px; }
 
@@ -60,7 +60,7 @@
 
     /* HERO SECTION */
     .hero {
-      position: relative; text-align: center; padding: 50px 20px 40px;
+      position: relative; text-align: center; padding: 55px 20px 45px;
       background: radial-gradient(circle at center, #0B1C33 0%, #030712 90%);
       border-bottom: 1px solid var(--border-gold); margin-bottom: 35px; overflow: hidden;
     }
@@ -72,14 +72,15 @@
 
     .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
 
+    /* TITOLO VERTEX COERENTE E UNIFICATO IN SVG */
     .hero-logo-svg {
-      width: 100%; max-width: 380px; height: auto;
-      filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4)); margin-bottom: 10px;
+      width: 100%; max-width: 360px; height: auto;
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.35)); margin-bottom: 12px;
     }
 
     .hero-tagline {
-      font-size: 1rem; font-weight: 800; color: #FCF6BA;
-      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px;
+      font-size: 0.95rem; font-weight: 800; color: #FCF6BA;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
@@ -93,36 +94,34 @@
     .btn-gold {
       display: inline-block; padding: 14px 32px; border-radius: 6px; font-weight: 800; text-decoration: none;
       background: var(--gold-metallic); color: #030712; border: none; cursor: pointer;
-      box-shadow: 0 0 22px var(--gold-glow); transition: all 0.3s; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
+      box-shadow: 0 0 20px var(--gold-glow); transition: all 0.3s; text-transform: uppercase; font-size: 0.88rem; letter-spacing: 0.5px;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(253, 246, 186, 0.8); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(253, 246, 186, 0.7); }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
-    .section-title { font-size: 1.5rem; color: #FCF6BA; margin-bottom: 20px; border-left: 4px solid #B38728; padding-left: 12px; }
+    .section-title { font-size: 1.4rem; color: #FCF6BA; margin-bottom: 20px; border-left: 4px solid #B38728; padding-left: 12px; }
 
     .card { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 25px; margin-bottom: 35px; }
 
-    /* CONTENITORE MATH RESPONSIVE (PREVIENE OVERFLOW SU MOBILE VERTICALE) */
     .math-responsive-wrapper {
       background: #02050D; border: 1px solid var(--border-color); border-radius: 6px;
       padding: 15px; margin: 18px 0; text-align: center;
       overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch;
     }
 
-    /* ALTERNATIVA VISUALE: BOX INSIGHT/TAKEAWAY (SENZA FORMULE) */
     .insight-box {
       background: rgba(191, 149, 63, 0.08); border-left: 3px solid #FCF6BA;
       border-radius: 0 6px 6px 0; padding: 15px; margin: 18px 0;
     }
-    .insight-box-title { color: #FCF6BA; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; }
+    .insight-box-title { color: #FCF6BA; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; margin-bottom: 4px; }
 
     .author-card {
       background-color: #02050D; border: 1px solid var(--border-color); border-radius: 8px;
       padding: 18px; margin-top: 25px; display: flex; gap: 15px; align-items: center;
     }
     .author-avatar {
-      width: 50px; height: 50px; border-radius: 50%; background: var(--gold-metallic);
-      display: flex; align-items: center; justify-content: center; color: #030712; font-weight: 800; font-size: 1.1rem; flex-shrink: 0;
+      width: 48px; height: 48px; border-radius: 50%; background: var(--gold-metallic);
+      display: flex; align-items: center; justify-content: center; color: #030712; font-weight: 800; font-size: 1.05rem; flex-shrink: 0;
     }
 
     .sala-giochi-grid { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
@@ -153,7 +152,7 @@
       text-align: center; padding: 25px 20px; margin-top: 40px;
       border-top: 1px solid var(--border-gold); background: #010307;
     }
-    .footer-claim { font-size: 1.2rem; font-weight: 800; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 2px; }
+    .footer-claim { font-size: 1.1rem; font-weight: 800; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 2px; }
   </style>
 </head>
 <body>
@@ -166,12 +165,8 @@
           <linearGradient id="goldGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#BF953F"/><stop offset="25%" stop-color="#FCF6BA"/><stop offset="50%" stop-color="#B38728"/><stop offset="75%" stop-color="#FBF5B7"/><stop offset="100%" stop-color="#AA771C"/>
           </linearGradient>
-          <mask id="vCutoutNav">
-            <rect width="100" height="100" fill="white" />
-            <line x1="42" y1="20" x2="22" y2="28" stroke="black" stroke-width="5" stroke-linecap="round"/>
-          </mask>
         </defs>
-        <path d="M50 88 L88 12 L68 12 L50 62 L32 12 L12 12 Z" fill="url(#goldGradNav)" mask="url(#vCutoutNav)" />
+        <path d="M50 88 L88 12 L68 12 L50 62 L32 12 L12 12 Z" fill="url(#goldGradNav)"/>
       </svg>
     </a>
 
@@ -193,12 +188,13 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION CON DUST PARTICLES RAFFINATO -->
   <section class="hero">
     <canvas id="dust-canvas"></canvas>
 
     <div class="hero-content">
-      <svg class="hero-logo-svg" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- LOGO VERTEX COMPLETO ED UNIFICATO -->
+      <svg class="hero-logo-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#BF953F"/>
@@ -207,15 +203,9 @@
             <stop offset="75%" stop-color="#FBF5B7"/>
             <stop offset="100%" stop-color="#AA771C"/>
           </linearGradient>
-          <mask id="vCutoutHero">
-            <rect width="100" height="100" fill="white" />
-            <line x1="42" y1="20" x2="22" y2="28" stroke="black" stroke-width="5" stroke-linecap="round"/>
-          </mask>
         </defs>
-        <g transform="translate(0, 0)">
-          <path d="M50 88 L88 12 L68 12 L50 62 L32 12 L12 12 Z" fill="url(#goldGradHero)" mask="url(#vCutoutHero)" />
-        </g>
-        <text x="105" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="72" letter-spacing="12" fill="url(#goldGradHero)">ERTEX</text>
+        <!-- SCRITTA VERTEX MONOLITICA -->
+        <text x="50%" y="62" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="68" letter-spacing="14" fill="url(#goldGradHero)" text-anchor="middle">VERTEX</text>
       </svg>
 
       <div class="hero-tagline">Hub di Cultura Operativa & Supply Chain Excellence</div>
@@ -240,18 +230,17 @@
       </div>
     </section>
 
-    <!-- CASO STUDIO CON LAYOUT DIVERSIFICATO (ALTERNANZA INSIGHT / FORMULA RESPONSIVE) -->
+    <!-- CASO STUDIO -->
     <section id="divulgazioni-section">
       <h2 class="section-title">💡 Divulgazione Settimanale</h2>
       <article class="card">
         <span style="color: #B38728; font-weight: 700; font-size: 0.85rem;">TOPIC #1 — OPERATIONAL SCHEDULING & MRP PERFORMANCE</span>
-        <h3 style="font-size: 1.5rem; margin: 8px 0 12px; color: #FCF6BA;">Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale</h3>
+        <h3 style="font-size: 1.4rem; margin: 8px 0 12px; color: #FCF6BA;">Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale</h3>
         
         <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">
           Nelle carpenterie e PMI metalmeccaniche si considera spesso l'impianto laser come il cuore dello stabilimento. Tuttavia, calcolare l'efficienza reale basandosi solo sulla velocità del ciclo di taglio genera distorsioni nella schedulazione MPS.
         </p>
 
-        <!-- INSIGHT BOX INVECE DELLA SOLITA GRAFICA -->
         <div class="insight-box">
           <div class="insight-box-title">Key Takeaway Operativo</div>
           <p style="color: #CBD5E1; font-size: 0.9rem;">L'ottimizzazione isolata del taglio crea accumulo nei polmoni intermedi (WIP). Senza un bilanciamento tra regole MRP e capacità a valle, l'aumento di velocità si traduce soltanto in capitale immobilizzato.</p>
@@ -261,7 +250,6 @@
           Quando occorre quantificare la saturazione di sistema, la relazione tra Lead Time e giacenze viene sintetizzata nel seguente indicatore:
         </p>
 
-        <!-- CONTENITORE RESPONSIVE CON SCROLLBAR PER MATHJAX (PERFETTO PER MOBILE VERTICALE) -->
         <div class="math-responsive-wrapper">
           $$ E_{system} = \frac{Q_{out} \times T_{lead}}{\sum WIP_{reparti}} \cdot \left(1 - \frac{T_{microfermi}}{T_{disponibile}}\right) $$
         </div>
@@ -362,6 +350,7 @@
     <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
   </footer>
 
+  <!-- SCRIPT POLVERE DORATA: DESIGN & RANDOM FLOATING -->
   <script>
     const canvas = document.getElementById('dust-canvas');
     const ctx = canvas.getContext('2d');
@@ -374,22 +363,35 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class Particle {
-      constructor() { this.reset(); }
+    class FineParticle {
+      constructor() {
+        this.reset();
+      }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedY = -(Math.random() * 0.4 + 0.1);
-        this.opacity = Math.random() * 0.8 + 0.2;
-        this.fade = Math.random() * 0.008 + 0.002;
+        // Punti piccolissimi ed eleganti (da 0.3px a 1.2px)
+        this.size = Math.random() * 0.9 + 0.3;
+        // Movimento lento e casuale su entrambi gli assi (fluttuazione libera)
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.vy = (Math.random() - 0.5) * 0.25;
+        this.opacity = Math.random() * 0.6 + 0.1;
+        this.pulse = Math.random() * 0.01 + 0.003;
+        this.pulseDir = Math.random() > 0.5 ? 1 : -1;
       }
       update() {
-        this.y += this.speedY;
-        this.opacity -= this.fade;
-        if (this.opacity <= 0 || this.y < 0) {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Variazione graduale di luminosità
+        this.opacity += this.pulse * this.pulseDir;
+        if (this.opacity >= 0.75 || this.opacity <= 0.05) {
+          this.pulseDir *= -1;
+        }
+
+        // Rigenerazione fuori dai bordi
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
           this.reset();
-          this.y = canvas.height;
         }
       }
       draw() {
@@ -400,11 +402,17 @@
       }
     }
 
-    for (let i = 0; i < 65; i++) { particles.push(new Particle()); }
+    // Densità misurata per non appesantire il layout
+    for (let i = 0; i < 85; i++) {
+      particles.push(new FineParticle());
+    }
 
     function animateDust() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
       requestAnimationFrame(animateDust);
     }
     animateDust();
