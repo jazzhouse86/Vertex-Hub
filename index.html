@@ -15,53 +15,53 @@
 
   <style>
     :root {
-      --bg-dark: #030712;
+      --bg-dark: #030814;
       --bg-card: #081120;
       --bg-card-hover: #0F1D33;
-      --gold-metallic: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-      --gold-glow: rgba(212, 175, 55, 0.4);
+      --gold-metallic: linear-gradient(135deg, #D4A338 0%, #FFE998 30%, #B88214 60%, #FDF0A6 85%, #9B6A08 100%);
+      --gold-glow: rgba(212, 163, 56, 0.35);
       --text-main: #E2E8F0;
       --text-muted: #94A3B8;
       --border-color: #1E293B;
-      --border-gold: rgba(191, 149, 63, 0.4);
+      --border-gold: rgba(212, 163, 56, 0.4);
       --correct-green: #10B981;
       --wrong-red: #EF4444;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
     body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: 40px; overflow-x: hidden; }
 
     /* HEADER */
     header {
-      background-color: rgba(3, 7, 18, 0.95); backdrop-filter: blur(12px);
+      background-color: rgba(3, 8, 20, 0.95); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000;
-      padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
     }
 
     .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
-    .v-icon-svg { width: 34px; height: 34px; filter: drop-shadow(0px 2px 6px var(--gold-glow)); }
+    .v-icon-svg { width: 38px; height: 38px; filter: drop-shadow(0px 2px 8px var(--gold-glow)); }
 
-    .header-right { display: flex; align-items: center; gap: 15px; }
+    .header-right { display: flex; align-items: center; gap: 18px; }
 
     .lang-switch { display: flex; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
     .lang-btn { cursor: pointer; padding: 2px 6px; border-radius: 4px; transition: 0.3s; }
-    .lang-btn.active { color: #030712; background: var(--gold-metallic); }
+    .lang-btn.active { color: #030814; background: var(--gold-metallic); }
 
-    .menu-toggle { font-size: 1.5rem; color: #FCF6BA; cursor: pointer; background: none; border: none; }
+    .menu-toggle { font-size: 1.5rem; color: #FFE998; cursor: pointer; background: none; border: none; }
 
     .mobile-menu {
-      display: none; position: absolute; top: 100%; right: 20px; width: 280px;
+      display: none; position: absolute; top: 100%; right: 24px; width: 280px;
       background-color: var(--bg-card); border: 1px solid var(--border-gold);
       border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); padding: 10px 0; z-index: 1001;
     }
     .mobile-menu.open { display: block; }
     .mobile-menu a { display: block; padding: 12px 20px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .mobile-menu a:hover { color: #FCF6BA; background-color: var(--bg-card-hover); }
+    .mobile-menu a:hover { color: #FFE998; background-color: var(--bg-card-hover); }
 
     /* HERO SECTION */
     .hero {
-      position: relative; text-align: center; padding: 55px 20px 45px;
-      background: radial-gradient(circle at center, #0B1C33 0%, #030712 90%);
+      position: relative; text-align: center; padding: 60px 20px 50px;
+      background: radial-gradient(circle at center, #0B1C33 0%, #030814 90%);
       border-bottom: 1px solid var(--border-gold); margin-bottom: 35px; overflow: hidden;
     }
 
@@ -70,36 +70,36 @@
       pointer-events: none; z-index: 1;
     }
 
-    .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+    .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; }
 
-    /* LOGO VERTEX VETTORIALE UNIFICATO */
+    /* LOGO E SCRITTA VERTEX VETTORIALE UNIFICATI */
     .hero-logo-svg {
-      width: 100%; max-width: 480px; height: auto;
-      filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.4)); margin-bottom: 12px;
+      width: 100%; max-width: 580px; height: auto;
+      filter: drop-shadow(0 0 20px rgba(212, 163, 56, 0.35)); margin-bottom: 15px;
     }
 
     .hero-tagline {
-      font-size: 0.95rem; font-weight: 800; color: #FCF6BA;
-      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;
+      font-size: 0.95rem; font-weight: 800; color: #FFE998;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
     .hero-proposito {
-      font-size: 1rem; color: #CBD5E1; line-height: 1.6;
-      margin: 0 auto 25px; text-align: center; font-weight: 400;
+      font-size: 1.02rem; color: #CBD5E1; line-height: 1.6;
+      margin: 0 auto 28px; text-align: center; font-weight: 400; max-width: 800px;
     }
 
-    .hero-proposito strong { color: #FCF6BA; font-weight: 600; }
+    .hero-proposito strong { color: #FFE998; font-weight: 600; }
 
     .btn-gold {
       display: inline-block; padding: 14px 32px; border-radius: 6px; font-weight: 800; text-decoration: none;
-      background: var(--gold-metallic); color: #030712; border: none; cursor: pointer;
+      background: var(--gold-metallic); color: #030814; border: none; cursor: pointer;
       box-shadow: 0 0 20px var(--gold-glow); transition: all 0.3s; text-transform: uppercase; font-size: 0.88rem; letter-spacing: 0.5px;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(253, 246, 186, 0.7); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255, 233, 152, 0.7); }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
-    .section-title { font-size: 1.4rem; color: #FCF6BA; margin-bottom: 20px; border-left: 4px solid #B38728; padding-left: 12px; }
+    .section-title { font-size: 1.4rem; color: #FFE998; margin-bottom: 20px; border-left: 4px solid #B88214; padding-left: 12px; }
 
     .card { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 25px; margin-bottom: 35px; }
 
@@ -110,10 +110,10 @@
     }
 
     .insight-box {
-      background: rgba(191, 149, 63, 0.08); border-left: 3px solid #FCF6BA;
+      background: rgba(212, 163, 56, 0.08); border-left: 3px solid #FFE998;
       border-radius: 0 6px 6px 0; padding: 15px; margin: 18px 0;
     }
-    .insight-box-title { color: #FCF6BA; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; margin-bottom: 4px; }
+    .insight-box-title { color: #FFE998; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; margin-bottom: 4px; }
 
     .author-card {
       background-color: #02050D; border: 1px solid var(--border-color); border-radius: 8px;
@@ -121,7 +121,7 @@
     }
     .author-avatar {
       width: 48px; height: 48px; border-radius: 50%; background: var(--gold-metallic);
-      display: flex; align-items: center; justify-content: center; color: #030712; font-weight: 800; font-size: 1.05rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; color: #030814; font-weight: 800; font-size: 1.05rem; flex-shrink: 0;
     }
 
     .sala-giochi-grid { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
@@ -132,7 +132,7 @@
 
     .sidebar-historico { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 18px; }
     .historico-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; color: var(--text-muted); }
-    .historico-tag { display: inline-block; padding: 2px 6px; font-size: 0.7rem; background: #0F1D33; color: #B38728; border-radius: 3px; margin-bottom: 4px; }
+    .historico-tag { display: inline-block; padding: 2px 6px; font-size: 0.7rem; background: #0F1D33; color: #B88214; border-radius: 3px; margin-bottom: 4px; }
 
     .main-game-area { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 22px; }
     .options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 18px 0; }
@@ -146,7 +146,7 @@
       width: 100%; padding: 12px; background-color: #02050D; border: 1px solid var(--border-color);
       border-radius: 6px; color: var(--text-main); font-size: 0.9rem;
     }
-    .chatbox-input:focus { border-color: #B38728; outline: none; }
+    .chatbox-input:focus { border-color: #B88214; outline: none; }
 
     .footer-banner {
       text-align: center; padding: 25px 20px; margin-top: 40px;
@@ -157,23 +157,25 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER NAV -->
   <header>
-    <a href="#" class="brand-icon-link">
-      <!-- V ICONICA CON TAGLIO SULL'ASTA SINISTRA IN ALTO -->
+    <a href="#" class="brand-icon-link" aria-label="VERTEX Home">
+      <!-- V DEL LOGO CON TAGLIO OBLIQUO SU ASTA SINISTRA IN ALTO -->
       <svg class="v-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#BF953F"/>
-            <stop offset="25%" stop-color="#FCF6BA"/>
-            <stop offset="50%" stop-color="#B38728"/>
-            <stop offset="75%" stop-color="#FBF5B7"/>
-            <stop offset="100%" stop-color="#AA771C"/>
+            <stop offset="0%" stop-color="#D4A338"/>
+            <stop offset="30%" stop-color="#FFE998"/>
+            <stop offset="60%" stop-color="#B88214"/>
+            <stop offset="85%" stop-color="#FDF0A6"/>
+            <stop offset="100%" stop-color="#9B6A08"/>
           </linearGradient>
         </defs>
-        <!-- Geometria V con taglio trasparente su asta sinistra -->
-        <path d="M10,12 L28,12 L50,68 L72,12 L90,12 L58,88 L42,88 Z" fill="url(#goldGradNav)"/>
-        <path d="M10,12 L30,12 L21,34 Z" fill="var(--bg-dark)"/>
+        <!-- V Asta Destra e Bassa -->
+        <polygon points="50,92 92,10 70,10 50,62 30,10 8,10" fill="url(#goldGradNav)"/>
+        <!-- Taglio Geometrico Obliquo che lascia passare lo sfondo -->
+        <polygon points="4,22 28,10 8,10 2,16" fill="var(--bg-dark)"/>
+        <line x1="4" y1="22" x2="28" y2="10" stroke="var(--bg-dark)" stroke-width="3"/>
       </svg>
     </a>
 
@@ -200,28 +202,28 @@
     <canvas id="dust-canvas"></canvas>
 
     <div class="hero-content">
-      <!-- SCRITTA VERTEX COMPLETA: LOGO V IDENTICO INTEGRATO -->
-      <svg class="hero-logo-svg" viewBox="0 0 520 90" xmlns="http://www.w3.org/2000/svg">
+      <!-- BRANDING COMPLETO VERTEX: V ICONICA CON TAGLIO + ERTEX STILIZZATO COERENTE -->
+      <svg class="hero-logo-svg" viewBox="0 0 600 110" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#BF953F"/>
-            <stop offset="25%" stop-color="#FCF6BA"/>
-            <stop offset="50%" stop-color="#B38728"/>
-            <stop offset="75%" stop-color="#FBF5B7"/>
-            <stop offset="100%" stop-color="#AA771C"/>
+            <stop offset="0%" stop-color="#D4A338"/>
+            <stop offset="30%" stop-color="#FFE998"/>
+            <stop offset="60%" stop-color="#B88214"/>
+            <stop offset="85%" stop-color="#FDF0A6"/>
+            <stop offset="100%" stop-color="#9B6A08"/>
           </linearGradient>
         </defs>
         
-        <!-- LETTERA V (Coerente con il logo iconico + taglio in alto a sinistra) -->
-        <g transform="translate(0, 0)">
-          <path d="M10,12 L28,12 L50,68 L72,12 L90,12 L58,88 L42,88 Z" fill="url(#goldGradHero)"/>
-          <!-- Intaglio trasparente -->
-          <polygon points="10,12 30,12 21,34" fill="#030712"/>
+        <!-- V INIZIALE CON IL TAGLIO IN ALTO A SINISTRA -->
+        <g transform="translate(10, 5)">
+          <path d="M 12 10 L 32 10 L 52 68 L 72 10 L 92 10 L 52 96 Z" fill="url(#goldGradHero)"/>
+          <!-- Taglio inclinato che lascia scorgere lo sfondo scuro -->
+          <polygon points="6,24 32,10 12,10" fill="#030814"/>
         </g>
 
-        <!-- TESTO ERTEX STILIZZATO NELLO STESSO TRATTO E GRADIENTE -->
-        <g fill="url(#goldGradHero)" font-family="'Segoe UI', system-ui, sans-serif" font-weight="900" font-size="78" letter-spacing="10">
-          <text x="95" y="76">ERTEX</text>
+        <!-- PAROLE ERTEX COORDINATE (STESSO GRADIENTE, RIFLESSO ED ESECUZIONE TIPOGRAFICA) -->
+        <g fill="url(#goldGradHero)" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="900" font-size="82" letter-spacing="8">
+          <text x="115" y="85">ERTEX</text>
         </g>
       </svg>
 
@@ -247,12 +249,12 @@
       </div>
     </section>
 
-    <!-- CASO STUDIO -->
+    <!-- CASO STUDIO / DIVULGAZIONE -->
     <section id="divulgazioni-section">
       <h2 class="section-title">💡 Divulgazione Settimanale</h2>
       <article class="card">
-        <span style="color: #B38728; font-weight: 700; font-size: 0.85rem;">TOPIC #1 — OPERATIONAL SCHEDULING & MRP PERFORMANCE</span>
-        <h3 style="font-size: 1.4rem; margin: 8px 0 12px; color: #FCF6BA;">Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale</h3>
+        <span style="color: #B88214; font-weight: 700; font-size: 0.85rem;">TOPIC #1 — OPERATIONAL SCHEDULING & MRP PERFORMANCE</span>
+        <h3 style="font-size: 1.4rem; margin: 8px 0 12px; color: #FFE998;">Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale</h3>
         
         <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">
           Nelle carpenterie e PMI metalmeccaniche si considera spesso l'impianto laser come il cuore dello stabilimento. Tuttavia, calcolare l'efficienza reale basandosi solo sulla velocità del ciclo di taglio genera distorsioni nella schedulazione MPS.
@@ -274,8 +276,8 @@
         <div class="author-card">
           <div class="author-avatar">MB</div>
           <div>
-            <div style="font-size: 0.75rem; color: #B38728; font-weight: 700; text-transform: uppercase;">Co-Autore & Guest Contributor</div>
-            <div style="font-size: 1rem; color: #FCF6BA; font-weight: 700;">Marco Bianchi</div>
+            <div style="font-size: 0.75rem; color: #B88214; font-weight: 700; text-transform: uppercase;">Co-Autore & Guest Contributor</div>
+            <div style="font-size: 1rem; color: #FFE998; font-weight: 700;">Marco Bianchi</div>
             <div style="font-size: 0.85rem; color: var(--text-muted);">Plant Manager & Operations Specialist — Expert in bilanciamento flussi produttivi.</div>
           </div>
         </div>
@@ -287,7 +289,7 @@
       <h2 class="section-title">🎮 Sala Giochi — Sfida Attiva</h2>
       <div class="sala-giochi-grid">
         <aside class="sidebar-historico">
-          <div style="font-weight: 700; color: #FCF6BA; margin-bottom: 10px;">📚 Archivio Sfide</div>
+          <div style="font-weight: 700; color: #FFE998; margin-bottom: 10px;">📚 Archivio Sfide</div>
           <div class="historico-item">
             <span class="historico-tag">Settimana 33</span>
             <div style="font-weight: 600;">Calcolo OEE e Microfermi</div>
@@ -299,7 +301,7 @@
         </aside>
 
         <main class="main-game-area">
-          <h3 style="font-size: 1.2rem; color: #FCF6BA; margin-bottom: 8px;">SMED & Riduzione Setup in Officina</h3>
+          <h3 style="font-size: 1.2rem; color: #FFE998; margin-bottom: 8px;">SMED & Riduzione Setup in Officina</h3>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 15px;">
             Quali tra le seguenti azioni convertono un'operazione da interna (IED) ad esterna (OED)?
           </p>
@@ -317,7 +319,7 @@
           </div>
 
           <button class="btn-gold" onclick="checkQuiz()">Invia Risposta</button>
-          <div id="user-result-box" style="margin-top: 15px; font-weight: 700; color: #FCF6BA;"></div>
+          <div id="user-result-box" style="margin-top: 15px; font-weight: 700; color: #FFE998;"></div>
         </main>
       </div>
     </section>
@@ -331,11 +333,11 @@
         </p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
           <div style="background: #02050D; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-            <div style="color: #FCF6BA; font-weight: 700;">Founder & Chief Editor</div>
+            <div style="color: #FFE998; font-weight: 700;">Founder & Chief Editor</div>
             <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Specialista in Process Improvement, Supply Chain Control & Architetture ERP/MRP.</div>
           </div>
           <div style="background: #02050D; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-            <div style="color: #FCF6BA; font-weight: 700;">Board Guest Contributors</div>
+            <div style="color: #FFE998; font-weight: 700;">Board Guest Contributors</div>
             <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Rete di Plant Manager, Buyer, Responsabili Logistica e Quality Engineer.</div>
           </div>
         </div>
@@ -367,7 +369,7 @@
     <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
   </footer>
 
-  <!-- SCRIPT POLVERE DORATA DESIGN -->
+  <!-- POLVERE DORATA -->
   <script>
     const canvas = document.getElementById('dust-canvas');
     const ctx = canvas.getContext('2d');
@@ -408,7 +410,7 @@
         }
       }
       draw() {
-        ctx.fillStyle = `rgba(252, 246, 186, ${this.opacity})`;
+        ctx.fillStyle = `rgba(255, 233, 152, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
