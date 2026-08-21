@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</title>
+  <title>VORTEX — Hub di Cultura Operativa & Supply Chain Excellence</title>
   
   <script>
     MathJax = {
@@ -37,13 +37,13 @@
     }
 
     .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
-    .v-icon-svg { width: 38px; height: 38px; filter: drop-shadow(0px 2px 6px rgba(212, 175, 55, 0.4)); }
+    .v-icon-svg { width: 38px; height: 38px; filter: drop-shadow(0px 2px 8px rgba(212, 175, 55, 0.4)); }
 
     .header-right { display: flex; align-items: center; gap: 18px; }
 
     .lang-switch { display: flex; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
     .lang-btn { cursor: pointer; padding: 2px 6px; border-radius: 4px; transition: 0.3s; }
-    .lang-btn.active { color: #030814; background: linear-gradient(135deg, #FFE082, #D4AF37); }
+    .lang-btn.active { color: #030814; background: linear-gradient(135deg, #FFF5C0, #D4AF37); }
 
     .menu-toggle { font-size: 1.5rem; color: #FFE082; cursor: pointer; background: none; border: none; }
 
@@ -70,10 +70,10 @@
 
     .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; }
 
-    /* LOGO E SCRITTA VERTEX VETTORIALE UNIFICATI */
+    /* BRAND SVG VORTEX COMPLETO */
     .hero-logo-svg {
-      width: 100%; max-width: 620px; height: auto;
-      filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.35)); margin-bottom: 15px;
+      width: 100%; max-width: 680px; height: auto;
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); margin-bottom: 15px;
     }
 
     .hero-tagline {
@@ -91,11 +91,11 @@
 
     .btn-gold {
       display: inline-block; padding: 14px 32px; border-radius: 6px; font-weight: 800; text-decoration: none;
-      background: linear-gradient(135deg, #FFE082 0%, #D4AF37 50%, #B8860B 100%);
+      background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #B8860B 100%);
       color: #030814; border: none; cursor: pointer;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); transition: all 0.3s; text-transform: uppercase; font-size: 0.88rem; letter-spacing: 0.5px;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255, 224, 130, 0.7); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255, 245, 192, 0.7); }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
     .section-title { font-size: 1.4rem; color: #FFE082; margin-bottom: 20px; border-left: 4px solid #D4AF37; padding-left: 12px; }
@@ -119,7 +119,7 @@
       padding: 18px; margin-top: 25px; display: flex; gap: 15px; align-items: center;
     }
     .author-avatar {
-      width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #FFE082, #D4AF37);
+      width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #FFF5C0, #D4AF37);
       display: flex; align-items: center; justify-content: center; color: #030814; font-weight: 800; font-size: 1.05rem; flex-shrink: 0;
     }
 
@@ -153,8 +153,7 @@
     }
     .footer-claim { 
       font-size: 1.1rem; font-weight: 800; 
-      color: #FFE082;
-      text-transform: uppercase; letter-spacing: 2px; 
+      color: #FFE082; text-transform: uppercase; letter-spacing: 2px; 
     }
   </style>
 </head>
@@ -162,21 +161,21 @@
 
   <!-- HEADER NAV -->
   <header>
-    <a href="#" class="brand-icon-link" aria-label="VERTEX Home">
-      <!-- V DEL LOGO CON TAGLIO TRASPARENTE -->
+    <a href="#" class="brand-icon-link" aria-label="VORTEX Home">
+      <!-- V LOGO HEADER (IDENTICA ALLA V DI VORTEX HERO) -->
       <svg class="v-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="goldGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#FFF3B0"/>
-            <stop offset="30%" stop-color="#FFE082"/>
-            <stop offset="65%" stop-color="#D4AF37"/>
-            <stop offset="100%" stop-color="#9A7B1C"/>
+          <linearGradient id="goldNavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF8D6"/>
+            <stop offset="25%" stop-color="#FFE082"/>
+            <stop offset="55%" stop-color="#D4AF37"/>
+            <stop offset="80%" stop-color="#FDF0A6"/>
+            <stop offset="100%" stop-color="#B38711"/>
           </linearGradient>
         </defs>
-        <!-- V Vettoriale -->
-        <path d="M 12 10 L 32 10 L 50 68 L 68 10 L 88 10 L 50 90 Z" fill="url(#goldGradNav)"/>
-        <!-- Taglio Geometrico inclinato -->
-        <polygon points="6,24 32,10 12,10" fill="var(--bg-dark)"/>
+        <!-- V Identica con fessura stilizzata -->
+        <path d="M 10 10 L 32 10 L 50 68 L 68 10 L 90 10 L 50 90 Z" fill="url(#goldNavGrad)"/>
+        <polygon points="4,24 32,10 10,10" fill="var(--bg-dark)"/>
       </svg>
     </a>
 
@@ -203,40 +202,39 @@
     <canvas id="dust-canvas"></canvas>
 
     <div class="hero-content">
-      <!-- PAROLA VERTEX INTERAMENTE VETTORIALE (NIENTE TEXT TAG) PER EVITARE RENDER ROSSASTRI/SCURI -->
-      <svg class="hero-logo-svg" viewBox="0 0 680 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- VORTEX BRAND SVG - DESIGN UNIFICATO VETTORIALE -->
+      <svg class="hero-logo-svg" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="goldGradPure" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#FFF3B0"/>
-            <stop offset="25%" stop-color="#FFE082"/>
-            <stop offset="60%" stop-color="#D4AF37"/>
-            <stop offset="85%" stop-color="#FDF0A6"/>
+          <linearGradient id="goldLuxeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF8D6"/>
+            <stop offset="20%" stop-color="#FFE082"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
+            <stop offset="75%" stop-color="#FDF0A6"/>
             <stop offset="100%" stop-color="#A27B13"/>
           </linearGradient>
         </defs>
         
-        <g fill="url(#goldGradPure)">
-          <!-- V INIZIALE CON TAGLIO (IDENTICA AL LOGO HEADER) -->
+        <g fill="url(#goldLuxeGrad)">
+          <!-- V (Base del Logo, identica all'icona header) -->
           <g>
-            <path d="M 10 10 L 30 10 L 48 68 L 66 10 L 86 10 L 48 90 Z"/>
-            <!-- Taglio inclinato trasparente -->
-            <polygon points="4,24 30,10 10,10" fill="#030814"/>
+            <path d="M 10 10 L 32 10 L 50 68 L 68 10 L 90 10 L 50 90 Z"/>
+            <polygon points="4,24 32,10 10,10" fill="#030814"/>
           </g>
 
-          <!-- E -->
-          <polygon points="115,10 170,10 170,26 137,26 137,42 165,42 165,58 137,58 137,74 172,74 172,90 115,90"/>
+          <!-- O -->
+          <path d="M 148 10 C 122 10 106 28 106 50 C 106 72 122 90 148 90 C 174 90 190 72 190 50 C 190 28 174 10 148 10 Z M 148 27 C 160 27 167 36 167 50 C 167 64 160 73 148 73 C 136 73 129 64 129 50 C 129 36 136 27 148 27 Z"/>
 
           <!-- R -->
-          <path d="M 195,10 L 235,10 C 255,10 265,20 265,34 C 265,46 256,54 240,56 L 268,90 L 244,90 L 220,58 L 217,58 L 217,90 L 195,90 Z M 217,25 L 217,43 L 232,43 C 242,43 246,38 246,34 C 246,29 242,25 232,25 Z"/>
+          <path d="M 208 10 L 250 10 C 270 10 282 20 282 34 C 282 46 272 54 256 56 L 285 90 L 259 90 L 233 58 L 230 58 L 230 90 L 208 90 Z M 230 25 L 230 43 L 246 43 C 256 43 260 38 260 34 C 260 29 256 25 246 25 Z"/>
 
           <!-- T -->
-          <polygon points="282,10 345,10 345,26 325,26 325,90 302,90 302,26 282,26"/>
+          <polygon points="298 10 362 10 362 26 341 26 341 90 319 90 319 26 298 26"/>
 
           <!-- E -->
-          <polygon points="360,10 415,10 415,26 382,26 382,42 410,42 410,58 382,58 382,74 417,74 417,90 360,90"/>
+          <polygon points="378 10 434 10 434 26 400 26 400 42 428 42 428 58 400 58 400 74 436 74 436 90 378 90"/>
 
           <!-- X -->
-          <polygon points="432,10 456,10 478,46 500,10 524,10 490,50 526,90 502,90 478,54 454,90 430,90 466,50"/>
+          <polygon points="450 10 474 10 497 46 520 10 544 10 509 50 546 90 522 90 497 54 472 90 448 90 485 50"/>
         </g>
       </svg>
 
@@ -257,7 +255,7 @@
       <h2 class="section-title">🎯 Vision & Scopo</h2>
       <div class="card">
         <p style="color: var(--text-muted); line-height: 1.7;">
-          VERTEX nasce per condividere cultura operativa reale e abbattere le barriere tra execution d'officina e pianificazione direzionale. Come hub aperto, raccogliamo testimonianze, casi studio ed esperimenti per supportare professionisti e aziende verso la massima efficienza e il controllo consapevole dei processi.
+          VORTEX nasce per condividere cultura operativa reale e abbattere le barriere tra execution d'officina e pianificazione direzionale. Come hub aperto, raccogliamo testimonianze, casi studio ed esperimenti per supportare professionisti e aziende verso la massima efficienza e il controllo consapevole dei processi.
         </p>
       </div>
     </section>
@@ -342,7 +340,7 @@
       <h2 class="section-title">👥 Chi Siamo</h2>
       <div class="card">
         <p style="color: var(--text-muted); margin-bottom: 18px; font-size: 0.95rem;">
-          VERTEX è curato da una Board indipendente di professionisti d'azienda, responsabili di produzione e specialisti di processo.
+          VORTEX è curato da una Board indipendente di professionisti d'azienda, responsabili di produzione e specialisti di processo.
         </p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
           <div style="background: #02050D; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
@@ -379,7 +377,7 @@
 
   <footer class="footer-banner">
     <div class="footer-claim">Connettiamo Idee e Professionisti</div>
-    <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
+    <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VORTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
   </footer>
 
   <!-- POLVERE DORATA CANVAS -->
