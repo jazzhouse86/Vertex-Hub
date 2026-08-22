@@ -3,16 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</title>
+  <title>VERTEX — Sala Giochi & Interactive Testing Hub</title>
   
-  <script>
-    MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-      chtml: { displayAlign: 'center' }
-    };
-  </script>
-  <script id="mathjax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
   <style>
     :root {
       --bg-dark: #030814;
@@ -24,482 +16,284 @@
       --border-gold: rgba(212, 175, 55, 0.35);
       --correct-green: #10B981;
       --wrong-red: #EF4444;
+      --gold-main: #D4AF37;
+      --gold-light: #FFE082;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: 40px; overflow-x: hidden; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding: 20px; }
 
-    /* HEADER */
-    header {
-      background-color: rgba(3, 8, 20, 0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000;
-      padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title { font-size: 1.4rem; color: var(--gold-light); margin-bottom: 20px; border-left: 4px solid var(--gold-main); padding-left: 12px; }
+
+    /* LAYOUT SALA GIOCHI */
+    .sala-giochi-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+    @media (max-width: 850px) { .sala-giochi-layout { grid-template-columns: 1fr; } }
+
+    /* SIDEBAR STORICO MODALITÀ */
+    .game-sidebar { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 15px; }
+    .game-nav-item {
+      padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; background: #02050D;
+      margin-bottom: 10px; cursor: pointer; transition: 0.2s; font-size: 0.85rem;
     }
+    .game-nav-item:hover { border-color: var(--gold-main); background: var(--bg-card-hover); }
+    .game-nav-item.active { border-color: var(--gold-main); background: var(--bg-card-hover); font-weight: bold; }
+    .game-badge { display: inline-block; font-size: 0.7rem; background: rgba(212, 175, 55, 0.2); color: var(--gold-light); padding: 2px 6px; border-radius: 3px; margin-bottom: 4px; }
 
-    .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
-    .v-icon-svg { width: 34px; height: 34px; }
-
-    .header-right { display: flex; align-items: center; gap: 18px; }
-
-    .lang-switch { display: flex; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
-    .lang-btn { cursor: pointer; padding: 3px 8px; border-radius: 4px; transition: 0.3s; opacity: 0.6; }
-    .lang-btn.active { opacity: 1; color: #030814; background: linear-gradient(135deg, #FFF8D6, #D4AF37); }
-
-    .menu-toggle { font-size: 1.5rem; color: #FFE082; cursor: pointer; background: none; border: none; }
-
-    .mobile-menu {
-      display: none; position: absolute; top: 100%; right: 24px; width: 280px;
-      background-color: var(--bg-card); border: 1px solid var(--border-gold);
-      border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); padding: 10px 0; z-index: 1001;
-    }
-    .mobile-menu.open { display: block; }
-    .mobile-menu a { display: block; padding: 12px 20px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .mobile-menu a:hover { color: #FFE082; background-color: var(--bg-card-hover); }
-
-    /* HERO SECTION CLEAN */
-    .hero {
-      position: relative; text-align: center; padding: 60px 20px 50px;
-      background: #030814; border-bottom: 1px solid var(--border-gold); margin-bottom: 35px;
-    }
-
-    .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; }
-
-    .hero-logo-container {
-      margin-bottom: 24px; display: inline-block; width: 100%; max-width: 650px;
-    }
-    .hero-logo-svg { width: 100%; height: auto; display: block; }
-
-    .hero-tagline {
-      font-size: 0.95rem; font-weight: 800; color: #FFE082;
-      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px;
-    }
-
-    .hero-proposito {
-      font-size: 1.02rem; color: #CBD5E1; line-height: 1.65;
-      margin: 0 auto 28px; text-align: center; font-weight: 400; max-width: 800px;
-    }
-    .hero-proposito strong { color: #FFE082; font-weight: 600; }
+    /* STAGE DI GIOCO */
+    .game-stage { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 22px; }
+    .game-panel { display: none; }
+    .game-panel.active { display: block; }
 
     .btn-gold {
-      display: inline-block; padding: 14px 32px; border-radius: 6px; font-weight: 800; text-decoration: none;
+      display: inline-block; padding: 10px 22px; border-radius: 6px; font-weight: 800; text-decoration: none;
       background: linear-gradient(135deg, #FFF8D6 0%, #D4AF37 50%, #9A7410 100%);
-      color: #030814; border: none; cursor: pointer;
-      transition: all 0.3s; text-transform: uppercase; font-size: 0.88rem; letter-spacing: 0.5px;
-    }
-    .btn-gold:hover { transform: translateY(-2px); }
-
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
-    .section-title { font-size: 1.4rem; color: #FFE082; margin-bottom: 20px; border-left: 4px solid #D4AF37; padding-left: 12px; }
-
-    .card { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 25px; margin-bottom: 35px; }
-
-    .math-responsive-wrapper {
-      background: #02050D; border: 1px solid var(--border-color); border-radius: 6px;
-      padding: 15px; margin: 18px 0; text-align: center;
-      overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch;
+      color: #030814; border: none; cursor: pointer; text-transform: uppercase; font-size: 0.82rem; margin-top: 15px;
     }
 
-    .insight-box {
-      background: rgba(212, 175, 55, 0.08); border-left: 3px solid #FFE082;
-      border-radius: 0 6px 6px 0; padding: 15px; margin: 18px 0;
-    }
-    .insight-box-title { color: #FFE082; font-weight: 700; font-size: 0.88rem; text-transform: uppercase; margin-bottom: 4px; }
-
-    .author-card {
-      background-color: #02050D; border: 1px solid var(--border-color); border-radius: 8px;
-      padding: 18px; margin-top: 25px; display: flex; gap: 15px; align-items: center;
-    }
-    .author-avatar {
-      width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #FFF8D6, #D4AF37);
-      display: flex; align-items: center; justify-content: center; color: #030814; font-weight: 800; font-size: 1.05rem; flex-shrink: 0;
-    }
-
-    .sala-giochi-grid { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
-    @media (max-width: 850px) { 
-      .sala-giochi-grid { grid-template-columns: 1fr; }
-      .author-card { flex-direction: column; text-align: center; }
-    }
-
-    .sidebar-historico { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 18px; }
-    .historico-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; color: var(--text-muted); }
-    .historico-tag { display: inline-block; padding: 2px 6px; font-size: 0.7rem; background: #0F1D33; color: #D4AF37; border-radius: 3px; margin-bottom: 4px; }
-
-    .main-game-area { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 22px; }
-    .options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 18px 0; }
-    .option-item { background-color: #02050D; border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
+    /* MODE 1: QUIZ 6 */
+    .options-grid-6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 15px 0; }
+    .option-item { background: #02050D; border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; cursor: pointer; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 10px; }
     .option-item.correct { border-color: var(--correct-green); background-color: rgba(16, 185, 129, 0.15); }
     .option-item.wrong { border-color: var(--wrong-red); background-color: rgba(239, 68, 68, 0.15); }
 
-    .chatbox-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .chatbox-form .full-width { grid-column: span 2; }
-    .chatbox-input {
-      width: 100%; padding: 12px; background-color: #02050D; border: 1px solid var(--border-color);
-      border-radius: 6px; color: var(--text-main); font-size: 0.9rem;
-    }
-    .chatbox-input:focus { border-color: #D4AF37; outline: none; }
+    /* MODE 2: WAREHOUSE SLOTTING */
+    .warehouse-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 15px 0; }
+    .rack-slot { background: #02050D; border: 2px dashed var(--border-color); border-radius: 6px; padding: 15px; text-align: center; font-size: 0.82rem; cursor: pointer; }
+    .rack-slot:hover { border-color: var(--gold-main); }
+    .rack-slot.correct-slot { border-color: var(--correct-green); background: rgba(16, 185, 129, 0.15); }
 
-    .footer-banner {
-      text-align: center; padding: 25px 20px; margin-top: 40px;
-      border-top: 1px solid var(--border-gold); background: #010307;
+    /* MODE 3: VIGNETTA TROVA L'ERRORE */
+    .vignette-canvas {
+      position: relative; width: 100%; height: 260px; background: #02050D; border: 1px solid var(--border-color);
+      border-radius: 6px; margin: 15px 0; overflow: hidden; background-size: cover; background-position: center;
     }
-    .footer-claim { 
-      font-size: 1.1rem; font-weight: 800; 
-      color: #FFE082; text-transform: uppercase; letter-spacing: 2px; 
-    }
+    .error-spot { position: absolute; border: 2px solid transparent; border-radius: 50%; cursor: pointer; background: rgba(239, 68, 68, 0.2); }
+    .error-spot.found { border-color: var(--correct-green); background: rgba(16, 185, 129, 0.4); }
+
+    /* MODE 4: FLOWCHART DRAG/MOVE */
+    .flow-steps { display: flex; flex-direction: column; gap: 8px; margin: 15px 0; }
+    .flow-card { background: #02050D; border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; }
+    .flow-btn { background: var(--bg-card-hover); border: 1px solid var(--border-color); color: var(--gold-light); padding: 2px 8px; border-radius: 4px; cursor: pointer; }
+
+    /* MODE 5: CALCOLATORE RAPIDO */
+    .calc-input { width: 100%; padding: 10px; background: #02050D; border: 1px solid var(--border-color); border-radius: 6px; color: #fff; margin: 8px 0; font-size: 0.9rem; }
+    
+    .feedback-box { margin-top: 15px; font-weight: bold; font-size: 0.88rem; color: var(--gold-light); min-height: 24px; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER NAV -->
-  <header>
-    <a href="#" class="brand-icon-link" aria-label="VERTEX Home">
-      <svg class="v-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="goldGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#FFF8D6"/>
-            <stop offset="50%" stop-color="#D4AF37"/>
-            <stop offset="100%" stop-color="#9A7410"/>
-          </linearGradient>
-        </defs>
-        <path d="M 12 12 L 34 12 L 50 68 L 66 12 L 88 12 L 58 88 L 42 88 Z" fill="url(#goldGradHeader)"/>
-      </svg>
-    </a>
-
-    <div class="header-right">
-      <div class="lang-switch">
-        <span class="lang-btn active" id="btn-it" onclick="setLanguage('it')">🇮🇹 IT</span>
-        <span>|</span>
-        <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</span>
-      </div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    </div>
-
-    <div class="mobile-menu" id="dropdownMenu">
-      <a href="#divulgazioni-section" data-i18n="nav-dissemination">📚 Divulgazioni</a>
-      <a href="#vision-section" data-i18n="nav-vision">🎯 Vision</a>
-      <a href="#sala-giochi-section" data-i18n="nav-games">🎮 Sala Giochi</a>
-      <a href="#chi-siamo-section" data-i18n="nav-about">👥 Chi Siamo</a>
-      <a href="#contatti-section" data-i18n="nav-contact">✉️ Contatti & Messenger</a>
-    </div>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      
-      <!-- LOGO HERO: SCRITTA VERTEX OMOGENEA AL 100% -->
-      <div class="hero-logo-container">
-        <svg class="hero-logo-svg" viewBox="0 0 520 85" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="goldGradClean" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#FFE082"/>
-              <stop offset="50%" stop-color="#D4AF37"/>
-              <stop offset="100%" stop-color="#B38B13"/>
-            </linearGradient>
-          </defs>
-          
-          <g fill="url(#goldGradClean)">
-            <!-- V -->
-            <polygon points="10,10 32,10 48,68 64,10 86,10 56,88 40,88"/>
-
-            <!-- E -->
-            <polygon points="105,10 155,10 155,24 125,24 125,41 150,41 150,55 125,55 125,74 157,74 157,88 105,88"/>
-
-            <!-- R -->
-            <path d="M 175,10 L 215,10 C 235,10 245,20 245,33 C 245,45 235,53 220,55 L 248,88 L 225,88 L 201,57 L 195,57 L 195,88 L 175,88 Z M 195,24 L 195,42 L 212,42 C 222,42 226,38 226,33 C 226,28 222,24 212,24 Z"/>
-
-            <!-- T -->
-            <polygon points="260,10 320,10 320,24 300,24 300,88 280,88 280,24 260,24"/>
-
-            <!-- E -->
-            <polygon points="335,10 385,10 385,24 355,24 355,41 380,41 380,55 355,55 355,74 387,74 387,88 335,88"/>
-
-            <!-- X (Perfettamente omogenea con il resto delle lettere) -->
-            <polygon points="400,10 422,10 442,48 462,10 484,10 453,49 486,88 464,88 442,50 420,88 398,88 431,49"/>
-          </g>
-        </svg>
-      </div>
-
-      <div class="hero-tagline" data-i18n="hero-tagline">Hub di Cultura Operativa & Supply Chain Excellence</div>
-
-      <p class="hero-proposito" data-i18n="hero-proposito">
-        Un <strong>osservatorio indipendente</strong> dedicato all'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione, confronto e sperimentazione.
-      </p>
-
-      <a href="#sala-giochi-section" class="btn-gold" data-i18n="hero-btn">Partecipa alla Sfida della Settimana</a>
-    </div>
-  </section>
-
   <div class="container">
+    <h2 class="section-title">🎮 VERTEX — Sala Giochi & Interactive Testing Hub</h2>
 
-    <!-- VISION SECTION -->
-    <section id="vision-section">
-      <h2 class="section-title" data-i18n="vision-title">🎯 Vision & Scopo</h2>
-      <div class="card">
-        <p style="color: var(--text-muted); line-height: 1.7;" data-i18n="vision-desc">
-          VERTEX nasce per condividere cultura operativa reale e abbattere le barriere tra execution d'officina e pianificazione direzionale. Come hub aperto, raccogliamo testimonianze, casi studio ed esperimenti per supportare professionisti e aziende verso la massima efficienza e il controllo consapevole dei processi.
-        </p>
-      </div>
-    </section>
-
-    <!-- DIVULGAZIONE SETTIMANALE -->
-    <section id="divulgazioni-section">
-      <h2 class="section-title" data-i18n="div-title">💡 Divulgazione Settimanale</h2>
-      <article class="card">
-        <span style="color: #D4AF37; font-weight: 700; font-size: 0.85rem;" data-i18n="div-topic">TOPIC #1 — OPERATIONAL SCHEDULING & MRP PERFORMANCE</span>
-        <h3 style="font-size: 1.4rem; margin: 8px 0 12px; color: #FFE082;" data-i18n="div-head">Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale</h3>
+    <div class="sala-giochi-layout">
+      
+      <!-- HISTORIC SIDEBAR MENU -->
+      <aside class="game-sidebar">
+        <div style="font-weight: 700; color: var(--gold-light); margin-bottom: 12px; font-size: 0.9rem;">🕹️ Modalità & Storico</div>
         
-        <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;" data-i18n="div-p1">
-          Nelle carpenterie e PMI metalmeccaniche si considera spesso l'impianto laser come il cuore dello stabilimento. Tuttavia, calcolare l'efficienza reale basandosi solo sulla velocità del ciclo di taglio genera distorsioni nella schedulazione MPS.
-        </p>
-
-        <div class="insight-box">
-          <div class="insight-box-title" data-i18n="div-key-title">Key Takeaway Operativo</div>
-          <p style="color: #CBD5E1; font-size: 0.9rem;" data-i18n="div-key-desc">L'ottimizzazione isolata del taglio crea accumulo nei polmoni intermedi (WIP). Senza un bilanciamento tra regole MRP e capacità a valle, l'aumento di velocità si traduce soltanto in capitale immobilizzato.</p>
+        <div class="game-nav-item active" onclick="loadGame('mode1', this)">
+          <span class="game-badge">Settimana 34</span>
+          <div style="font-weight: 600;">1. Quiz Multiplo Variabile</div>
+          <small style="color: var(--text-muted);">6 risposte / 1, 2 o 3 esatte</small>
         </div>
 
-        <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;" data-i18n="div-p2">
-          Quando occorre quantificare la saturazione di sistema, la relazione tra Lead Time e giacenze viene sintetizzata nel seguente indicatore:
-        </p>
-
-        <div class="math-responsive-wrapper">
-          $$ E_{system} = \frac{Q_{out} \times T_{lead}}{\sum WIP_{reparti}} \cdot \left(1 - \frac{T_{microfermi}}{T_{disponibile}}\right) $$
+        <div class="game-nav-item" onclick="loadGame('mode2', this)">
+          <span class="game-badge">Settimana 33</span>
+          <div style="font-weight: 600;">2. Warehouse Slotting</div>
+          <small style="color: var(--text-muted);">Ubicazione pacchi & ABC</small>
         </div>
 
-        <div class="author-card">
-          <div class="author-avatar">MB</div>
-          <div>
-            <div style="font-size: 0.75rem; color: #D4AF37; font-weight: 700; text-transform: uppercase;" data-i18n="author-role">Co-Autore & Guest Contributor</div>
-            <div style="font-size: 1rem; color: #FFE082; font-weight: 700;">Marco Bianchi</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="author-bio">Plant Manager & Operations Specialist — Expert in bilanciamento flussi produttivi.</div>
-          </div>
+        <div class="game-nav-item" onclick="loadGame('mode3', this)">
+          <span class="game-badge">Settimana 32</span>
+          <div style="font-weight: 600;">3. Trova l'Errore (5S & Muda)</div>
+          <small style="color: var(--text-muted);">Vignetta interattiva d'officina</small>
         </div>
-      </article>
-    </section>
 
-    <!-- SALA GIOCHI -->
-    <section id="sala-giochi-section">
-      <h2 class="section-title" data-i18n="game-title">🎮 Sala Giochi — Sfida Attiva</h2>
-      <div class="sala-giochi-grid">
-        <aside class="sidebar-historico">
-          <div style="font-weight: 700; color: #FFE082; margin-bottom: 10px;" data-i18n="archive-title">📚 Archivio Sfide</div>
-          <div class="historico-item">
-            <span class="historico-tag" data-i18n="week-33">Settimana 33</span>
-            <div style="font-weight: 600;" data-i18n="week-33-title">Calcolo OEE e Microfermi</div>
-          </div>
-          <div class="historico-item">
-            <span class="historico-tag" data-i18n="week-32">Settimana 32</span>
-            <div style="font-weight: 600;" data-i18n="week-32-title">Parametrizzazione MRP II</div>
-          </div>
-        </aside>
-
-        <main class="main-game-area">
-          <h3 style="font-size: 1.2rem; color: #FFE082; margin-bottom: 8px;" data-i18n="quiz-subject">SMED & Riduzione Setup in Officina</h3>
-          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 15px;" data-i18n="quiz-q">
-            Quali tra le seguenti azioni convertono un'operazione da interna (IED) ad esterna (OED)?
-          </p>
-
-          <div class="options-grid">
-            <label class="option-item" data-correct="true">
-              <input type="checkbox" value="1"> <span data-i18n="opt-1">1. Preriscaldare un utensile o predisporre le lamiere a bordo macchina con impianto in funzione.</span>
-            </label>
-            <label class="option-item" data-correct="false">
-              <input type="checkbox" value="2"> <span data-i18n="opt-2">2. Svitare più velocemente i bulloni di fissaggio a macchina ferma.</span>
-            </label>
-            <label class="option-item" data-correct="true">
-              <input type="checkbox" value="3"> <span data-i18n="opt-3">3. Precaricare i programmi CAM ed i parametri di lavoro sulla console prima del cambio lotto.</span>
-            </label>
-          </div>
-
-          <button class="btn-gold" onclick="checkQuiz()" data-i18n="quiz-submit">Invia Risposta</button>
-          <div id="user-result-box" style="margin-top: 15px; font-weight: 700; color: #FFE082;"></div>
-        </main>
-      </div>
-    </section>
-
-    <!-- CHI SIAMO -->
-    <section id="chi-siamo-section">
-      <h2 class="section-title" data-i18n="about-title">👥 Chi Siamo</h2>
-      <div class="card">
-        <p style="color: var(--text-muted); margin-bottom: 18px; font-size: 0.95rem;" data-i18n="about-desc">
-          VERTEX è curato da una Board indipendente di professionisti d'azienda, responsabili di produzione e specialisti di processo.
-        </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
-          <div style="background: #02050D; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-            <div style="color: #FFE082; font-weight: 700;" data-i18n="role-1-title">Founder & Chief Editor</div>
-            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;" data-i18n="role-1-desc">Specialista in Process Improvement, Supply Chain Control & Architetture ERP/MRP.</div>
-          </div>
-          <div style="background: #02050D; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
-            <div style="color: #FFE082; font-weight: 700;" data-i18n="role-2-title">Board Guest Contributors</div>
-            <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;" data-i18n="role-2-desc">Rete di Plant Manager, Buyer, Responsabili Logistica e Quality Engineer.</div>
-          </div>
+        <div class="game-nav-item" onclick="loadGame('mode4', this)">
+          <span class="game-badge">Settimana 31</span>
+          <div style="font-weight: 600;">4. Flow-Chart Sequenza</div>
+          <small style="color: var(--text-muted);">Riconfigurazione flusso VSM</small>
         </div>
-      </div>
-    </section>
 
-    <!-- CONTATTI -->
-    <section id="contatti-section">
-      <h2 class="section-title" data-i18n="contact-title">✉️ Contatti & Messenger</h2>
-      <div class="card">
-        <p style="color: var(--text-muted); margin-bottom: 18px; font-size: 0.95rem;" data-i18n="contact-desc">
-          Vuoi inviare un contributo o contattare la redazione dell'Hub? Compila il modulo sottostante:
-        </p>
+        <div class="game-nav-item" onclick="loadGame('mode5', this)">
+          <span class="game-badge">Settimana 30</span>
+          <div style="font-weight: 600;">5. OEE Rapid-Fire Calculator</div>
+          <small style="color: var(--text-muted);">Calcolo veloce indicatori</small>
+        </div>
+      </aside>
 
-        <form class="chatbox-form" onsubmit="event.preventDefault(); alert(currentLang === 'it' ? 'Messaggio inviato alla redazione!' : 'Message successfully sent to the editorial team!');">
-          <input type="text" class="chatbox-input" placeholder="Nome" data-i18n-ph="ph-fname" required>
-          <input type="text" class="chatbox-input" placeholder="Cognome" data-i18n-ph="ph-lname" required>
-          <input type="email" class="chatbox-input full-width" placeholder="Indirizzo Email" data-i18n-ph="ph-email" required>
-          <textarea class="chatbox-input full-width" rows="3" placeholder="Scrivi il tuo messaggio..." data-i18n-ph="ph-msg" required></textarea>
-          <button class="btn-gold full-width" type="submit" style="margin-top: 8px;" data-i18n="form-submit">Invia Messaggio</button>
-        </form>
-      </div>
-    </section>
+      <!-- STAGE DI GIOCO INTERATTIVO -->
+      <main class="game-stage">
 
+        <!-- MODE 1: QUIZ 6 -->
+        <div id="mode1" class="game-panel active">
+          <h3 style="color: var(--gold-light);">Mode 1 — Quiz Multiplo (2 Risposte Corrette)</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Quali tra queste sono azioni dirette di livellamento Heijunka?</p>
+
+          <div class="options-grid-6">
+            <label class="option-item" data-correct="true"><input type="checkbox"> <span>1. Alternare la produzione di lotti piccoli A, B, C anziché lotti monolitici.</span></label>
+            <label class="option-item" data-correct="false"><input type="checkbox"> <span>2. Raddoppiare le scorte di sicurezza per coprire ogni inefficienza.</span></label>
+            <label class="option-item" data-correct="true"><input type="checkbox"> <span>3. Smussare i picchi di domanda riducendo la variabilità dei lotti.</span></label>
+            <label class="option-item" data-correct="false"><input type="checkbox"> <span>4. Aumentare i tempi di cambio formato sulle presse.</span></label>
+            <label class="option-item" data-correct="false"><input type="checkbox"> <span>5. Eliminare il controllo visivo Kanban dal reparto.</span></label>
+            <label class="option-item" data-correct="false"><input type="checkbox"> <span>6. Lavorare esclusivamente su previsioni annuali fisse.</span></label>
+          </div>
+          <button class="btn-gold" onclick="checkQuiz1()">Verifica Risposte</button>
+          <div id="fb-1" class="feedback-box"></div>
+        </div>
+
+        <!-- MODE 2: WAREHOUSE SLOTTING -->
+        <div id="mode2" class="game-panel">
+          <h3 style="color: var(--gold-light);">Mode 2 — Warehouse Slotting Game</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;"><strong>Missione:</strong> Ubica il Pallet "Componenti A — Peso 800kg — Alta Rotazione (Fast Mover)" nella campata corretta.</p>
+
+          <div class="warehouse-container">
+            <div class="rack-slot" onclick="checkSlot(false, this)">
+              <strong>Livello 3 (In alto - 6m)</strong><br>
+              <small style="color: var(--text-muted);">Bassa accessibilità / Prelievo lento</small>
+            </div>
+            <div class="rack-slot" onclick="checkSlot(true, this)">
+              <strong>Livello 0 (Terra - Vicino Spedizioni)</strong><br>
+              <small style="color: var(--text-muted);">Massima accessibilità / Ergonimico</small>
+            </div>
+            <div class="rack-slot" onclick="checkSlot(false, this)">
+              <strong>Livello 1 (Soppalco Remoto)</strong><br>
+              <small style="color: var(--text-muted);">Lontano dal flusso di spedizione</small>
+            </div>
+          </div>
+          <div id="fb-2" class="feedback-box"></div>
+        </div>
+
+        <!-- MODE 3: VIGNETTA TROVA L'ERRORE -->
+        <div id="mode3" class="game-panel">
+          <h3 style="color: var(--gold-light);">Mode 3 — Trova l'Errore nella Vignetta (5S & Muda)</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Individua 2 anomalie operative o rischi di sicurezza nell'area di lavoro sottostante:</p>
+
+          <div class="vignette-canvas" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/600x260/081120/FFE082?text=Vignetta+Officina+Metalmeccanica');">
+            <!-- Punti d'errore fittizi posti sopra l'immagine -->
+            <div class="error-spot" style="top: 40px; left: 60px; width: 45px; height: 45px;" onclick="findError(this, 'Olio a terra non segnalato (Rischio Sicurezza & 5S)')"></div>
+            <div class="error-spot" style="top: 140px; right: 80px; width: 50px; height: 50px;" onclick="findError(this, 'Contenitore Scarti senza cartellino di identificazione (Muda)')"></div>
+          </div>
+          <div id="fb-3" class="feedback-box"></div>
+        </div>
+
+        <!-- MODE 4: FLOWCHART REORDER -->
+        <div id="mode4" class="game-panel">
+          <h3 style="color: var(--gold-light);">Mode 4 — Ricostruisci il Flusso di Lavoro (VSM)</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Riordina la sequenza logica dal primo all'ultimo passaggio:</p>
+
+          <div class="flow-steps" id="flow-container">
+            <div class="flow-card" data-step="3"><span>3. Controllo Qualità & Deburring</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+            <div class="flow-card" data-step="1"><span>1. Taglio Laser Lamiera</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+            <div class="flow-card" data-step="2"><span>2. Piegatura CNC</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+            <div class="flow-card" data-step="4"><span>4. Imballo e Versamento a Magazzino</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+          </div>
+          <button class="btn-gold" onclick="checkFlow()">Verifica Sequenza</button>
+          <div id="fb-4" class="feedback-box"></div>
+        </div>
+
+        <!-- MODE 5: OEE CALCULATOR -->
+        <div id="mode5" class="game-panel">
+          <h3 style="color: var(--gold-light);">Mode 5 — OEE Rapid-Fire Calculator</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Turno di 8 ore (480 min). Tempo di fermo non pianificato: 48 min. Qual è la <strong>Disponibilità (A)</strong> del macchinario?</p>
+
+          <input type="number" id="calc-ans" class="calc-input" placeholder="Inserisci la percentuale % (es. 85)">
+          <button class="btn-gold" onclick="checkCalc()">Invia Calcolo</button>
+          <div id="fb-5" class="feedback-box"></div>
+        </div>
+
+      </main>
+    </div>
   </div>
 
-  <footer class="footer-banner">
-    <div class="footer-claim" data-i18n="footer-claim">Connettiamo Idee e Professionisti</div>
-    <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;" data-i18n="footer-copy">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
-  </footer>
-
   <script>
-    function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('open'); }
-
-    let currentLang = 'it';
-    const translations = {
-      en: {
-        "nav-dissemination": "📚 Publications",
-        "nav-vision": "🎯 Vision",
-        "nav-games": "🎮 Challenge Room",
-        "nav-about": "👥 About Us",
-        "nav-contact": "✉️ Contact & Messenger",
-        "hero-tagline": "Hub for Operational Culture & Supply Chain Excellence",
-        "hero-proposito": "An <strong>independent observatory</strong> dedicated to analyzing industrial workflows across SMEs. We bridge shop-floor execution and strategic planning by integrating <strong>Supply Chain, Operations, Lean Improvement, and ERP/MRP Systems</strong> into an open ecosystem for knowledge sharing and engineering trials.",
-        "hero-btn": "Join This Week's Challenge",
-        "vision-title": "🎯 Vision & Purpose",
-        "vision-desc": "VERTEX was founded to share genuine operational management principles, breaking down silos between shop-floor execution and executive planning. As an open hub, we curate field insights, case studies, and practical trials to empower professionals and organizations toward process control and operational mastery.",
-        "div-title": "💡 Weekly Operational Insight",
-        "div-topic": "TOPIC #1 — OPERATIONAL SCHEDULING & MRP PERFORMANCE",
-        "div-head": "Laser Cutting Saturation & Bottlenecks: The Illusion of Local Efficiency",
-        "div-p1": "In sheet metal fabrication and industrial SMEs, laser cutting machinery is often perceived as the operational heart of the plant. However, evaluating true system efficiency solely through cutting cycle speeds introduces severe distortions in MPS scheduling.",
-        "div-key-title": "Operational Key Takeaway",
-        "div-key-desc": "Isolated cutting optimization builds up excessive Work-In-Progress (WIP) buffers. Without balancing MRP lot-sizing rules with downstream capacity, speed gains merely turn into tied-up working capital.",
-        "div-p2": "When measuring total system saturation, the operational relationship between Lead Time and inventory buffer levels is expressed by the following throughput metric:",
-        "author-role": "Co-Author & Guest Contributor",
-        "author-bio": "Plant Manager & Operations Specialist — Expert in production flow balancing.",
-        "game-title": "🎮 Challenge Room — Active Trial",
-        "archive-title": "📚 Challenge Archive",
-        "week-33": "Week 33",
-        "week-33-title": "OEE & Micro-Stoppage Analysis",
-        "week-32": "Week 32",
-        "week-32-title": "MRP II Parameter Optimization",
-        "quiz-subject": "SMED & Shop-Floor Changeover Reduction",
-        "quiz-q": "Which of the following setup actions convert an Internal Setup Operation (IED) into an External Setup Operation (OED)?",
-        "opt-1": "1. Pre-heating tooling or staging raw sheet metal next to the machine while active production is running.",
-        "opt-2": "2. Unbolting mounting fixtures faster while the machine is completely stopped.",
-        "opt-3": "3. Pre-loading CAM programs and operational parameters onto the control unit prior to batch changeover.",
-        "quiz-submit": "Submit Answer",
-        "about-title": "👥 About Us",
-        "about-desc": "VERTEX is curated by an independent board of industry professionals, plant managers, and continuous improvement specialists.",
-        "role-1-title": "Founder & Chief Editor",
-        "role-1-desc": "Specialist in Process Improvement, Supply Chain Control & ERP/MRP Architecture.",
-        "role-2-title": "Board Guest Contributors",
-        "role-2-desc": "A network of Plant Managers, Procurement Directors, Logistics Managers, and Quality Engineers.",
-        "contact-title": "✉️ Contact & Messenger",
-        "contact-desc": "Interested in contributing an article or reaching out to the editorial team? Submit your message below:",
-        "ph-fname": "First Name",
-        "ph-lname": "Last Name",
-        "ph-email": "Email Address",
-        "ph-msg": "Type your message here...",
-        "form-submit": "Send Message",
-        "footer-claim": "Connecting Ideas and Industry Professionals",
-        "footer-copy": "© VERTEX — Hub for Operational Culture & Supply Chain Excellence"
-      },
-      it: {
-        "nav-dissemination": "📚 Divulgazioni",
-        "nav-vision": "🎯 Vision",
-        "nav-games": "🎮 Sala Giochi",
-        "nav-about": "👥 Chi Siamo",
-        "nav-contact": "✉️ Contatti & Messenger",
-        "hero-tagline": "Hub di Cultura Operativa & Supply Chain Excellence",
-        "hero-proposito": "Un <strong>osservatorio indipendente</strong> dedicato all'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione, confronto e sperimentazione.",
-        "hero-btn": "Partecipa alla Sfida della Settimana",
-        "vision-title": "🎯 Vision & Scopo",
-        "vision-desc": "VERTEX nasce per condividere cultura operativa reale e abbattere le barriere tra execution d'officina e pianificazione direzionale. Come hub aperto, raccogliamo testimonianze, casi studio ed esperimenti per supportare professionisti e aziende verso la massima efficienza e il controllo consapevole dei processi.",
-        "div-title": "💡 Divulgazione Settimanale",
-        "div-topic": "TOPIC #1 — OPERATIONAL SCHEDULING & MRP PERFORMANCE",
-        "div-head": "Saturazione Laser e Collo di Bottiglia: Il mito dell'Efficienza Locale",
-        "div-p1": "Nelle carpenterie e PMI metalmeccaniche si considera spesso l'impianto laser come il cuore dello stabilimento. Tuttavia, calcolare l'efficienza reale basandosi solo sulla velocità del ciclo di taglio genera distorsioni nella schedulazione MPS.",
-        "div-key-title": "Key Takeaway Operativo",
-        "div-key-desc": "L'ottimizzazione isolata del taglio crea accumulo nei polmoni intermedi (WIP). Senza un bilanciamento tra regole MRP e capacità a valle, l'aumento di velocità si traduce soltanto in capitale immobilizzato.",
-        "div-p2": "Quando occorre quantificare la saturazione di sistema, la relazione tra Lead Time e giacenze viene sintetizzata nel seguente indicatore:",
-        "author-role": "Co-Autore & Guest Contributor",
-        "author-bio": "Plant Manager & Operations Specialist — Expert in bilanciamento flussi produttivi.",
-        "game-title": "🎮 Sala Giochi — Sfida Attiva",
-        "archive-title": "📚 Archivio Sfide",
-        "week-33": "Settimana 33",
-        "week-33-title": "Calcolo OEE e Microfermi",
-        "week-32": "Settimana 32",
-        "week-32-title": "Parametrizzazione MRP II",
-        "quiz-subject": "SMED & Riduzione Setup in Officina",
-        "quiz-q": "Quali tra le seguenti azioni convertono un'operazione da interna (IED) ad esterna (OED)?",
-        "opt-1": "1. Preriscaldare un utensile o predisporre le lamiere a bordo macchina con impianto in funzione.",
-        "opt-2": "2. Svitare più velocemente i bulloni di fissaggio a macchina ferma.",
-        "opt-3": "3. Precaricare i programmi CAM ed i parametri di lavoro sulla console prima del cambio lotto.",
-        "quiz-submit": "Invia Risposta",
-        "about-title": "👥 Chi Siamo",
-        "about-desc": "VERTEX è curato da una Board indipendente di professionisti d'azienda, responsabili di produzione e specialisti di processo.",
-        "role-1-title": "Founder & Chief Editor",
-        "role-1-desc": "Specialista in Process Improvement, Supply Chain Control & Architetture ERP/MRP.",
-        "role-2-title": "Board Guest Contributors",
-        "role-2-desc": "Rete di Plant Manager, Buyer, Responsabili Logistica e Quality Engineer.",
-        "contact-title": "✉️ Contatti & Messenger",
-        "contact-desc": "Vuoi inviare un contributo o contattare la redazione dell'Hub? Compila il modulo sottostante:",
-        "ph-fname": "Nome",
-        "ph-lname": "Cognome",
-        "ph-email": "Indirizzo Email",
-        "ph-msg": "Scrivi il tuo messaggio...",
-        "form-submit": "Invia Messaggio",
-        "footer-claim": "Connettiamo Idee e Professionisti",
-        "footer-copy": "© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence"
-      }
-    };
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.getElementById('btn-it').classList.toggle('active', lang === 'it');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-
-      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-        const key = el.getAttribute('data-i18n-ph');
-        if (translations[lang][key]) {
-          el.setAttribute('placeholder', translations[lang][key]);
-        }
-      });
+    // CAMBIO SCHEDA GIOCO
+    function loadGame(gameId, el) {
+      document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.game-nav-item').forEach(i => i.classList.remove('active'));
+      document.getElementById(gameId).classList.add('active');
+      el.classList.add('active');
     }
 
-    function checkQuiz() {
-      const items = document.querySelectorAll('.option-item');
+    // MODE 1
+    function checkQuiz1() {
+      const items = document.querySelectorAll('#mode1 .option-item');
       items.forEach(item => {
         const isCorrect = item.getAttribute('data-correct') === 'true';
-        const cb = item.querySelector('input[type="checkbox"]');
+        const cb = item.querySelector('input');
         if (cb.checked && isCorrect) item.classList.add('correct');
         else if (cb.checked && !isCorrect) item.classList.add('wrong');
         else if (!cb.checked && isCorrect) item.classList.add('wrong');
       });
+      document.getElementById('fb-1').innerText = "Verifica completata! Le opzioni giuste erano la 1 e la 3.";
+    }
 
-      const resBox = document.getElementById('user-result-box');
-      if (currentLang === 'it') {
-        resBox.innerText = "Risposta registrata! Le opzioni corrette sono la 1 e la 3.";
+    // MODE 2
+    function checkSlot(isCorrect, el) {
+      document.querySelectorAll('.rack-slot').forEach(r => r.classList.remove('correct-slot'));
+      const fb = document.getElementById('fb-2');
+      if (isCorrect) {
+        el.classList.add('correct-slot');
+        fb.style.color = "var(--correct-green)";
+        fb.innerText = "Esatto! I codici ad alta rotazione e con peso elevato vanno collocati a terra nei pressi dell'area spedizioni per eliminare inutili sollevamenti ed ergonomia sfavorevole.";
       } else {
-        resBox.innerText = "Answer recorded! The correct options are 1 and 3.";
+        fb.style.color = "var(--wrong-red)";
+        fb.innerText = "Ubicazione inefficiente! Aumenta il tempo di movimentazione e i rischi sulla sicurezza.";
+      }
+    }
+
+    // MODE 3
+    let errorsFound = 0;
+    function findError(el, label) {
+      if(!el.classList.contains('found')) {
+        el.classList.add('found');
+        errorsFound++;
+        const fb = document.getElementById('fb-3');
+        fb.style.color = "var(--correct-green)";
+        fb.innerText = `Trovato: ${label}! (${errorsFound}/2 anomalie individuate)`;
+      }
+    }
+
+    // MODE 4
+    function moveFlow(btn, dir) {
+      const card = btn.closest('.flow-card');
+      const container = document.getElementById('flow-container');
+      if (dir === -1 && card.previousElementSibling) {
+        container.insertBefore(card, card.previousElementSibling);
+      } else if (dir === 1 && card.nextElementSibling) {
+        container.insertBefore(card.nextElementSibling, card);
+      }
+    }
+
+    function checkFlow() {
+      const cards = document.querySelectorAll('.flow-card');
+      let isCorrect = true;
+      cards.forEach((c, idx) => {
+        if (parseInt(c.getAttribute('data-step')) !== idx + 1) isCorrect = false;
+      });
+      const fb = document.getElementById('fb-4');
+      if(isCorrect) {
+        fb.style.color = "var(--correct-green)";
+        fb.innerText = "Sequenza VSM Corretta! Flusso ottimizato senza colli di bottiglia intermedi.";
+      } else {
+        fb.style.color = "var(--wrong-red)";
+        fb.innerText = "Sequenza errata! Rivedi l'ordine dei processi di lavorazione.";
+      }
+    }
+
+    // MODE 5
+    function checkCalc() {
+      const val = parseFloat(document.getElementById('calc-ans').value);
+      const fb = document.getElementById('fb-5');
+      // Tempo operativo = 480 - 48 = 432 min. Disponibilità = 432 / 480 = 90%
+      if (val === 90) {
+        fb.style.color = "var(--correct-green)";
+        fb.innerText = "Corretto! Disponibilità A = (480 - 48) / 480 = 90%.";
+      } else {
+        fb.style.color = "var(--wrong-red)";
+        fb.innerText = "Errato. Suggerimento: Calcola il tempo di funzionamento effettivo (480 - 48) e dividilo per il tempo totale del turno.";
       }
     }
   </script>
