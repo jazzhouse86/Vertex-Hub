@@ -47,10 +47,10 @@
     .lang-btn { cursor: pointer; padding: 3px 8px; border-radius: 4px; transition: 0.3s; opacity: 0.6; }
     .lang-btn.active { opacity: 1; color: #030814; background: linear-gradient(135deg, #FFF8D6, #D4AF37); }
 
-    .menu-toggle { font-size: 1.5rem; color: var(--gold-light); cursor: pointer; background: none; border: none; }
+    .menu-toggle { font-size: 1.5rem; color: var(--gold-light); cursor: pointer; background: none; border: none; padding: 4px 8px; }
 
     .mobile-menu {
-      display: none; position: absolute; top: 100%; right: 24px; width: 280px;
+      display: none; position: absolute; top: 100%; right: 24px; width: 290px;
       background-color: var(--bg-card); border: 1px solid var(--border-gold);
       border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); padding: 10px 0; z-index: 1001;
     }
@@ -60,7 +60,7 @@
 
     /* HERO SECTION */
     .hero {
-      position: relative; text-align: center; padding: 60px 20px 50px;
+      position: relative; text-align: center; padding: 60px 20px 45px;
       background: #030814; border-bottom: 1px solid var(--border-gold); margin-bottom: 35px;
     }
 
@@ -77,11 +77,15 @@
       background: linear-gradient(135deg, #FFF8D6 0%, #D4AF37 50%, #9A7410 100%);
       color: #030814; border: none; cursor: pointer; transition: all 0.3s; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
     }
-    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
     .section-title { font-size: 1.4rem; color: var(--gold-light); margin-bottom: 20px; border-left: 4px solid var(--gold-main); padding-left: 12px; }
     .card { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 25px; margin-bottom: 35px; }
+
+    /* SECTIONS CONTROL (SPA VIEW) */
+    .app-section { display: none; }
+    .app-section.active-section { display: block; }
 
     /* VIGNETTA & ARCHIVIO TABS */
     .vignette-box {
@@ -98,11 +102,12 @@
     .tab-btn.active { background: #0F1D33; color: var(--gold-light); border-color: var(--gold-main); }
 
     /* CHATBOX & LINKEDIN BADGE */
-    .comment-item { background: #02050D; border-left: 3px solid var(--border-color); padding: 12px 15px; border-radius: 0 6px 6px 0; margin-bottom: 12px; }
+    .comment-item { background: #02050D; border-left: 3px solid var(--border-color); padding: 14px 16px; border-radius: 0 6px 6px 0; margin-bottom: 14px; }
     .comment-item.linkedin { border-left-color: var(--linkedin-blue); }
-    .comment-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
     .linkedin-badge { background: var(--linkedin-blue); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; }
-    .chatbox-input { width: 100%; padding: 12px; background: #02050D; border: 1px solid var(--border-color); border-radius: 6px; color: #fff; margin-bottom: 10px; font-size: 0.9rem; }
+    .form-control { width: 100%; padding: 12px; background: #02050D; border: 1px solid var(--border-color); border-radius: 6px; color: #fff; margin-bottom: 12px; font-size: 0.9rem; }
+    .form-control:focus { outline: 1px solid var(--gold-main); }
 
     /* LAYOUT SALA GIOCHI */
     .sala-giochi-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
@@ -126,22 +131,34 @@
     .option-item.wrong { border-color: var(--wrong-red); background-color: rgba(239, 68, 68, 0.15); }
 
     .warehouse-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 15px 0; }
-    .rack-slot { background: #02050D; border: 2px dashed var(--border-color); border-radius: 6px; padding: 15px; text-align: center; font-size: 0.82rem; cursor: pointer; }
-    .rack-slot:hover { border-color: var(--gold-main); }
+    .rack-slot { background: #02050D; border: 2px dashed var(--border-color); border-radius: 6px; padding: 18px 10px; text-align: center; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+    .rack-slot:hover { border-color: var(--gold-main); background: var(--bg-card-hover); }
     .rack-slot.correct-slot { border-color: var(--correct-green); background: rgba(16, 185, 129, 0.15); }
 
+    /* SVG WORKSHOP VIGNETTE (MODE 3) */
     .vignette-canvas {
-      position: relative; width: 100%; height: 240px; background: #02050D; border: 1px solid var(--border-color);
-      border-radius: 6px; margin: 15px 0; display: flex; align-items: center; justify-content: center; overflow: hidden;
+      position: relative; width: 100%; height: 260px; background: #02050D; border: 1px solid var(--border-color);
+      border-radius: 6px; margin: 15px 0; overflow: hidden;
     }
-    .error-spot { position: absolute; border: 2px dashed rgba(239, 68, 68, 0.6); border-radius: 50%; cursor: pointer; background: rgba(239, 68, 68, 0.1); }
+    .workshop-svg { width: 100%; height: 100%; display: block; }
+    .error-spot { position: absolute; border: 2px dashed rgba(239, 68, 68, 0.7); border-radius: 50%; cursor: pointer; background: rgba(239, 68, 68, 0.15); transition: 0.3s; }
+    .error-spot:hover { background: rgba(239, 68, 68, 0.3); scale: 1.05; }
     .error-spot.found { border-color: var(--correct-green); background: rgba(16, 185, 129, 0.4); }
 
     .flow-steps { display: flex; flex-direction: column; gap: 8px; margin: 15px 0; }
     .flow-card { background: #02050D; border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; }
-    .flow-btn { background: var(--bg-card-hover); border: 1px solid var(--border-color); color: var(--gold-light); padding: 2px 8px; border-radius: 4px; cursor: pointer; }
+    .flow-btn { background: var(--bg-card-hover); border: 1px solid var(--border-color); color: var(--gold-light); padding: 2px 8px; border-radius: 4px; cursor: pointer; margin-left: 4px; }
 
     .feedback-box { margin-top: 15px; font-weight: bold; font-size: 0.88rem; color: var(--gold-light); min-height: 24px; }
+
+    /* TEAM & CONTACTS STYLES */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+    .team-card { background: #02050D; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; text-align: center; }
+    .team-avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-main); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; background: #081120; }
+    
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-info-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.9rem; }
 
     .footer-banner { text-align: center; padding: 25px 20px; margin-top: 40px; border-top: 1px solid var(--border-gold); background: #010307; }
     .footer-claim { font-size: 1.1rem; font-weight: 800; color: var(--gold-light); text-transform: uppercase; letter-spacing: 2px; }
@@ -151,7 +168,7 @@
 
   <!-- HEADER NAV -->
   <header>
-    <a href="#" class="brand-icon-link">
+    <a href="javascript:void(0)" onclick="navigateTo('home-section')" class="brand-icon-link">
       <svg class="v-icon-svg" viewBox="0 0 100 100">
         <path d="M 12 12 L 34 12 L 50 68 L 66 12 L 88 12 L 58 88 L 42 88 Z" fill="url(#goldGradHeader)"/>
         <defs>
@@ -170,15 +187,15 @@
         <span>|</span>
         <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</span>
       </div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <button class="menu-toggle" id="menuToggleBtn" onclick="toggleMenu(event)">☰</button>
     </div>
 
     <div class="mobile-menu" id="dropdownMenu">
-      <a href="#divulgazioni-section" data-i18n="nav-dissemination">📚 Divulgazioni</a>
-      <a href="#vision-section" data-i18n="nav-vision">🎯 Vision</a>
-      <a href="#sala-giochi-section" data-i18n="nav-games">🎮 Sala Giochi</a>
-      <a href="#chi-siamo-section" data-i18n="nav-about">👥 Chi Siamo</a>
-      <a href="#contatti-section" data-i18n="nav-contact">✉️ Contatti</a>
+      <a href="javascript:void(0)" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home & Topic Settimanale</a>
+      <a href="javascript:void(0)" onclick="navigateTo('divulgazioni-section', 'cases')" data-i18n="nav-cases">📊 Caso Studio del Mese</a>
+      <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Sala Giochi</a>
+      <a href="javascript:void(0)" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</a>
+      <a href="javascript:void(0)" onclick="navigateTo('contatti-section')" data-i18n="nav-contact">✉️ Contatti</a>
     </div>
   </header>
 
@@ -209,18 +226,18 @@
       <p class="hero-proposito" data-i18n="hero-proposito">
         Un <strong>osservatorio indipendente</strong> dedicato all'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione.
       </p>
-      <a href="#sala-giochi-section" class="btn-gold" data-i18n="hero-btn">Partecipa alla Sfida della Settimana</a>
+      <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" class="btn-gold" data-i18n="hero-btn">Partecipa alla Sfida della Settimana</a>
     </div>
   </section>
 
   <div class="container">
 
-    <!-- DIVULGAZIONE & DOPPIO ARCHIVIO -->
-    <section id="divulgazioni-section">
-      <h2 class="section-title" data-i18n="div-title">💡 Divulgazione & Casi Studio</h2>
+    <!-- HOME SECTION (DEFAULT VISIBLE) -->
+    <div id="home-section" class="app-section active-section">
+      <h2 class="section-title" data-i18n="div-title">💡 Divulgazione Operativa</h2>
       
       <div class="archive-tabs">
-        <button class="tab-btn active" id="tab-topics" onclick="switchArchive('topics')" data-i18n="tab-topics">📚 Topic Settimanali</button>
+        <button class="tab-btn active" id="tab-topics" onclick="switchArchive('topics')" data-i18n="tab-topics">📚 Topic Settimanale</button>
         <button class="tab-btn" id="tab-cases" onclick="switchArchive('cases')" data-i18n="tab-cases">📊 Caso Studio del Mese</button>
       </div>
 
@@ -244,44 +261,58 @@
         </div>
       </article>
 
-      <!-- VIEW CASO STUDIO MENSILE -->
+      <!-- VIEW CASO STUDIO MENSILE (ACCESSIBILE ANCHE DA TAB) -->
       <article class="card" id="view-case" style="display: none;">
         <span style="color: var(--gold-main); font-weight: 700; font-size: 0.8rem;" data-i18n="case-tag">CASO STUDIO MENSILE — AGOSTO</span>
         <h3 style="color: var(--gold-light); margin: 8px 0 15px;" data-i18n="case-head">Riorganizzazione WMS in una PMI Metalmeccanica: +22% OTIF in 90 giorni</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px;" data-i18n="case-p1">
-          Analisi dell'impatto economico e operativo del passaggio da gestione cartacea ad asservimento guidato via barcode.
-        </p>
+        
+        <div style="color: var(--text-main); font-size: 0.93rem; line-height: 1.7; margin-bottom: 20px;">
+          <p style="margin-bottom: 12px;" data-i18n="case-body-1">
+            Un'azienda subcontracting con 120 dipendenti soffriva di ritardi sistematici nelle consegne (OTIF al 68%), causati dalla mancata tracciabilità delle lamiere pre-tagliate e dai continui colli di bottiglia nelle fasi di kitting per la piegatura CNC.
+          </p>
+          <p style="margin-bottom: 12px;" data-i18n="case-body-2">
+            <strong>L'Intervento:</strong> È stato mappato il flusso del valore (VSM) eliminando i depositi polmone intermedi e introducendo la codifica barcode dinamica collegata al WMS e al MES di stabilimento. L'asservimento delle baie di lavoro è stato automatizzato con logica Pull (Kanban).
+          </p>
+          <p data-i18n="case-body-3">
+            <strong>I Risultati:</strong> L'OTIF è salito al 90% in soli 3 mesi, con una riduzione del 35% del Work-In-Progress (WIP) e l'azzeramento dei tempi morti per ricerca materiale in magazzino.
+          </p>
+        </div>
 
         <!-- CHATBOX COMMUNITY & LINKEDIN -->
         <div style="margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 15px;">
-          <h4 style="color: var(--gold-light); margin-bottom: 12px; font-size: 0.95rem;" data-i18n="chat-head">💬 Discussione & Commenti</h4>
+          <h4 style="color: var(--gold-light); margin-bottom: 14px; font-size: 0.98rem;" data-i18n="chat-head">💬 Discussione & Commenti Community</h4>
           
           <div class="comment-item linkedin">
             <div class="comment-header">
-              <strong style="font-size: 0.85rem;">Giuseppe R. (Supply Chain Manager)</strong>
+              <strong style="font-size: 0.85rem; color: var(--gold-light);">Giuseppe R. (Supply Chain Manager)</strong>
               <span class="linkedin-badge">in LinkedIn</span>
             </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Ottimo spunto sull'OTIF. Nella nostra azienda abbiamo riscontrato gli stessi colli di bottiglia durante la fase di kitting.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="comm-1">
+              Ottimo spunto sull'OTIF. Nella nostra azienda abbiamo riscontrato gli stessi colli di bottiglia durante la fase di kitting per la saldatura. L'integrazione barcode/WMS è stata risolutiva.
+            </p>
           </div>
 
           <div class="comment-item">
             <div class="comment-header">
-              <strong style="font-size: 0.85rem;">Luca M.</strong>
+              <strong style="font-size: 0.85rem; color: var(--gold-light);">Luca M. (Responsabile di Produzione)</strong>
+              <span style="font-size: 0.72rem; color: var(--text-muted);">2 giorni fa</span>
             </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Avete considerato l'impatto dei codici DataMatrix sui componenti di minute minuteria?</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="comm-2">
+              Avete considerato l'impatto dei codici DataMatrix stampati direttamente via laser sui componenti di minuteria? Ha ridotto drasticamente gli errori di identificazione.
+            </p>
           </div>
 
-          <form style="margin-top: 15px;" onsubmit="event.preventDefault(); alert('Commento registrato!');">
-            <input type="text" class="chatbox-input" placeholder="Nome e Ruolo..." required>
-            <textarea class="chatbox-input" rows="2" placeholder="Scrivi la tua opinione sul Caso Studio..." required></textarea>
+          <form style="margin-top: 20px;" onsubmit="handleComment(event)">
+            <input type="text" id="comm-name" class="form-control" placeholder="Nome e Ruolo (es. Mario Rossi - Plant Manager)" required>
+            <textarea id="comm-text" class="form-control" rows="3" placeholder="Scrivi la tua opinione sul Caso Studio..." required></textarea>
             <button class="btn-gold" type="submit" data-i18n="chat-submit">Invia Commento</button>
           </form>
         </div>
       </article>
-    </section>
+    </div>
 
-    <!-- SALA GIOCHI MULTI-MODALITÀ -->
-    <section id="sala-giochi-section">
+    <!-- SALA GIOCHI MULTI-MODALITÀ (NASCOSTA DI DEFAULT) -->
+    <div id="sala-giochi-section" class="app-section">
       <h2 class="section-title" data-i18n="game-title">🎮 Sala Giochi — Interactive Testing Hub</h2>
 
       <div class="sala-giochi-layout">
@@ -290,32 +321,32 @@
           
           <div class="game-nav-item active" onclick="loadGame('mode1', this)">
             <span class="game-badge">Mode 1</span>
-            <div style="font-weight: 600;">1. Quiz Multiplo Variabile</div>
-            <small style="color: var(--text-muted);">6 risposte / 1-3 esatte</small>
+            <div style="font-weight: 600;" data-i18n="m1-title">1. Quiz Multiplo Variabile</div>
+            <small style="color: var(--text-muted);" data-i18n="m1-sub">6 risposte / 2 esatte</small>
           </div>
 
           <div class="game-nav-item" onclick="loadGame('mode2', this)">
             <span class="game-badge">Mode 2</span>
-            <div style="font-weight: 600;">2. Warehouse Slotting</div>
-            <small style="color: var(--text-muted);">Ubicazione pacchi & ABC</small>
+            <div style="font-weight: 600;" data-i18n="m2-title">2. Warehouse Slotting</div>
+            <small style="color: var(--text-muted);" data-i18n="m2-sub">Ubicazione pacchi & ABC</small>
           </div>
 
           <div class="game-nav-item" onclick="loadGame('mode3', this)">
             <span class="game-badge">Mode 3</span>
-            <div style="font-weight: 600;">3. Trova l'Errore (5S & Muda)</div>
-            <small style="color: var(--text-muted);">Vignetta interattiva</small>
+            <div style="font-weight: 600;" data-i18n="m3-title">3. Trova l'Errore (5S & Muda)</div>
+            <small style="color: var(--text-muted);" data-i18n="m3-sub">Vignetta interattiva</small>
           </div>
 
           <div class="game-nav-item" onclick="loadGame('mode4', this)">
             <span class="game-badge">Mode 4</span>
-            <div style="font-weight: 600;">4. Flow-Chart VSM</div>
-            <small style="color: var(--text-muted);">Ricostruzione sequenza</small>
+            <div style="font-weight: 600;" data-i18n="m4-title">4. Flow-Chart VSM</div>
+            <small style="color: var(--text-muted);" data-i18n="m4-sub">Ricostruzione sequenza</small>
           </div>
 
           <div class="game-nav-item" onclick="loadGame('mode5', this)">
             <span class="game-badge">Mode 5</span>
-            <div style="font-weight: 600;">5. OEE Rapid Calculator</div>
-            <small style="color: var(--text-muted);">Calcolo veloce OEE</small>
+            <div style="font-weight: 600;" data-i18n="m5-title">5. OEE Rapid Calculator</div>
+            <small style="color: var(--text-muted);" data-i18n="m5-sub">Calcolo veloce OEE</small>
           </div>
         </aside>
 
@@ -323,91 +354,359 @@
 
           <!-- MODE 1 -->
           <div id="mode1" class="game-panel active">
-            <h3 style="color: var(--gold-light);">Mode 1 — Quiz Multiplo (2 Risposte Corrette)</h3>
-            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Quali tra queste sono azioni dirette di livellamento Heijunka?</p>
+            <h3 style="color: var(--gold-light);" data-i18n="m1-head">Mode 1 — Quiz Multiplo (2 Risposte Corrette)</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;" data-i18n="m1-q">Quali tra queste sono azioni dirette di livellamento Heijunka?</p>
 
             <div class="options-grid-6">
-              <label class="option-item" data-correct="true"><input type="checkbox"> <span>1. Alternare la produzione di piccoli lotti A, B, C anziché lotti monolitici.</span></label>
-              <label class="option-item" data-correct="false"><input type="checkbox"> <span>2. Raddoppiare le scorte di sicurezza per coprire le inefficienze.</span></label>
-              <label class="option-item" data-correct="true"><input type="checkbox"> <span>3. Smussare i picchi di domanda riducendo la variabilità dei lotti.</span></label>
-              <label class="option-item" data-correct="false"><input type="checkbox"> <span>4. Aumentare i tempi di cambio formato sulle presse.</span></label>
-              <label class="option-item" data-correct="false"><input type="checkbox"> <span>5. Eliminare il controllo visivo Kanban dal reparto.</span></label>
-              <label class="option-item" data-correct="false"><input type="checkbox"> <span>6. Lavorare esclusivamente su previsioni annuali fisse.</span></label>
+              <label class="option-item" data-correct="true"><input type="checkbox"> <span data-i18n="m1-opt1">1. Alternare la produzione di piccoli lotti A, B, C anziché lotti monolitici.</span></label>
+              <label class="option-item" data-correct="false"><input type="checkbox"> <span data-i18n="m1-opt2">2. Raddoppiare le scorte di sicurezza per coprire le inefficienze.</span></label>
+              <label class="option-item" data-correct="true"><input type="checkbox"> <span data-i18n="m1-opt3">3. Smussare i picchi di domanda riducendo la variabilità dei lotti.</span></label>
+              <label class="option-item" data-correct="false"><input type="checkbox"> <span data-i18n="m1-opt4">4. Aumentare i tempi di cambio formato sulle presse.</span></label>
+              <label class="option-item" data-correct="false"><input type="checkbox"> <span data-i18n="m1-opt5">5. Eliminare il controllo visivo Kanban dal reparto.</span></label>
+              <label class="option-item" data-correct="false"><input type="checkbox"> <span data-i18n="m1-opt6">6. Lavorare esclusivamente su previsioni annuali fisse.</span></label>
             </div>
-            <button class="btn-gold" onclick="checkQuiz1()">Verifica Risposte</button>
+            <button class="btn-gold" onclick="checkQuiz1()" data-i18n="btn-verify">Verifica Risposte</button>
             <div id="fb-1" class="feedback-box"></div>
           </div>
 
           <!-- MODE 2 -->
           <div id="mode2" class="game-panel">
-            <h3 style="color: var(--gold-light);">Mode 2 — Warehouse Slotting Game</h3>
-            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Ubica il Pallet "Componenti A — Peso 800kg — Alta Rotazione" nella campata corretta:</p>
+            <h3 style="color: var(--gold-light);" data-i18n="m2-head">Mode 2 — Warehouse Slotting Game</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;" data-i18n="m2-q">Ubica il Pallet "Componenti A — Peso 800kg — Alta Rotazione" nella campata corretta:</p>
 
             <div class="warehouse-container">
               <div class="rack-slot" onclick="checkSlot(false, this)">
-                <strong>Piano Alto (Inaccessibile)</strong><br><small style="color: var(--text-muted);">Bassa rotazione</small>
+                <strong data-i18n="m2-slot1-t">Piano Alto (Inaccessibile)</strong><br>
+                <small style="color: var(--text-muted);" data-i18n="m2-slot1-d">Scaffalatura 4° Livello — Bassa rotazione</small>
               </div>
               <div class="rack-slot" onclick="checkSlot(true, this)">
-                <strong>Piano Terra (Vicino Banchina)</strong><br><small style="color: var(--gold-light);">[ Clicca per Assegnare ]</small>
+                <strong data-i18n="m2-slot2-t">Piano Terra (Vicino Banchina)</strong><br>
+                <small style="color: var(--text-muted);" data-i18n="m2-slot2-d">Ubicazione Prioritaria — Acceso Diretto</small>
               </div>
               <div class="rack-slot" onclick="checkSlot(false, this)">
-                <strong>Fondo Magazzino</strong><br><small style="color: var(--text-muted);">Area remota</small>
+                <strong data-i18n="m2-slot3-t">Fondo Magazzino</strong><br>
+                <small style="color: var(--text-muted);" data-i18n="m2-slot3-d">Area Stoccaggio Remota</small>
               </div>
             </div>
             <div id="fb-2" class="feedback-box"></div>
           </div>
 
-          <!-- MODE 3 -->
+          <!-- MODE 3 (FIXED SVG VIGNETTE) -->
           <div id="mode3" class="game-panel">
-            <h3 style="color: var(--gold-light);">Mode 3 — Trova l'Errore nella Vignetta (5S & Muda)</h3>
-            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Individua i 2 punti critici cliccando sui cerchi tratteggiati:</p>
+            <h3 style="color: var(--gold-light);" data-i18n="m3-head">Mode 3 — Trova l'Errore nella Vignetta (5S & Muda)</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;" data-i18n="m3-q">Individua le 2 anomalie cliccando sulle zone critiche tratteggiate nell'officina:</p>
 
             <div class="vignette-canvas">
-              <span style="color: var(--text-muted); font-size: 0.85rem;">[ LAYOUT OFFICINA MECCANICA ]</span>
-              <div class="error-spot" style="top: 30px; left: 50px; width: 45px; height: 45px;" onclick="findError(this, 'Olio a terra non segnalato (Rischio Sicurezza & 5S)')"></div>
-              <div class="error-spot" style="bottom: 30px; right: 50px; width: 50px; height: 50px;" onclick="findError(this, 'Contenitore Scarti non identificato (Muda)')"></div>
+              <svg class="workshop-svg" viewBox="0 0 600 260">
+                <!-- Background & Floor -->
+                <rect x="0" y="0" width="600" height="260" fill="#050C1A"/>
+                <line x1="0" y1="200" x2="600" y2="200" stroke="#1E293B" stroke-width="2"/>
+                
+                <!-- Machine CNC Left -->
+                <rect x="40" y="80" width="130" height="120" rx="4" fill="#0F1D33" stroke="#D4AF37" stroke-width="1.5"/>
+                <rect x="60" y="100" width="90" height="50" fill="#02050D" stroke="#1E293B"/>
+                <text x="105" y="130" fill="#FFE082" font-size="12" text-anchor="middle">CNC LASER 01</text>
+                <circle cx="150" cy="92" r="5" fill="#10B981"/>
+
+                <!-- Storage Rack Right -->
+                <rect x="440" y="50" width="120" height="150" fill="none" stroke="#94A3B8" stroke-width="2"/>
+                <line x1="440" y1="100" x2="560" y2="100" stroke="#94A3B8" stroke-width="2"/>
+                <line x1="440" y1="150" x2="560" y2="150" stroke="#94A3B8" stroke-width="2"/>
+                <!-- Boxes on rack -->
+                <rect x="450" y="115" width="40" height="35" fill="#D4AF37" opacity="0.6"/>
+                <rect x="500" y="115" width="45" height="35" fill="#D4AF37" opacity="0.6"/>
+
+                <!-- Oil Stain Anomaly (Left area) -->
+                <ellipse cx="230" cy="225" rx="35" ry="12" fill="#1E293B" stroke="#EF4444" stroke-dasharray="3,3"/>
+                <text x="230" y="228" fill="#EF4444" font-size="9" text-anchor="middle">OIL SPILL</text>
+
+                <!-- Unlabeled Waste Bin Anomaly (Center Right) -->
+                <rect x="360" y="160" width="35" height="40" fill="#1E293B" stroke="#EF4444" stroke-dasharray="3,3"/>
+                <text x="377" y="184" fill="#EF4444" font-size="16" text-anchor="middle">?</text>
+              </svg>
+
+              <!-- Clickable Hotspots overlay -->
+              <div class="error-spot" style="top: 200px; left: 185px; width: 90px; height: 45px;" onclick="findError(this, 'Olio a terra non segnalato (Rischio Sicurezza & 5S)')"></div>
+              <div class="error-spot" style="top: 155px; left: 350px; width: 55px; height: 50px;" onclick="findError(this, 'Contenitore Scarti non identificato (Muda di Difettosità)')"></div>
             </div>
             <div id="fb-3" class="feedback-box"></div>
           </div>
 
           <!-- MODE 4 -->
           <div id="mode4" class="game-panel">
-            <h3 style="color: var(--gold-light);">Mode 4 — Ricostruisci il Flusso VSM</h3>
-            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Ordina i passaggi dal primo all'ultimo usando le frecce:</p>
+            <h3 style="color: var(--gold-light);" data-i18n="m4-head">Mode 4 — Ricostruisci il Flusso VSM</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;" data-i18n="m4-q">Ordina i passaggi dal primo all'ultimo usando le frecce:</p>
 
             <div class="flow-steps" id="flow-container">
-              <div class="flow-card" data-step="3"><span>3. Controllo Qualità & Sbavatura</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
-              <div class="flow-card" data-step="1"><span>1. Taglio Laser Lamiera</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
-              <div class="flow-card" data-step="2"><span>2. Piegatura CNC</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
-              <div class="flow-card" data-step="4"><span>4. Imballo & Versamento WMS</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+              <div class="flow-card" data-step="3"><span data-i18n="m4-s3">3. Controllo Qualità & Sbavatura</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+              <div class="flow-card" data-step="1"><span data-i18n="m4-s1">1. Taglio Laser Lamiera</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+              <div class="flow-card" data-step="2"><span data-i18n="m4-s2">2. Piegatura CNC</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
+              <div class="flow-card" data-step="4"><span data-i18n="m4-s4">4. Imballo & Versamento WMS</span><div><button class="flow-btn" onclick="moveFlow(this, -1)">▲</button><button class="flow-btn" onclick="moveFlow(this, 1)">▼</button></div></div>
             </div>
-            <button class="btn-gold" onclick="checkFlow()">Verifica Sequenza</button>
+            <button class="btn-gold" onclick="checkFlow()" data-i18n="btn-verify">Verifica Sequenza</button>
             <div id="fb-4" class="feedback-box"></div>
           </div>
 
           <!-- MODE 5 -->
           <div id="mode5" class="game-panel">
-            <h3 style="color: var(--gold-light);">Mode 5 — OEE Rapid Calculator</h3>
-            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Turno di 8 ore (480 min). Fermo macchina non pianificato: 48 min. Calcola la <strong>Disponibilità (A)</strong> in %:</p>
+            <h3 style="color: var(--gold-light);" data-i18n="m5-head">Mode 5 — OEE Rapid Calculator</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;" data-i18n="m5-q">Turno di 8 ore (480 min). Fermo macchina non pianificato: 48 min. Calcola la <strong>Disponibilità (A)</strong> in %:</p>
 
-            <input type="number" id="calc-ans" class="chatbox-input" style="margin-top: 10px;" placeholder="Inserisci valore (es. 85)">
-            <button class="btn-gold" onclick="checkCalc()">Verifica Calcolo</button>
+            <input type="number" id="calc-ans" class="form-control" style="margin-top: 12px; max-width: 300px;" placeholder="Inserisci valore (es. 90)">
+            <button class="btn-gold" onclick="checkCalc()" data-i18n="btn-verify">Verifica Calcolo</button>
             <div id="fb-5" class="feedback-box"></div>
           </div>
 
         </main>
       </div>
-    </section>
+    </div>
+
+    <!-- CHI SIAMO (NASCOSTA DI DEFAULT) -->
+    <div id="chi-siamo-section" class="app-section">
+      <h2 class="section-title" data-i18n="about-title">👥 Chi Siamo — Il Progetto VERTEX</h2>
+      <div class="card">
+        <p style="color: var(--text-main); font-size: 0.98rem; line-height: 1.7; margin-bottom: 20px;" data-i18n="about-desc">
+          VERTEX nasce dall'esperienza diretta sui campi di fabbrica e nelle catene di fornitura complesse. Il nostro obiettivo è abbattere le barriere tra la teoria accademica della Lean Production e la realtà operativa quotidiana delle Piccole e Medie Imprese.
+        </p>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h4 style="color: var(--gold-light);">Marco V.</h4>
+            <span style="font-size: 0.8rem; color: var(--gold-main); display: block; margin-bottom: 8px;">Operations & Lean Director</span>
+            <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="team-1">15+ anni di esperienza nella riorganizzazione di stabilimenti metalmeccanici e implementazione di logiche Pull/Kanban.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h4 style="color: var(--gold-light);">Elena T.</h4>
+            <span style="font-size: 0.8rem; color: var(--gold-main); display: block; margin-bottom: 8px;">Supply Chain & ERP Specialist</span>
+            <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="team-2">Esperta in integrazione WMS/MES, pianificazione MPS/MRP e ottimizzazione della gestione scorte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTATTI (NASCOSTA DI DEFAULT) -->
+    <div id="contatti-section" class="app-section">
+      <h2 class="section-title" data-i18n="contact-title">✉️ Contatti & Network</h2>
+      <div class="card">
+        <div class="contact-grid">
+          <div>
+            <h3 style="color: var(--gold-light); margin-bottom: 15px;" data-i18n="contact-head">Mettiti in Contatto</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;" data-i18n="contact-sub">
+              Sei un professionista delle Operations o un'azienda interessata al network VERTEX? Scrivici per informazioni, collaborazioni o per proporre un Caso Studio.
+            </p>
+
+            <div class="contact-info-item">
+              <span>📍</span>
+              <div>
+                <strong>Sede Operativa:</strong><br>
+                <span style="color: var(--text-muted);">Via dell'Industria 45, 06123 Perugia (PG) — Italia</span>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <span>📧</span>
+              <div>
+                <strong>Email Diretta:</strong><br>
+                <span style="color: var(--text-muted);">info@vertex-operations.it</span>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <span>📞</span>
+              <div>
+                <strong>Telefono Hub:</strong><br>
+                <span style="color: var(--text-muted);">+39 075 8501234 (Lun-Ven: 09:00 - 18:00)</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <form onsubmit="handleContact(event)">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <input type="text" id="c-name" class="form-control" placeholder="Nome" required>
+                <input type="text" id="c-surname" class="form-control" placeholder="Cognome" required>
+              </div>
+              <input type="email" id="c-email" class="form-control" placeholder="Indirizzo Email" required>
+              <textarea id="c-msg" class="form-control" rows="4" placeholder="Come possiamo aiutarti? Scrivi il tuo messaggio..." required></textarea>
+              <button class="btn-gold" type="submit" style="width: 100%;" data-i18n="contact-btn">Invia Messaggio</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
   <footer class="footer-banner">
-    <div class="footer-claim">Connettiamo Idee e Professionisti</div>
+    <div class="footer-claim" data-i18n="footer-claim">Connettiamo Idee e Professionisti</div>
     <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
   </footer>
 
   <script>
-    function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('open'); }
+    /* DIZIONARIO MULTILINGUA COMPLETO */
+    const translations = {
+      it: {
+        'nav-home': '🏠 Home & Topic Settimanale',
+        'nav-cases': '📊 Caso Studio del Mese',
+        'nav-games': '🎮 Sala Giochi',
+        'nav-about': '👥 Chi Siamo',
+        'nav-contact': '✉️ Contatti',
+        'hero-tagline': 'Hub di Cultura Operativa & Supply Chain Excellence',
+        'hero-proposito': 'Un <strong>osservatorio indipendente</strong> dedicato all\'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione.',
+        'hero-btn': 'Partecipa alla Sfida della Settimana',
+        'div-title': '💡 Divulgazione Operativa',
+        'tab-topics': '📚 Topic Settimanale',
+        'tab-cases': '📊 Caso Studio del Mese',
+        'div-topic': 'TOPIC SETTIMANALE #34 — OPERATIONAL SCHEDULING',
+        'div-head': 'Microfermi sul Taglio Laser e Saturazione di Linea',
+        'vignette-text': '"Quando il programma CAM calcola 2 minuti a foglio, ma l\'operatore passa 20 minuti a cercare le lamiere col muletto..."',
+        'div-p1': 'I microfermi non tracciati riducono l\'OEE reale fino al 15%. Calcolare la saturazione solo sul ciclo di taglio teorico genera gravi distorsioni nei piani MPS.',
+        'case-tag': 'CASO STUDIO MENSILE — AGOSTO',
+        'case-head': 'Riorganizzazione WMS in una PMI Metalmeccanica: +22% OTIF in 90 giorni',
+        'case-body-1': 'Un\'azienda subcontracting con 120 dipendenti soffriva di ritardi sistematici nelle consegne (OTIF al 68%), causati dalla mancata tracciabilità delle lamiere pre-tagliate e dai continui colli di bottiglia nelle fasi di kitting per la piegatura CNC.',
+        'case-body-2': '<strong>L\'Intervento:</strong> È stato mappato il flusso del valore (VSM) eliminando i depositi polmone intermedi e introducendo la codifica barcode dinamica collegata al WMS e al MES di stabilimento. L\'asservimento delle baie di lavoro è stato automatizzato con logica Pull (Kanban).',
+        'case-body-3': '<strong>I Risultati:</strong> L\'OTIF è salito al 90% in soli 3 mesi, con una riduzione del 35% del Work-In-Progress (WIP) e l\'azzeramento dei tempi morti per ricerca materiale in magazzino.',
+        'chat-head': '💬 Discussione & Commenti Community',
+        'comm-1': 'Ottimo spunto sull\'OTIF. Nella nostra azienda abbiamo riscontrato gli stessi colli di bottiglia durante la fase di kitting per la saldatura. L\'integrazione barcode/WMS è stata risolutiva.',
+        'comm-2': 'Avete considerato l\'impatto dei codici DataMatrix stampati direttamente via laser sui componenti di minuteria? Ha ridotto drasticamente gli errori di identificazione.',
+        'chat-submit': 'Invia Commento',
+        'game-title': '🎮 Sala Giochi — Interactive Testing Hub',
+        'sidebar-title': '🕹️ Seleziona Modalità',
+        'm1-title': '1. Quiz Multiplo Variabile', 'm1-sub': '6 risposte / 2 esatte',
+        'm2-title': '2. Warehouse Slotting', 'm2-sub': 'Ubicazione pacchi & ABC',
+        'm3-title': '3. Trova l\'Errore (5S & Muda)', 'm3-sub': 'Vignetta interattiva',
+        'm4-title': '4. Flow-Chart VSM', 'm4-sub': 'Ricostruzione sequenza',
+        'm5-title': '5. OEE Rapid Calculator', 'm5-sub': 'Calcolo veloce OEE',
+        'm1-head': 'Mode 1 — Quiz Multiplo (2 Risposte Corrette)',
+        'm1-q': 'Quali tra queste sono azioni dirette di livellamento Heijunka?',
+        'm1-opt1': '1. Alternare la produzione di piccoli lotti A, B, C anziché lotti monolitici.',
+        'm1-opt2': '2. Raddoppiare le scorte di sicurezza per coprire le inefficienze.',
+        'm1-opt3': '3. Smussare i picchi di domanda riducendo la variabilità dei lotti.',
+        'm1-opt4': '4. Aumentare i tempi di cambio formato sulle presse.',
+        'm1-opt5': '5. Eliminare il controllo visivo Kanban dal reparto.',
+        'm1-opt6': '6. Lavorare esclusivamente su previsioni annuali fisse.',
+        'm2-head': 'Mode 2 — Warehouse Slotting Game',
+        'm2-q': 'Ubica il Pallet "Componenti A — Peso 800kg — Alta Rotazione" nella campata corretta:',
+        'm2-slot1-t': 'Piano Alto (Inaccessibile)', 'm2-slot1-d': 'Scaffalatura 4° Livello — Bassa rotazione',
+        'm2-slot2-t': 'Piano Terra (Vicino Banchina)', 'm2-slot2-d': 'Ubicazione Prioritaria — Acceso Diretto',
+        'm2-slot3-t': 'Fondo Magazzino', 'm2-slot3-d': 'Area Stoccaggio Remota',
+        'm3-head': 'Mode 3 — Trova l\'Errore nella Vignetta (5S & Muda)',
+        'm3-q': 'Individua le 2 anomalie cliccando sulle zone critiche tratteggiate nell\'officina:',
+        'm4-head': 'Mode 4 — Ricostruisci il Flusso VSM',
+        'm4-q': 'Ordina i passaggi dal primo all\'ultimo usando le frecce:',
+        'm4-s1': '1. Taglio Laser Lamiera', 'm4-s2': '2. Piegatura CNC', 'm4-s3': '3. Controllo Qualità & Sbavatura', 'm4-s4': '4. Imballo & Versamento WMS',
+        'm5-head': 'Mode 5 — OEE Rapid Calculator',
+        'm5-q': 'Turno di 8 ore (480 min). Fermo macchina non pianificato: 48 min. Calcola la Disponibilità (A) in %:',
+        'btn-verify': 'Verifica Risposte',
+        'about-title': '👥 Chi Siamo — Il Progetto VERTEX',
+        'about-desc': 'VERTEX nasce dall\'esperienza diretta sui campi di fabbrica e nelle catene di fornitura complesse. Il nostro obiettivo è abbattere le barriere tra la teoria accademica della Lean Production e la realtà operativa quotidiana delle Piccole e Medie Imprese.',
+        'team-1': '15+ anni di esperienza nella riorganizzazione di stabilimenti metalmeccanici e implementazione di logiche Pull/Kanban.',
+        'team-2': 'Esperta in integrazione WMS/MES, pianificazione MPS/MRP e ottimizzazione della gestione scorte.',
+        'contact-title': '✉️ Contatti & Network',
+        'contact-head': 'Mettiti in Contatto',
+        'contact-sub': 'Sei un professionista delle Operations o un\'azienda interessata al network VERTEX? Scrivici per informazioni, collaborazioni o per proporre un Caso Studio.',
+        'contact-btn': 'Invia Messaggio',
+        'footer-claim': 'Connettiamo Idee e Professionisti'
+      },
+      en: {
+        'nav-home': '🏠 Home & Weekly Topic',
+        'nav-cases': '📊 Case Study of the Month',
+        'nav-games': '🎮 Arcade Testing Room',
+        'nav-about': '👥 About Us',
+        'nav-contact': '✉️ Contact Us',
+        'hero-tagline': 'Operational Culture & Supply Chain Excellence Hub',
+        'hero-proposito': 'An <strong>independent observatory</strong> dedicated to analyzing industrial flows in SMEs. Connecting field experience and strategic vision: integrating <strong>Supply Chain, Operations, Lean Improvement, and ERP/MRP Systems</strong>.',
+        'hero-btn': 'Join Weekly Challenge',
+        'div-title': '💡 Operational Insights',
+        'tab-topics': '📚 Weekly Topic',
+        'tab-cases': '📊 Monthly Case Study',
+        'div-topic': 'WEEKLY TOPIC #34 — OPERATIONAL SCHEDULING',
+        'div-head': 'Micro-Stoppages in Laser Cutting & Line Load Capacity',
+        'vignette-text': '"When CAM software calculates 2 mins per sheet, but operator spends 20 mins searching materials with forklift..."',
+        'div-p1': 'Unused micro-downtimes decrease real OEE by up to 15%. Calculating saturation purely on theoretical cutting times causes severe MPS flaws.',
+        'case-tag': 'MONTHLY CASE STUDY — AUGUST',
+        'case-head': 'WMS Overhaul in Metal Subcontracting: +22% OTIF in 90 Days',
+        'case-body-1': 'A subcontracting plant with 120 employees suffered chronic delivery delays (OTIF at 68%), caused by untracked pre-cut sheets and kitting bottlenecks before CNC bending.',
+        'case-body-2': '<strong>Intervention:</strong> Value Stream Mapping (VSM) eliminated intermediate buffers. Dynamic barcodes were linked to WMS and shop-floor MES under Pull (Kanban) logic.',
+        'case-body-3': '<strong>Results:</strong> OTIF jumped to 90% within 3 months, Work-In-Progress (WIP) dropped by 35%, and material search time was completely eliminated.',
+        'chat-head': '💬 Community Discussion',
+        'comm-1': 'Great point on OTIF. We experienced identical bottlenecks during welding kitting. Barcode/WMS integration solved it.',
+        'comm-2': 'Have you evaluated laser-engraved DataMatrix codes on small components? It drastically cut identification errors for us.',
+        'chat-submit': 'Post Comment',
+        'game-title': '🎮 Arcade — Interactive Testing Hub',
+        'sidebar-title': '🕹️ Choose Game Mode',
+        'm1-title': '1. Variable Multiple Choice', 'm1-sub': '6 options / 2 correct',
+        'm2-title': '2. Warehouse Slotting', 'm2-sub': 'Slot placement & ABC',
+        'm3-title': '3. Spot the Error (5S & Muda)', 'm3-sub': 'Interactive shopfloor',
+        'm4-title': '4. VSM Flow-Chart', 'm4-sub': 'Reorder sequence',
+        'm5-title': '5. OEE Rapid Calculator', 'm5-sub': 'Fast OEE calculation',
+        'm1-head': 'Mode 1 — Multiple Choice Quiz (2 Correct Answers)',
+        'm1-q': 'Which of the following are direct actions for Heijunka levelling?',
+        'm1-opt1': '1. Alternating small batch production (A, B, C) instead of batching.',
+        'm1-opt2': '2. Doubling safety stock to hide operational inefficiencies.',
+        'm1-opt3': '3. Smoothing demand peaks by reducing batch size variability.',
+        'm1-opt4': '4. Increasing die changeover times on presses.',
+        'm1-opt5': '5. Removing visual Kanban boards from the shop floor.',
+        'm1-opt6': '6. Working strictly on fixed annual forecasts.',
+        'm2-head': 'Mode 2 — Warehouse Slotting Game',
+        'm2-q': 'Place Pallet "Components A — 800kg — High Turnover" into the correct rack slot:',
+        'm2-slot1-t': 'High Shelf (Inaccessible)', 'm2-slot1-d': 'Level 4 Racking — Low Turnover',
+        'm2-slot2-t': 'Ground Level (Near Dock)', 'm2-slot2-d': 'Priority Location — Direct Access',
+        'm2-slot3-t': 'Deep Warehouse Area', 'm2-slot3-d': 'Remote Storage Bay',
+        'm3-head': 'Mode 3 — Spot the Error (5S & Waste)',
+        'm3-q': 'Find 2 operational hazards by clicking the dashed circles on the shop floor:',
+        'm4-head': 'Mode 4 — Rebuild the VSM Flow',
+        'm4-q': 'Order steps from first to last using arrows:',
+        'm4-s1': '1. Sheet Metal Laser Cutting', 'm4-s2': '2. CNC Bending', 'm4-s3': '3. Quality Inspection & Deburring', 'm4-s4': '4. Packing & WMS Receipt',
+        'm5-head': 'Mode 5 — OEE Rapid Calculator',
+        'm5-q': '8-hour shift (480 mins). Unplanned downtime: 48 mins. Calculate Availability (A) %:',
+        'btn-verify': 'Check Answers',
+        'about-title': '👥 About Us — The VERTEX Project',
+        'about-desc': 'VERTEX was founded from hands-on shop-floor experience in complex manufacturing environments. We aim to bridge the gap between academic Lean Theory and day-to-day SME operations.',
+        'team-1': '15+ years restructuring metalworking plants and implementing Pull/Kanban systems.',
+        'team-2': 'Specialist in WMS/MES integration, MPS/MRP planning, and inventory optimization.',
+        'contact-title': '✉️ Contact & Network',
+        'contact-head': 'Get In Touch',
+        'contact-sub': 'Are you an Operations Manager or company interested in the VERTEX network? Contact us for collaborations or case studies.',
+        'contact-btn': 'Send Message',
+        'footer-claim': 'Connecting Ideas & Operations Professionals'
+      }
+    };
+
+    /* SPA NAVIGATION & OUT-OF-BOUNDS MENU CLICK FIX */
+    function toggleMenu(e) {
+      if(e) e.stopPropagation();
+      document.getElementById('dropdownMenu').classList.toggle('open');
+    }
+
+    // Event listener per chiudere il menu al click esterno
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('dropdownMenu');
+      const toggleBtn = document.getElementById('menuToggleBtn');
+      if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== toggleBtn) {
+        menu.classList.remove('open');
+      }
+    });
+
+    function navigateTo(sectionId, archiveTab) {
+      document.getElementById('dropdownMenu').classList.remove('open');
+      document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
+      
+      const target = document.getElementById(sectionId);
+      if(target) {
+        target.classList.add('active-section');
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      }
+
+      if(archiveTab) switchArchive(archiveTab);
+    }
 
     /* SWITCH DOPPIO ARCHIVIO DIVULGAZIONE */
     function switchArchive(mode) {
@@ -434,7 +733,7 @@
         else if (cb.checked && !isCorrect) item.classList.add('wrong');
         else if (!cb.checked && isCorrect) item.classList.add('wrong');
       });
-      document.getElementById('fb-1').innerText = "Verifica completata! Le opzioni corrette erano la 1 e la 3.";
+      document.getElementById('fb-1').innerText = (currentLang==='it') ? "Verifica completata! Le opzioni corrette erano la 1 e la 3." : "Check complete! Correct options were 1 and 3.";
     }
 
     function checkSlot(isCorrect, el) {
@@ -443,10 +742,10 @@
       if (isCorrect) {
         el.classList.add('correct-slot');
         fb.style.color = "var(--correct-green)";
-        fb.innerText = "Corretto! I colli ad alta rotazione ed elevato peso vanno a terra vicino alla banchina.";
+        fb.innerText = (currentLang==='it') ? "Corretto! I colli ad alta rotazione ed elevato peso vanno a terra vicino alla banchina." : "Correct! Heavy/high turnover goods belong on ground level near docks.";
       } else {
         fb.style.color = "var(--wrong-red)";
-        fb.innerText = "Ubicazione inefficiente! Genera percorsi inutili o rischi di ergonomia.";
+        fb.innerText = (currentLang==='it') ? "Ubicazione inefficiente! Genera percorsi inutili o rischi ergonomici." : "Inefficient placement! Creates waste and ergonomic risks.";
       }
     }
 
@@ -475,10 +774,10 @@
       const fb = document.getElementById('fb-4');
       if(isCorrect) {
         fb.style.color = "var(--correct-green)";
-        fb.innerText = "Sequenza VSM Corretta! Flusso ottimizato.";
+        fb.innerText = (currentLang==='it') ? "Sequenza VSM Corretta! Flusso ottimizzato." : "Correct VSM Sequence! Process optimized.";
       } else {
         fb.style.color = "var(--wrong-red)";
-        fb.innerText = "Sequenza errata! Rivedi l'ordine dei processi.";
+        fb.innerText = (currentLang==='it') ? "Sequenza errata! Rivedi l'ordine dei processi." : "Wrong sequence! Check process order.";
       }
     }
 
@@ -490,16 +789,39 @@
         fb.innerText = "Corretto! A = (480 - 48) / 480 = 90%.";
       } else {
         fb.style.color = "var(--wrong-red)";
-        fb.innerText = "Errato. Suggerimento: Calcola il tempo di funzionamento effettivo (432 min) / tempo totale (480 min).";
+        fb.innerText = (currentLang==='it') ? "Errato. Suggerimento: Calcola il tempo di funzionamento effettivo (432 min) / tempo totale (480 min)." : "Incorrect. Hint: Operating time (432 mins) / total time (480 mins).";
       }
     }
 
-    /* MULTILINGUA BASE */
+    function handleComment(e) {
+      e.preventDefault();
+      alert(currentLang==='it' ? "Grazie! Il tuo commento è stato inviato per la moderazione." : "Thank you! Your comment was submitted for review.");
+      document.getElementById('comm-name').value = '';
+      document.getElementById('comm-text').value = '';
+    }
+
+    function handleContact(e) {
+      e.preventDefault();
+      alert(currentLang==='it' ? "Messaggio inviato con successo! Ti risponderemo entro 24 ore lavorative." : "Message sent successfully! We will contact you within 24 working hours.");
+      document.getElementById('c-name').value = '';
+      document.getElementById('c-surname').value = '';
+      document.getElementById('c-email').value = '';
+      document.getElementById('c-msg').value = '';
+    }
+
+    /* MULTILINGUA SWITCH */
     let currentLang = 'it';
     function setLanguage(lang) {
       currentLang = lang;
       document.getElementById('btn-it').classList.toggle('active', lang === 'it');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
     }
   </script>
 </body>
