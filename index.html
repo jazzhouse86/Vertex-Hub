@@ -135,7 +135,7 @@
     .rack-slot:hover { border-color: var(--gold-main); background: var(--bg-card-hover); }
     .rack-slot.correct-slot { border-color: var(--correct-green); background: rgba(16, 185, 129, 0.15); }
 
-    /* SVG WORKSHOP VIGNETTE (MODE 3) */
+    /* SVG WORKSHOP VIGNETTE */
     .vignette-canvas {
       position: relative; width: 100%; height: 260px; background: #02050D; border: 1px solid var(--border-color);
       border-radius: 6px; margin: 15px 0; overflow: hidden;
@@ -191,8 +191,8 @@
     </div>
 
     <div class="mobile-menu" id="dropdownMenu">
-      <a href="javascript:void(0)" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home & Topic Settimanale</a>
-      <a href="javascript:void(0)" onclick="navigateTo('divulgazioni-section', 'cases')" data-i18n="nav-cases">📊 Caso Studio del Mese</a>
+      <a href="javascript:void(0)" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</a>
+      <a href="javascript:void(0)" onclick="navigateTo('divulgazioni-section', 'topics')" data-i18n="nav-divulgazione">💡 Divulgazione</a>
       <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Sala Giochi</a>
       <a href="javascript:void(0)" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</a>
       <a href="javascript:void(0)" onclick="navigateTo('contatti-section')" data-i18n="nav-contact">✉️ Contatti</a>
@@ -232,8 +232,22 @@
 
   <div class="container">
 
-    <!-- HOME SECTION (DEFAULT VISIBLE) -->
+    <!-- HOME SECTION (LANDING) -->
     <div id="home-section" class="app-section active-section">
+      <div class="card" style="text-align: center; padding: 40px 20px;">
+        <h2 style="color: var(--gold-light); margin-bottom: 15px;" data-i18n="home-welcome-title">Benvenuto nell'Hub VERTEX</h2>
+        <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 25px; font-size: 1rem;" data-i18n="home-welcome-desc">
+          Esplora le nostre analisi operative, approfondisci i casi studio industriali o mettiti alla prova nelle sfide interattive della Sala Giochi.
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+          <a href="javascript:void(0)" onclick="navigateTo('divulgazioni-section', 'topics')" class="btn-gold" data-i18n="nav-divulgazione">💡 Divulgazione Operativa</a>
+          <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" class="btn-gold" style="background: transparent; border: 1px solid var(--gold-main); color: var(--gold-light);" data-i18n="nav-games">🎮 Sala Giochi</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEZIONE DIVULGAZIONE (SEPARATA) -->
+    <div id="divulgazioni-section" class="app-section">
       <h2 class="section-title" data-i18n="div-title">💡 Divulgazione Operativa</h2>
       
       <div class="archive-tabs">
@@ -261,7 +275,7 @@
         </div>
       </article>
 
-      <!-- VIEW CASO STUDIO MENSILE (ACCESSIBILE ANCHE DA TAB) -->
+      <!-- VIEW CASO STUDIO MENSILE -->
       <article class="card" id="view-case" style="display: none;">
         <span style="color: var(--gold-main); font-weight: 700; font-size: 0.8rem;" data-i18n="case-tag">CASO STUDIO MENSILE — AGOSTO</span>
         <h3 style="color: var(--gold-light); margin: 8px 0 15px;" data-i18n="case-head">Riorganizzazione WMS in una PMI Metalmeccanica: +22% OTIF in 90 giorni</h3>
@@ -311,7 +325,7 @@
       </article>
     </div>
 
-    <!-- SALA GIOCHI MULTI-MODALITÀ (NASCOSTA DI DEFAULT) -->
+    <!-- SALA GIOCHI MULTI-MODALITÀ -->
     <div id="sala-giochi-section" class="app-section">
       <h2 class="section-title" data-i18n="game-title">🎮 Sala Giochi — Interactive Testing Hub</h2>
 
@@ -391,41 +405,34 @@
             <div id="fb-2" class="feedback-box"></div>
           </div>
 
-          <!-- MODE 3 (FIXED SVG VIGNETTE) -->
+          <!-- MODE 3 -->
           <div id="mode3" class="game-panel">
             <h3 style="color: var(--gold-light);" data-i18n="m3-head">Mode 3 — Trova l'Errore nella Vignetta (5S & Muda)</h3>
             <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;" data-i18n="m3-q">Individua le 2 anomalie cliccando sulle zone critiche tratteggiate nell'officina:</p>
 
             <div class="vignette-canvas">
               <svg class="workshop-svg" viewBox="0 0 600 260">
-                <!-- Background & Floor -->
                 <rect x="0" y="0" width="600" height="260" fill="#050C1A"/>
                 <line x1="0" y1="200" x2="600" y2="200" stroke="#1E293B" stroke-width="2"/>
                 
-                <!-- Machine CNC Left -->
                 <rect x="40" y="80" width="130" height="120" rx="4" fill="#0F1D33" stroke="#D4AF37" stroke-width="1.5"/>
                 <rect x="60" y="100" width="90" height="50" fill="#02050D" stroke="#1E293B"/>
                 <text x="105" y="130" fill="#FFE082" font-size="12" text-anchor="middle">CNC LASER 01</text>
                 <circle cx="150" cy="92" r="5" fill="#10B981"/>
 
-                <!-- Storage Rack Right -->
                 <rect x="440" y="50" width="120" height="150" fill="none" stroke="#94A3B8" stroke-width="2"/>
                 <line x1="440" y1="100" x2="560" y2="100" stroke="#94A3B8" stroke-width="2"/>
                 <line x1="440" y1="150" x2="560" y2="150" stroke="#94A3B8" stroke-width="2"/>
-                <!-- Boxes on rack -->
                 <rect x="450" y="115" width="40" height="35" fill="#D4AF37" opacity="0.6"/>
                 <rect x="500" y="115" width="45" height="35" fill="#D4AF37" opacity="0.6"/>
 
-                <!-- Oil Stain Anomaly (Left area) -->
                 <ellipse cx="230" cy="225" rx="35" ry="12" fill="#1E293B" stroke="#EF4444" stroke-dasharray="3,3"/>
                 <text x="230" y="228" fill="#EF4444" font-size="9" text-anchor="middle">OIL SPILL</text>
 
-                <!-- Unlabeled Waste Bin Anomaly (Center Right) -->
                 <rect x="360" y="160" width="35" height="40" fill="#1E293B" stroke="#EF4444" stroke-dasharray="3,3"/>
                 <text x="377" y="184" fill="#EF4444" font-size="16" text-anchor="middle">?</text>
               </svg>
 
-              <!-- Clickable Hotspots overlay -->
               <div class="error-spot" style="top: 200px; left: 185px; width: 90px; height: 45px;" onclick="findError(this, 'Olio a terra non segnalato (Rischio Sicurezza & 5S)')"></div>
               <div class="error-spot" style="top: 155px; left: 350px; width: 55px; height: 50px;" onclick="findError(this, 'Contenitore Scarti non identificato (Muda di Difettosità)')"></div>
             </div>
@@ -461,7 +468,7 @@
       </div>
     </div>
 
-    <!-- CHI SIAMO (NASCOSTA DI DEFAULT) -->
+    <!-- CHI SIAMO -->
     <div id="chi-siamo-section" class="app-section">
       <h2 class="section-title" data-i18n="about-title">👥 Chi Siamo — Il Progetto VERTEX</h2>
       <div class="card">
@@ -491,7 +498,7 @@
       </div>
     </div>
 
-    <!-- CONTATTI (NASCOSTA DI DEFAULT) -->
+    <!-- CONTATTI -->
     <div id="contatti-section" class="app-section">
       <h2 class="section-title" data-i18n="contact-title">✉️ Contatti & Network</h2>
       <div class="card">
@@ -553,14 +560,16 @@
     /* DIZIONARIO MULTILINGUA COMPLETO */
     const translations = {
       it: {
-        'nav-home': '🏠 Home & Topic Settimanale',
-        'nav-cases': '📊 Caso Studio del Mese',
+        'nav-home': '🏠 Home',
+        'nav-divulgazione': '💡 Divulgazione',
         'nav-games': '🎮 Sala Giochi',
         'nav-about': '👥 Chi Siamo',
         'nav-contact': '✉️ Contatti',
         'hero-tagline': 'Hub di Cultura Operativa & Supply Chain Excellence',
         'hero-proposito': 'Un <strong>osservatorio indipendente</strong> dedicato all\'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione.',
         'hero-btn': 'Partecipa alla Sfida della Settimana',
+        'home-welcome-title': 'Benvenuto nell\'Hub VERTEX',
+        'home-welcome-desc': 'Esplora le nostre analisi operative, approfondisci i casi studio industriali o mettiti alla prova nelle sfide interattive della Sala Giochi.',
         'div-title': '💡 Divulgazione Operativa',
         'tab-topics': '📚 Topic Settimanale',
         'tab-cases': '📊 Caso Studio del Mese',
@@ -616,14 +625,16 @@
         'footer-claim': 'Connettiamo Idee e Professionisti'
       },
       en: {
-        'nav-home': '🏠 Home & Weekly Topic',
-        'nav-cases': '📊 Case Study of the Month',
-        'nav-games': '🎮 Arcade Testing Room',
+        'nav-home': '🏠 Home',
+        'nav-divulgazione': '💡 Insights',
+        'nav-games': '🎮 Arcade Room',
         'nav-about': '👥 About Us',
         'nav-contact': '✉️ Contact Us',
         'hero-tagline': 'Operational Culture & Supply Chain Excellence Hub',
         'hero-proposito': 'An <strong>independent observatory</strong> dedicated to analyzing industrial flows in SMEs. Connecting field experience and strategic vision: integrating <strong>Supply Chain, Operations, Lean Improvement, and ERP/MRP Systems</strong>.',
         'hero-btn': 'Join Weekly Challenge',
+        'home-welcome-title': 'Welcome to VERTEX Hub',
+        'home-welcome-desc': 'Explore our operational insights, study real-world manufacturing case studies, or test your skills in our Arcade interactive games.',
         'div-title': '💡 Operational Insights',
         'tab-topics': '📚 Weekly Topic',
         'tab-cases': '📊 Monthly Case Study',
@@ -680,13 +691,12 @@
       }
     };
 
-    /* SPA NAVIGATION & OUT-OF-BOUNDS MENU CLICK FIX */
+    /* SPA NAVIGATION */
     function toggleMenu(e) {
       if(e) e.stopPropagation();
       document.getElementById('dropdownMenu').classList.toggle('open');
     }
 
-    // Event listener per chiudere il menu al click esterno
     document.addEventListener('click', function(e) {
       const menu = document.getElementById('dropdownMenu');
       const toggleBtn = document.getElementById('menuToggleBtn');
@@ -708,7 +718,7 @@
       if(archiveTab) switchArchive(archiveTab);
     }
 
-    /* SWITCH DOPPIO ARCHIVIO DIVULGAZIONE */
+    /* SWITCH ARCHIVIO DIVULGAZIONE */
     function switchArchive(mode) {
       document.getElementById('tab-topics').classList.toggle('active', mode === 'topics');
       document.getElementById('tab-cases').classList.toggle('active', mode === 'cases');
@@ -764,7 +774,7 @@
       const card = btn.closest('.flow-card');
       const container = document.getElementById('flow-container');
       if (dir === -1 && card.previousElementSibling) container.insertBefore(card, card.previousElementSibling);
-      else if (dir === 1 && card.nextElementSibling) container.insertBefore(card.nextElementSibling, card);
+      else if (dir === 1 && card.nextElementSibling) container.insertBefore(card, card.nextElementSibling);
     }
 
     function checkFlow() {
