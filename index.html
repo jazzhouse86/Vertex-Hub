@@ -37,7 +37,7 @@
     }
 
     .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
-    .v-icon-svg { width: 34px; height: 34px; filter: drop-shadow(0px 2px 6px rgba(212, 175, 55, 0.3)); }
+    .v-icon-svg { width: 34px; height: 34px; }
 
     .header-right { display: flex; align-items: center; gap: 18px; }
 
@@ -59,22 +59,19 @@
     /* HERO SECTION CLEAN */
     .hero {
       position: relative; text-align: center; padding: 60px 20px 50px;
-      background: radial-gradient(circle at center, #0B1C33 0%, #030814 100%);
-      border-bottom: 1px solid var(--border-gold); margin-bottom: 35px;
+      background: #030814; border-bottom: 1px solid var(--border-gold); margin-bottom: 35px;
     }
 
     .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; }
 
     .hero-logo-container {
-      margin-bottom: 24px; display: inline-block; width: 100%; max-width: 620px;
-      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+      margin-bottom: 24px; display: inline-block; width: 100%; max-width: 650px;
     }
     .hero-logo-svg { width: 100%; height: auto; display: block; }
 
     .hero-tagline {
       font-size: 0.95rem; font-weight: 800; color: #FFE082;
       letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
     .hero-proposito {
@@ -87,9 +84,9 @@
       display: inline-block; padding: 14px 32px; border-radius: 6px; font-weight: 800; text-decoration: none;
       background: linear-gradient(135deg, #FFF8D6 0%, #D4AF37 50%, #9A7410 100%);
       color: #030814; border: none; cursor: pointer;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.25); transition: all 0.3s; text-transform: uppercase; font-size: 0.88rem; letter-spacing: 0.5px;
+      transition: all 0.3s; text-transform: uppercase; font-size: 0.88rem; letter-spacing: 0.5px;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(255, 248, 214, 0.5); }
+    .btn-gold:hover { transform: translateY(-2px); }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
     .section-title { font-size: 1.4rem; color: #FFE082; margin-bottom: 20px; border-left: 4px solid #D4AF37; padding-left: 12px; }
@@ -156,13 +153,11 @@
   <!-- HEADER NAV -->
   <header>
     <a href="#" class="brand-icon-link" aria-label="VERTEX Home">
-      <!-- LOGO HEADER: V PULITA E GEOMETRICA -->
       <svg class="v-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="goldGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#FFF8D6"/>
-            <stop offset="30%" stop-color="#FFE082"/>
-            <stop offset="60%" stop-color="#D4AF37"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
             <stop offset="100%" stop-color="#9A7410"/>
           </linearGradient>
         </defs>
@@ -192,36 +187,35 @@
   <section class="hero">
     <div class="hero-content">
       
-      <!-- BRAND VERTEX: GEOMETRIA VETTORIALE UNIFICATA ED OMOGENEA -->
+      <!-- LOGO HERO: SCRITTA VERTEX OMOGENEA AL 100% -->
       <div class="hero-logo-container">
-        <svg class="hero-logo-svg" viewBox="0 0 600 90" xmlns="http://www.w3.org/2000/svg">
+        <svg class="hero-logo-svg" viewBox="0 0 520 85" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="goldGradUnified" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#FFF8D6"/>
-              <stop offset="25%" stop-color="#FFE082"/>
-              <stop offset="60%" stop-color="#D4AF37"/>
-              <stop offset="100%" stop-color="#9A7410"/>
+            <linearGradient id="goldGradClean" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFE082"/>
+              <stop offset="50%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#B38B13"/>
             </linearGradient>
           </defs>
           
-          <g fill="url(#goldGradUnified)">
-            <!-- V (Pulita, affilata, senza triangoli o sovrapposizioni) -->
-            <path d="M 10 10 L 32 10 L 48 68 L 64 10 L 86 10 L 56 88 L 40 88 Z"/>
+          <g fill="url(#goldGradClean)">
+            <!-- V -->
+            <polygon points="10,10 32,10 48,68 64,10 86,10 56,88 40,88"/>
 
             <!-- E -->
-            <polygon points="105,10 155,10 155,25 125,25 125,41 150,41 150,56 125,56 125,73 157,73 157,88 105,88"/>
+            <polygon points="105,10 155,10 155,24 125,24 125,41 150,41 150,55 125,55 125,74 157,74 157,88 105,88"/>
 
             <!-- R -->
-            <path d="M 175,10 L 215,10 C 235,10 245,20 245,33 C 245,45 235,53 220,55 L 248,88 L 225,88 L 201,57 L 195,57 L 195,88 L 175,88 Z M 195,25 L 195,42 L 212,42 C 222,42 226,38 226,33 C 226,28 222,25 212,25 Z"/>
+            <path d="M 175,10 L 215,10 C 235,10 245,20 245,33 C 245,45 235,53 220,55 L 248,88 L 225,88 L 201,57 L 195,57 L 195,88 L 175,88 Z M 195,24 L 195,42 L 212,42 C 222,42 226,38 226,33 C 226,28 222,24 212,24 Z"/>
 
             <!-- T -->
-            <polygon points="260,10 320,10 320,25 300,25 300,88 280,88 280,25 260,25"/>
+            <polygon points="260,10 320,10 320,24 300,24 300,88 280,88 280,24 260,24"/>
 
             <!-- E -->
-            <polygon points="335,10 385,10 385,25 355,25 355,41 380,41 380,56 355,56 355,73 387,73 387,88 335,88"/>
+            <polygon points="335,10 385,10 385,24 355,24 355,41 380,41 380,55 355,55 355,74 387,74 387,88 335,88"/>
 
-            <!-- X (Perfettamente bilanciata e allineata sulla baseline) -->
-            <polygon points="400,10 422,10 443,47 464,10 486,10 455,49 488,88 466,88 443,51 420,88 398,88 431,49"/>
+            <!-- X (Perfettamente omogenea con il resto delle lettere) -->
+            <polygon points="400,10 422,10 442,48 462,10 484,10 453,49 486,88 464,88 442,50 420,88 398,88 431,49"/>
           </g>
         </svg>
       </div>
@@ -371,7 +365,6 @@
   <script>
     function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('open'); }
 
-    /* ENGINE DI TRADUZIONE MADRELINGUA INGLESE (i18n) */
     let currentLang = 'it';
     const translations = {
       en: {
