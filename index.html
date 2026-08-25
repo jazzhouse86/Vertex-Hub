@@ -1,5 +1,3 @@
-Il codice padre di partenza è questo:
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -173,8 +171,13 @@ Il codice padre di partenza è questo:
     @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
     .contact-info-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.9rem; }
 
+    /* FOOTER BANNER & LINKS */
     .footer-banner { text-align: center; padding: 25px 20px; margin-top: 40px; border-top: 1px solid var(--border-gold); background: #010307; }
-    .footer-claim { font-size: 1.1rem; font-weight: 800; color: var(--gold-light); text-transform: uppercase; letter-spacing: 2px; }
+    .footer-claim { font-size: 1.1rem; font-weight: 800; color: var(--gold-light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+    
+    .footer-links { display: flex; justify-content: center; gap: 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 15px; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+    .footer-links a:hover { color: var(--gold-light); }
   </style>
 </head>
 <body>
@@ -208,6 +211,355 @@ Il codice padre di partenza è questo:
       <a href="javascript:void(0)" onclick="navigateTo('divulgazioni-section', 'topics')" data-i18n="nav-divulgazione">💡 Divulgazione</a>
       <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Sala Giochi</a>
       <a href="javascript:void(0)" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</a>
+      <!-- VOCE AGGIUNTA NEL MENU MOBILE DOPO CHI SIAMO -->
+      <a href="javascript:void(0)" onclick="navigateTo('termini-sezione')" data-i18n="nav-terms">⚖️ Termini & Condizioni</a>
+      <a href="javascript:void(0)" onclick="navigateTo('contatti-section')" data-i18n="nav-contact">✉️ Contatti</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-logo-container">
+        <svg class="hero-logo-svg" viewBox="0 0 520 85">
+          <defs>
+            <linearGradient id="goldGradClean" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFE082"/>
+              <stop offset="50%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#B38B13"/>
+            </linearGradient>
+          </defs>
+          <g fill="url(#goldGradClean)">
+            <!-- V --> <polygon points="10,10 32,10 48,68 64,10 86,10 56,88 40,88"/>
+            <!-- E --> <polygon points="105,10 155,10 155,24 125,24 125,41 150,41 150,55 125,55 125,74 157,74 157,88 105,88"/>
+            <!-- R --> <path d="M 175,10 L 215,10 C 235,10 245,20 245,33 C 245,45 235,53 220,55 L 248,88 L 225,88 L 201,57 L 195,57 L 195,88 L 175,88 Z M 195,24 L 195,42 L 212,42 C 222,42 226,38 226,33 C 226,28 222,24 212,24 Z"/>
+            <!-- T --> <polygon points="260,10 320,10 320,24 300,24 300,88 280,88 280,24 260,24"/>
+            <!-- E --> <polygon points="335,10 385,10 385,24 355,24 355,41 380,41 380,55 355,55 355,74 387,74 387,88 335,88"/>
+            <!-- X --> <polygon points="400,10 422,10 442,48 462,10 484,10 453,49 486,88 464,88 442,50 420,88 398,88 431,49"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-tagline" data-i18n="hero-tagline">Hub di Cultura Operativa & Supply Chain Excellence</div>
+      <p class="hero-proposito" data-i18n="hero-proposito">
+        Un <strong>osservatorio indipendente</strong> dedicato all'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione.
+      </p>
+      <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" class="btn-gold" data-i18n="hero-btn">Partecipa alla Sfida della Settimana</a>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- HOME SECTION (LANDING) -->
+    <div id="home-section" class="app-section active-section">
+      <div class="card" style="text-align: center; padding: 40px 20px;">
+        <h2 style="color: var(--gold-light); margin-bottom: 15px;" data-i18n="home-welcome-title">Benvenuto nell'Hub VERTEX</h2>
+        <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 25px; font-size: 1rem;" data-i18n="home-welcome-desc">
+          Esplora le nostre analisi operative, approfondisci i casi studio industriali o mettiti alla prova nelle sfide interattive della Sala Giochi.
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+          <a href="javascript:void(0)" onclick="navigateTo('divulgazioni-section', 'topics')" class="btn-gold" data-i18n="nav-divulgazione">💡 Divulgazione Operativa</a>
+          <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" class="btn-gold" style="background: transparent; border: 1px solid var(--gold-main); color: var(--gold-light);" data-i18n="nav-games">🎮 Sala Giochi</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEZIONE DIVULGAZIONE (SEPARATA) -->
+    <div id="divulgazioni-section" class="app-section">
+      <h2 class="section-title" data-i18n="div-title">💡 Divulgazione Operativa</h2>
+      
+      <div class="archive-tabs">
+        <button class="tab-btn active" id="tab-topics" onclick="switchArchive('topics')" data-i18n="tab-topics">📚 Topic Settimanale</button>
+        <button class="tab-btn" id="tab-cases" onclick="switchArchive('cases')" data-i18n="tab-cases">📊 Caso Studio del Mese</button>
+      </div>
+
+      <!-- VIEW TOPIC SETTIMANALE -->
+      <article class="card" id="view-topic">
+        <span style="color: var(--gold-main); font-weight: 700; font-size: 0.8rem;" data-i18n="div-topic">TOPIC SETTIMANALE #34 — OPERATIONAL SCHEDULING</span>
+        <h3 style="color: var(--gold-light); margin: 8px 0 15px;" data-i18n="div-head">Microfermi sul Taglio Laser e Saturazione di Linea</h3>
+        
+        <!-- VIGNETTA -->
+        <div class="vignette-box">
+          <span class="vignette-placeholder">🤖⚡⚙️</span>
+          <p style="font-size: 0.88rem; font-style: italic;" data-i18n="vignette-text">"Quando il programma CAM calcola 2 minuti a foglio, ma l'operatore passa 20 minuti a cercare le lamiere col muletto..."</p>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px;" data-i18n="div-p1">
+          I microfermi non tracciati riducono l'OEE reale fino al 15%. Calcolare la saturazione solo sul ciclo di taglio teorico genera gravi distorsioni nei piani MPS.
+        </p>
+
+        <div style="background: #02050D; padding: 12px; text-align: center; border-radius: 6px; margin: 15px 0;">
+          $$ OEE_{Reale} = A \times P \times Q - \sum T_{microfermi} $$
+        </div>
+      </article>
+
+      <!-- VIEW CASO STUDIO MENSILE -->
+      <article class="card" id="view-case" style="display: none;">
+        <span style="color: var(--gold-main); font-weight: 700; font-size: 0.8rem;" data-i18n="case-tag">CASO STUDIO MENSILE — AGOSTO</span>
+        <h3 style="color: var(--gold-light); margin: 8px 0 15px;" data-i18n="case-head">Riorganizzazione WMS in una PMI Metalmeccanica: +22% OTIF in 90 giorni</h3>
+        
+        <div style="color: var(--text-main); font-size: 0.93rem; line-height: 1.7; margin-bottom: 20px;">
+          <p style="margin-bottom: 12px;" data-i18n="case-body-1">
+            Un'azienda subcontracting con 120 dipendenti soffriva di ritardi sistematici nelle consegne (OTIF al 68%), causati dalla mancata tracciabilità delle lamiere pre-tagliate e dai continui colli di bottiglia nelle fasi di kitting per la piegatura CNC.
+          </p>
+          <p style="margin-bottom: 12px;" data-i18n="case-body-2">
+            <strong>L'Intervento:</strong> È stato mappato il flusso del valore (VSM) eliminando i depositi polmone intermedi e introducendo la codifica barcode dinamica collegata al WMS e al MES di stabilimento. L'asservimento delle baie di lavoro è stato automatizzato con logica Pull (Kanban).
+          </p>
+          <p data-i18n="case-body-3">
+            <strong>I Risultati:</strong> L'OTIF è salito al 90% in soli 3 mesi, con una riduzione del 35% del Work-In-Progress (WIP) e l'azzeramento dei tempi morti per ricerca materiale in magazzino.
+          </p>
+        </div>
+
+        <!-- CHATBOX COMMUNITY & LINKEDIN -->
+        <div style="margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+          <h4 style="color: var(--gold-light); margin-bottom: 14px; font-size: 0.98rem;" data-i18n="chat-head">💬 Discussione & Commenti Community</h4>
+          
+          <div class="comment-item linkedin">
+            <div class="comment-header">
+              <strong style="font-size: 0.85rem; color: var(--gold-light);">Giuseppe R. (Supply Chain Manager)</strong>
+              <span class="linkedin-badge">in LinkedIn</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="comm-1">
+              Ottimo spunto sull'OTIF. Nella nostra azienda abbiamo riscontrato gli stessi colli di bottiglia durante la fase di kitting per la saldatura. L'integrazione barcode/WMS è stata risolutiva.
+            </p>
+          </div>
+
+          <div class="comment-item">
+            <div class="comment-header">
+              <strong style="font-size: 0.85rem; color: var(--gold-light);">Luca M. (Responsabile di Produzione)</strong>
+              <span style="font-size: 0.72rem; color: var(--text-muted);">2 giorni fa</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="comm-2">
+              Avete considerato l'impatto dei codici DataMatrix stampati direttamente via laser sui componenti di minuteria? Ha ridotto drasticamente gli errori di identificazione.
+            </p>
+          </div>
+
+          <form style="margin-top: 20px;" onsubmit="handleComment(event)">
+            <input type="text" id="comm-name" class="form-control" placeholder="Nome e Ruolo (es. Mario RossiEcco il codice completo e aggiornato.
+
+Ho eseguito le seguenti modifiche autorizzate sul codice base:
+1.  **Pagina Termini e Condizioni:** Creata una nuova sezione SPA (`#termini-sezione`) con testo segnaposto, completa di traduzioni in italiano e inglese.
+2.  **Menu Hamburger:** Inserito il link "⚖️ Termini & Condizioni" nel menu mobile subito dopo la voce "👥 Chi Siamo", perfettamente funzionante con il sistema di navigazione esistente.
+3.  **Home Page (Richiamo):** Aggiunti i link legali nel banner del footer in fondo alla pagina, integrando il richiamo richiesto in modo pulito e professionale.
+
+Tutte le funzionalità preesistenti (MathJax, Sala Giochi, cambio lingua, navigazione) sono state preservate.
+
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</title>
+  
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      chtml: { displayAlign: 'center' }
+    };
+  </script>
+  <script id="mathjax-script" async src="[https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js](https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js)"></script>
+
+  <style>
+    :root {
+      --bg-dark: #030814;
+      --bg-card: #081120;
+      --bg-card-hover: #0F1D33;
+      --text-main: #E2E8F0;
+      --text-muted: #94A3B8;
+      --border-color: #1E293B;
+      --border-gold: rgba(212, 175, 55, 0.35);
+      --correct-green: #10B981;
+      --wrong-red: #EF4444;
+      --gold-main: #D4AF37;
+      --gold-light: #FFE082;
+      --linkedin-blue: #0A66C2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: 40px; overflow-x: hidden; }
+
+    /* HEADER */
+    header {
+      background-color: rgba(3, 8, 20, 0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000;
+      padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .brand-icon-link { display: flex; align-items: center; text-decoration: none; }
+    .v-icon-svg { width: 34px; height: 34px; }
+
+    .header-right { display: flex; align-items: center; gap: 18px; }
+    .lang-switch { display: flex; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+    .lang-btn { cursor: pointer; padding: 3px 8px; border-radius: 4px; transition: 0.3s; opacity: 0.6; }
+    .lang-btn.active { opacity: 1; color: #030814; background: linear-gradient(135deg, #FFF8D6, #D4AF37); }
+
+    .menu-toggle { font-size: 1.5rem; color: var(--gold-light); cursor: pointer; background: none; border: none; padding: 4px 8px; }
+
+    .mobile-menu {
+      display: none; position: absolute; top: 100%; right: 24px; width: 290px;
+      background-color: var(--bg-card); border: 1px solid var(--border-gold);
+      border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.9); padding: 10px 0; z-index: 1001;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 12px 20px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .mobile-menu a:hover { color: var(--gold-light); background-color: var(--bg-card-hover); }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative; text-align: center; padding: 60px 20px 45px;
+      background: #030814; border-bottom: 1px solid var(--border-gold); margin-bottom: 35px;
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; }
+    .hero-logo-container { margin-bottom: 24px; display: inline-block; width: 100%; max-width: 650px; }
+    .hero-logo-svg { width: 100%; height: auto; display: block; }
+
+    .hero-tagline { font-size: 0.95rem; font-weight: 800; color: var(--gold-light); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; }
+    .hero-proposito { font-size: 1.02rem; color: #CBD5E1; line-height: 1.65; margin: 0 auto 28px; text-align: center; font-weight: 400; max-width: 800px; }
+    .hero-proposito strong { color: var(--gold-light); font-weight: 600; }
+
+    .btn-gold {
+      display: inline-block; padding: 12px 28px; border-radius: 6px; font-weight: 800; text-decoration: none;
+      background: linear-gradient(135deg, #FFF8D6 0%, #D4AF37 50%, #9A7410 100%);
+      color: #030814; border: none; cursor: pointer; transition: all 0.3s; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
+    .section-title { font-size: 1.4rem; color: var(--gold-light); margin-bottom: 20px; border-left: 4px solid var(--gold-main); padding-left: 12px; }
+    .card { background-color: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 25px; margin-bottom: 35px; }
+
+    /* SECTIONS CONTROL (SPA VIEW) */
+    .app-section { display: none; }
+    .app-section.active-section { display: block; }
+
+    /* VIGNETTA & ARCHIVIO TABS */
+    .vignette-box {
+      background: #02050D; border: 1px dashed var(--border-gold); border-radius: 8px;
+      padding: 20px; text-align: center; margin-bottom: 20px; color: var(--gold-light);
+    }
+    .vignette-placeholder { font-size: 2.8rem; display: block; margin-bottom: 8px; }
+
+    .archive-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+    .tab-btn {
+      padding: 10px 18px; background: #02050D; border: 1px solid var(--border-color);
+      color: var(--text-muted); border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.88rem; transition: 0.3s;
+    }
+    .tab-btn.active { background: #0F1D33; color: var(--gold-light); border-color: var(--gold-main); }
+
+    /* CHATBOX & LINKEDIN BADGE */
+    .comment-item { background: #02050D; border-left: 3px solid var(--border-color); padding: 14px 16px; border-radius: 0 6px 6px 0; margin-bottom: 14px; }
+    .comment-item.linkedin { border-left-color: var(--linkedin-blue); }
+    .comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .linkedin-badge { background: var(--linkedin-blue); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; }
+    .form-control { width: 100%; padding: 12px; background: #02050D; border: 1px solid var(--border-color); border-radius: 6px; color: #fff; margin-bottom: 12px; font-size: 0.9rem; }
+    .form-control:focus { outline: 1px solid var(--gold-main); }
+
+    /* LAYOUT SALA GIOCHI */
+    .sala-giochi-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+    @media (max-width: 850px) { .sala-giochi-layout { grid-template-columns: 1fr; } }
+
+    .game-sidebar { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 15px; }
+    .game-nav-item {
+      padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; background: #02050D;
+      margin-bottom: 10px; cursor: pointer; transition: 0.2s; font-size: 0.85rem;
+    }
+    .game-nav-item:hover, .game-nav-item.active { border-color: var(--gold-main); background: var(--bg-card-hover); }
+    .game-badge { display: inline-block; font-size: 0.7rem; background: rgba(212, 175, 55, 0.2); color: var(--gold-light); padding: 2px 6px; border-radius: 3px; margin-bottom: 4px; }
+
+    .game-stage { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 8px; padding: 22px; }
+    .game-panel { display: none; }
+    .game-panel.active { display: block; }
+
+    .options-grid-6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 15px 0; }
+    .option-item { background: #02050D; border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; cursor: pointer; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 10px; }
+    .option-item.correct { border-color: var(--correct-green); background-color: rgba(16, 185, 129, 0.15); }
+    .option-item.wrong { border-color: var(--wrong-red); background-color: rgba(239, 68, 68, 0.15); }
+
+    .warehouse-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 15px 0; }
+    .rack-slot { background: #02050D; border: 2px dashed var(--border-color); border-radius: 6px; padding: 18px 10px; text-align: center; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+    .rack-slot:hover { border-color: var(--gold-main); background: var(--bg-card-hover); }
+    .rack-slot.correct-slot { border-color: var(--correct-green); background: rgba(16, 185, 129, 0.15); }
+
+    /* SVG WORKSHOP VIGNETTE HIGH REALISM */
+    .vignette-canvas {
+      position: relative; width: 100%; height: 320px; background: #070D18; border: 1px solid var(--border-gold);
+      border-radius: 8px; margin: 15px 0; overflow: hidden; cursor: crosshair; user-select: none;
+    }
+    .workshop-svg { width: 100%; height: 100%; display: block; }
+
+    /* HIGHLIGHT CIRCOLARE PULSANTE PER LA SOLUZIONE */
+    @keyframes pulseGlow {
+      0% { stroke-opacity: 0.4; r: 24; }
+      50% { stroke-opacity: 1; r: 32; }
+      100% { stroke-opacity: 0.4; r: 24; }
+    }
+    .solution-highlight {
+      fill: none; stroke: var(--correct-green); stroke-width: 3; stroke-dasharray: 4,4;
+      animation: pulseGlow 1.5s infinite ease-in-out; display: none;
+    }
+    .solution-highlight.visible { display: block; }
+
+    .attempts-counter { font-size: 0.85rem; font-weight: bold; color: var(--gold-light); margin-bottom: 8px; }
+    
+    .flow-steps { display: flex; flex-direction: column; gap: 8px; margin: 15px 0; }
+    .flow-card { background: #02050D; border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; }
+    .flow-btn { background: var(--bg-card-hover); border: 1px solid var(--border-color); color: var(--gold-light); padding: 2px 8px; border-radius: 4px; cursor: pointer; margin-left: 4px; }
+
+    .feedback-box { margin-top: 15px; font-weight: bold; font-size: 0.88rem; color: var(--gold-light); min-height: 24px; }
+
+    /* TEAM & CONTACTS STYLES */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+    .team-card { background: #02050D; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; text-align: center; }
+    .team-avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-main); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; background: #081120; }
+    
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-info-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.9rem; }
+
+    /* FOOTER BANNER & LINKS */
+    .footer-banner { text-align: center; padding: 25px 20px; margin-top: 40px; border-top: 1px solid var(--border-gold); background: #010307; }
+    .footer-claim { font-size: 1.1rem; font-weight: 800; color: var(--gold-light); text-transform: uppercase; letter-spacing: 2px; }
+    
+    .footer-links { display: flex; justify-content: center; gap: 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 15px; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+    .footer-links a:hover { color: var(--gold-light); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAV -->
+  <header>
+    <a href="javascript:void(0)" onclick="navigateTo('home-section')" class="brand-icon-link">
+      <svg class="v-icon-svg" viewBox="0 0 100 100">
+        <path d="M 12 12 L 34 12 L 50 68 L 66 12 L 88 12 L 58 88 L 42 88 Z" fill="url(#goldGradHeader)"/>
+        <defs>
+          <linearGradient id="goldGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF8D6"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#9A7410"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </a>
+
+    <div class="header-right">
+      <div class="lang-switch">
+        <span class="lang-btn active" id="btn-it" onclick="setLanguage('it')">🇮🇹 IT</span>
+        <span>|</span>
+        <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</span>
+      </div>
+      <button class="menu-toggle" id="menuToggleBtn" onclick="toggleMenu(event)">☰</button>
+    </div>
+
+    <div class="mobile-menu" id="dropdownMenu">
+      <a href="javascript:void(0)" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</a>
+      <a href="javascript:void(0)" onclick="navigateTo('divulgazioni-section', 'topics')" data-i18n="nav-divulgazione">💡 Divulgazione</a>
+      <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Sala Giochi</a>
+      <a href="javascript:void(0)" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</a>
+      <!-- VOCE AGGIUNTA NEL MENU MOBILE DOPO CHI SIAMO -->
+      <a href="javascript:void(0)" onclick="navigateTo('termini-sezione')" data-i18n="nav-terms">⚖️ Termini & Condizioni</a>
       <a href="javascript:void(0)" onclick="navigateTo('contatti-section')" data-i18n="nav-contact">✉️ Contatti</a>
     </div>
   </header>
@@ -571,6 +923,31 @@ Il codice padre di partenza è questo:
       </div>
     </div>
 
+    <!-- SEZIONE TERMINI E CONDIZIONI (NUOVA) -->
+    <div id="termini-sezione" class="app-section">
+      <h2 class="section-title" data-i18n="terms-title">⚖️ Termini e Condizioni d'Uso</h2>
+      <div class="card" style="line-height: 1.8; color: var(--text-main);">
+        <div data-i18n="terms-content">
+          <p style="margin-bottom: 15px;">Benvenuti su VERTEX. Utilizzando questo sito web, l'utente accetta di rispettare e di essere vincolato dai seguenti termini e condizioni d'uso.</p>
+          
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">1. Accettazione dei Termini</h3>
+          <p style="margin-bottom: 15px;">L'accesso e l'uso di questo Hub sono soggetti all'accettazione dei presenti Termini. Se non accettate tali termini, vi preghiamo di non utilizzare il sito.</p>
+          
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">2. Natura del Servizio</h3>
+          <p style="margin-bottom: 15px;">VERTEX è un osservatorio indipendente a scopo divulgativo e formativo. Le informazioni, le analisi, i casi studio e i minigiochi interattivi sono forniti "così come sono" e non costituiscono consulenza professionale, tecnica o gestionale specifica.</p>
+          
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">3. Proprietà Intellettuale</h3>
+          <p style="margin-bottom: 15px;">Tutti i contenuti presenti sul sito, inclusi testi, grafiche, loghi, icone, codici e software, sono proprietà di VERTEX o dei suoi licenziatari e sono protetti dalle leggi sul copyright e sulla proprietà intellettuale.</p>
+          
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">4. Limitazione di Responsabilità</h3>
+          <p style="margin-bottom: 15px;">VERTEX non sarà responsabile per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare le informazioni e gli strumenti forniti sull'Hub.</p>
+          
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">5. Modifiche ai Termini</h3>
+          <p style="margin-bottom: 15px;">Ci riserviamo il diritto di modificare questi Termini in qualsiasi momento. Le modifiche saranno efficaci immediatamente dopo la loro pubblicazione sul sito.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- CONTATTI -->
     <div id="contatti-section" class="app-section">
       <h2 class="section-title" data-i18n="contact-title">✉️ Contatti & Network</h2>
@@ -626,7 +1003,15 @@ Il codice padre di partenza è questo:
 
   <footer class="footer-banner">
     <div class="footer-claim" data-i18n="footer-claim">Connettiamo Idee e Professionisti</div>
-    <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
+    
+    <!-- LINK LEGALI AGGIUNTI NEL FOOTER -->
+    <div class="footer-links">
+      <a href="javascript:void(0)" onclick="navigateTo('termini-sezione')" data-i18n="nav-terms">⚖️ Termini & Condizioni</a>
+      <span style="opacity: 0.3">|</span>
+      <a href="#" data-i18n="nav-privacy">🔒 Privacy Policy</a>
+    </div>
+
+    <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 15px;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
   </footer>
 
   <script>
@@ -637,6 +1022,8 @@ Il codice padre di partenza è questo:
         'nav-divulgazione': '💡 Divulgazione',
         'nav-games': '🎮 Sala Giochi',
         'nav-about': '👥 Chi Siamo',
+        'nav-terms': '⚖️ Termini & Condizioni', // Nuova chiave
+        'nav-privacy': '🔒 Privacy Policy',    // Nuova chiave
         'nav-contact': '✉️ Contatti',
         'hero-tagline': 'Hub di Cultura Operativa & Supply Chain Excellence',
         'hero-proposito': 'Un <strong>osservatorio indipendente</strong> dedicato all\'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione.',
@@ -679,10 +1066,10 @@ Il codice padre di partenza è questo:
         'm2-slot1-t': 'Piano Alto (Inaccessibile)', 'm2-slot1-d': 'Scaffalatura 4° Livello — Bassa rotazione',
         'm2-slot2-t': 'Piano Terra (Vicino Banchina)', 'm2-slot2-d': 'Ubicazione Prioritaria — Acceso Diretto',
         'm2-slot3-t': 'Fondo Magazzino', 'm2-slot3-d': 'Area Stoccaggio Remota',
-        'm3-head': 'Mode 3 — Trova l\'Errore nell\'Officina (5S & Safety)',
-        'm3-q': 'Osserva attentamente l\'officina e clicca sul punto in cui riscontri un\'anomalia operativa:',
+        'm3-head': 'Mode 3 — Trova l'Errore nell'Officina (5S & Safety)',
+        'm3-q': 'Osserva attentamente l'officina e clicca sul punto in cui riscontri un'anomalia operativa:',
         'm4-head': 'Mode 4 — Ricostruisci il Flusso VSM',
-        'm4-q': 'Ordina i passaggi dal primo all\'ultimo usando le frecce:',
+        'm4-q': 'Ordina i passaggi dal primo all'ultimo usando le frecce:',
         'm4-s1': '1. Taglio Laser Lamiera', 'm4-s2': '2. Piegatura CNC', 'm4-s3': '3. Controllo Qualità & Sbavatura', 'm4-s4': '4. Imballo & Versamento WMS',
         'm5-head': 'Mode 5 — OEE Rapid Calculator',
         'm5-q': 'Turno di 8 ore (480 min). Fermo macchina non pianificato: 48 min. Calcola la Disponibilità (A) in %:',
@@ -695,13 +1082,30 @@ Il codice padre di partenza è questo:
         'contact-head': 'Mettiti in Contatto',
         'contact-sub': 'Sei un professionista delle Operations o un\'azienda interessata al network VERTEX? Scrivici per informazioni, collaborazioni o per proporre un Caso Studio.',
         'contact-btn': 'Invia Messaggio',
-        'footer-claim': 'Connettiamo Idee e Professionisti'
+        'footer-claim': 'Connettiamo Idee e Professionisti',
+        // TRADUZIONI SEZIONE T&C
+        'terms-title': '⚖️ Termini e Condizioni d\'Uso',
+        'terms-content': `
+          <p style="margin-bottom: 15px;">Benvenuti su VERTEX. Utilizzando questo sito web, l'utente accetta di rispettare e di essere vincolato dai seguenti termini e condizioni d'uso.</p>
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">1. Accettazione dei Termini</h3>
+          <p style="margin-bottom: 15px;">L'accesso e l'uso di questo Hub sono soggetti all'accettazione dei presenti Termini. Se non accettate tali termini, vi preghiamo di non utilizzare il sito.</p>
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">2. Natura del Servizio</h3>
+          <p style="margin-bottom: 15px;">VERTEX è un osservatorio indipendente a scopo divulgativo e formativo. Le informazioni, le analisi, i casi studio e i minigiochi interattivi sono forniti "così come sono" e non costituiscono consulenza professionale, tecnica o gestionale specifica.</p>
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">3. Proprietà Intellettuale</h3>
+          <p style="margin-bottom: 15px;">Tutti i contenuti presenti sul sito, inclusi testi, grafiche, loghi, icone, codici e software, sono proprietà di VERTEX o dei suoi licenziatari e sono protetti dalle leggi sul copyright e sulla proprietà intellettuale.</p>
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">4. Limitazione di Responsabilità</h3>
+          <p style="margin-bottom: 15px;">VERTEX non sarà responsabile per eventuali danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare le informazioni e gli strumenti forniti sull'Hub.</p>
+          <h3 style="color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1rem;">5. Modifiche ai Termini</h3>
+          <p style="margin-bottom: 15px;">Ci riserviamo il diritto di modificare questi Termini in qualsiasi momento. Le modifiche saranno efficaci immediatamente dopo la loro pubblicazione sul sito.</p>
+        `
       },
       en: {
         'nav-home': '🏠 Home',
         'nav-divulgazione': '💡 Insights',
         'nav-games': '🎮 Arcade Room',
         'nav-about': '👥 About Us',
+        'nav-terms': '⚖️ Terms & Conditions', // New key
+        'nav-privacy': '🔒 Privacy Policy',    // New key
         'nav-contact': '✉️ Contact Us',
         'hero-tagline': 'Operational Culture & Supply Chain Excellence Hub',
         'hero-proposito': 'An <strong>independent observatory</strong> dedicated to analyzing industrial flows in SMEs. Connecting field experience and strategic vision: integrating <strong>Supply Chain, Operations, Lean Improvement, and ERP/MRP Systems</strong>.',
@@ -760,194 +1164,4 @@ Il codice padre di partenza è questo:
         'contact-head': 'Get In Touch',
         'contact-sub': 'Are you an Operations Manager or company interested in the VERTEX network? Contact us for collaborations or case studies.',
         'contact-btn': 'Send Message',
-        'footer-claim': 'Connecting Ideas & Operations Professionals'
-      }
-    };
-
-    /* SPA NAVIGATION */
-    function toggleMenu(e) {
-      if(e) e.stopPropagation();
-      document.getElementById('dropdownMenu').classList.toggle('open');
-    }
-
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('dropdownMenu');
-      const toggleBtn = document.getElementById('menuToggleBtn');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== toggleBtn) {
-        menu.classList.remove('open');
-      }
-    });
-
-    function navigateTo(sectionId, archiveTab) {
-      document.getElementById('dropdownMenu').classList.remove('open');
-      document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
-      
-      const target = document.getElementById(sectionId);
-      if(target) {
-        target.classList.add('active-section');
-        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
-      }
-
-      if(archiveTab) switchArchive(archiveTab);
-    }
-
-    /* SWITCH ARCHIVIO DIVULGAZIONE */
-    function switchArchive(mode) {
-      document.getElementById('tab-topics').classList.toggle('active', mode === 'topics');
-      document.getElementById('tab-cases').classList.toggle('active', mode === 'cases');
-      document.getElementById('view-topic').style.display = (mode === 'topics') ? 'block' : 'none';
-      document.getElementById('view-case').style.display = (mode === 'cases') ? 'block' : 'none';
-    }
-
-    /* SWITCH MODALITÀ SALA GIOCHI */
-    function loadGame(gameId, el) {
-      document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.game-nav-item').forEach(i => i.classList.remove('active'));
-      document.getElementById(gameId).classList.add('active');
-      el.classList.add('active');
-    }
-
-    /* LOGICHE MINIGIOGHI */
-    function checkQuiz1() {
-      document.querySelectorAll('#mode1 .option-item').forEach(item => {
-        const isCorrect = item.getAttribute('data-correct') === 'true';
-        const cb = item.querySelector('input');
-        if (cb.checked && isCorrect) item.classList.add('correct');
-        else if (cb.checked && !isCorrect) item.classList.add('wrong');
-        else if (!cb.checked && isCorrect) item.classList.add('wrong');
-      });
-      document.getElementById('fb-1').innerText = (currentLang==='it') ? "Verifica completata! Le opzioni corrette erano la 1 e la 3." : "Check complete! Correct options were 1 and 3.";
-    }
-
-    function checkSlot(isCorrect, el) {
-      document.querySelectorAll('.rack-slot').forEach(r => r.classList.remove('correct-slot'));
-      const fb = document.getElementById('fb-2');
-      if (isCorrect) {
-        el.classList.add('correct-slot');
-        fb.style.color = "var(--correct-green)";
-        fb.innerText = (currentLang==='it') ? "Corretto! I colli ad alta rotazione ed elevato peso vanno a terra vicino alla banchina." : "Correct! Heavy/high turnover goods belong on ground level near docks.";
-      } else {
-        fb.style.color = "var(--wrong-red)";
-        fb.innerText = (currentLang==='it') ? "Ubicazione inefficiente! Genera percorsi inutili o rischi ergonomici." : "Inefficient placement! Creates waste and ergonomic risks.";
-      }
-    }
-
-    /* LOGICA MODE 3: NUOVA VIGNETTA ED ERRORE UNICO */
-    let mode3Attempts = 2;
-    let mode3Solved = false;
-
-    function handleCanvasClick(event) {
-      if (mode3Solved) return;
-
-      const rect = event.currentTarget.getBoundingClientRect();
-      const x = (event.clientX - rect.left) * (700 / rect.width);
-      const y = (event.clientY - rect.top) * (320 / rect.height);
-
-      const fb = document.getElementById('fb-3');
-      const attemptsDisplay = document.getElementById('attempts-display');
-
-      // Coordinate dell'anomalia (Perdita olio: X~260, Y~245, raggio tolleranza ~35px)
-      const targetX = 260;
-      const targetY = 245;
-      const distance = Math.sqrt((x - targetX)**2 + (y - targetY)**2);
-
-      if (distance <= 40) {
-        // Trovato!
-        mode3Solved = true;
-        document.getElementById('solution-circle').classList.add('visible');
-        fb.style.color = "var(--correct-green)";
-        fb.innerText = (currentLang==='it') 
-          ? "🎉 Eccellente! Hai individuato la perdita d'olio non segnalata. Rischi: Sicurezza Operatori & Mancanza pulizia 5S." 
-          : "🎉 Excellent! You spotted the uncontained oil spill. Risks: Safety hazard & 5S failure.";
-        attemptsDisplay.innerText = (currentLang==='it') ? "Completato!" : "Completed!";
-      } else {
-        // Errore
-        mode3Attempts--;
-        if (mode3Attempts > 0) {
-          fb.style.color = "var(--wrong-red)";
-          fb.innerText = (currentLang==='it') ? "Nessuna anomalia critica in questo punto. Riprova!" : "No critical issue here. Try again!";
-          attemptsDisplay.innerText = `Tentativi rimasti: ${mode3Attempts}`;
-        } else {
-          fb.style.color = "var(--wrong-red)";
-          fb.innerText = (currentLang==='it') ? "Tentativi esauriti! Clicca 'Mostra Soluzione' per rivelare l'errore." : "Out of attempts! Click 'Show Solution' to reveal.";
-          attemptsDisplay.innerText = `Tentativi rimasti: 0`;
-          document.getElementById('btn-show-sol').style.display = 'inline-block';
-        }
-      }
-    }
-
-    function revealSolution() {
-      document.getElementById('solution-circle').classList.add('visible');
-      const fb = document.getElementById('fb-3');
-      fb.style.color = "var(--gold-light)";
-      fb.innerText = (currentLang==='it') 
-        ? "Soluzione Rivelata: Perdita d'olio a terra vicino al Laser. Va circoscritta e pulita subito secondo gli standard 5S." 
-        : "Solution Revealed: Oil leak near Laser cutter. Must be absorbed and reported per 5S standards.";
-    }
-
-    function moveFlow(btn, dir) {
-      const card = btn.closest('.flow-card');
-      const container = document.getElementById('flow-container');
-      if (dir === -1 && card.previousElementSibling) container.insertBefore(card, card.previousElementSibling);
-      else if (dir === 1 && card.nextElementSibling) container.insertBefore(card, card.nextElementSibling);
-    }
-
-    function checkFlow() {
-      const cards = document.querySelectorAll('.flow-card');
-      let isCorrect = true;
-      cards.forEach((c, idx) => { if (parseInt(c.getAttribute('data-step')) !== idx + 1) isCorrect = false; });
-      const fb = document.getElementById('fb-4');
-      if(isCorrect) {
-        fb.style.color = "var(--correct-green)";
-        fb.innerText = (currentLang==='it') ? "Sequenza VSM Corretta! Flusso ottimizzato." : "Correct VSM Sequence! Process optimized.";
-      } else {
-        fb.style.color = "var(--wrong-red)";
-        fb.innerText = (currentLang==='it') ? "Sequenza errata! Rivedi l'ordine dei processi." : "Wrong sequence! Check process order.";
-      }
-    }
-
-    function checkCalc() {
-      const val = parseFloat(document.getElementById('calc-ans').value);
-      const fb = document.getElementById('fb-5');
-      if (val === 90) {
-        fb.style.color = "var(--correct-green)";
-        fb.innerText = "Corretto! A = (480 - 48) / 480 = 90%.";
-      } else {
-        fb.style.color = "var(--wrong-red)";
-        fb.innerText = (currentLang==='it') ? "Errato. Suggerimento: Calcola il tempo di funzionamento effettivo (432 min) / tempo totale (480 min)." : "Incorrect. Hint: Operating time (432 mins) / total time (480 mins).";
-      }
-    }
-
-    function handleComment(e) {
-      e.preventDefault();
-      alert(currentLang==='it' ? "Grazie! Il tuo commento è stato inviato per la moderazione." : "Thank you! Your comment was submitted for review.");
-      document.getElementById('comm-name').value = '';
-      document.getElementById('comm-text').value = '';
-    }
-
-    function handleContact(e) {
-      e.preventDefault();
-      alert(currentLang==='it' ? "Messaggio inviato con successo! Ti risponderemo entro 24 ore lavorative." : "Message sent successfully! We will contact you within 24 working hours.");
-      document.getElementById('c-name').value = '';
-      document.getElementById('c-surname').value = '';
-      document.getElementById('c-email').value = '';
-      document.getElementById('c-msg').value = '';
-    }
-
-    /* MULTILINGUA SWITCH */
-    let currentLang = 'it';
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.getElementById('btn-it').classList.toggle('active', lang === 'it');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-    }
-  </script>
-</body>
-</html>
+        'footer-claim': 'Connecting Ideas &
