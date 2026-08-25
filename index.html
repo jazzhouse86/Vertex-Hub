@@ -93,8 +93,10 @@
             font-weight: 900;
             font-size: 1.4rem;
             letter-spacing: 2px;
+            color: #D4AF37; /* fallback dorato */
             background: linear-gradient(135deg, #FFF8D6 0%, #D4AF37 50%, #997A15 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -440,8 +442,10 @@
             font-weight: 900;
             line-height: 1;
             margin: 15px 0;
+            color: #D4AF37; /* fallback */
             background: linear-gradient(135deg, #FFF8D6, #D4AF37);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -632,9 +636,9 @@
                         <stop offset="100%" stop-color="#997A15" />
                     </linearGradient>
                 </defs>
-                <polygon points="60,80 140,80 250,380 360,80 440,80 290,420 210,420" fill="url(#navGoldGrad)" />
-                <polygon points="250,180 180,310 320,310" fill="#030814" stroke="url(#navGoldGrad)" stroke-width="5" />
-                <polygon points="250,180 220,235 250,220 280,235" fill="url(#navGoldGrad)" />
+                <polygon points="60,80 140,80 250,380 360,80 440,80 290,420 210,420" fill="#D4AF37" fill="url(#navGoldGrad)" />
+                <polygon points="250,180 180,310 320,310" fill="#030814" stroke="#D4AF37" stroke="url(#navGoldGrad)" stroke-width="5" />
+                <polygon points="250,180 220,235 250,220 280,235" fill="#D4AF37" fill="url(#navGoldGrad)" />
             </svg>
             <span class="brand-name">VERTEX</span>
         </div>
@@ -679,14 +683,14 @@
                     </defs>
                     <g transform="translate(15, 15)">
                         <g>
-                            <polygon points="10,25 68,25 128,190 188,25 246,25 158,225 98,225" fill="url(#vertexGoldMain)" />
+                            <polygon points="10,25 68,25 128,190 188,25 246,25 158,225 98,225" fill="#D4AF37" fill="url(#vertexGoldMain)" />
                             <g>
-                                <polygon points="128,95 86,170 170,170" fill="#030814" stroke="url(#vertexGoldMain)" stroke-width="2.5" />
-                                <polygon points="128,95 112,125 128,118 144,125" fill="url(#vertexGoldMain)" />
+                                <polygon points="128,95 86,170 170,170" fill="#030814" stroke="#D4AF37" stroke="url(#vertexGoldMain)" stroke-width="2.5" />
+                                <polygon points="128,95 112,125 128,118 144,125" fill="#D4AF37" fill="url(#vertexGoldMain)" />
                                 <polygon points="98,170 128,128 142,170" fill="rgba(212, 175, 55, 0.25)" />
                             </g>
                         </g>
-                        <text x="245" y="225" font-family="'Segoe UI', system-ui, sans-serif" font-size="220" font-weight="900" letter-spacing="14" fill="url(#vertexGoldMain)">
+                        <text x="245" y="225" font-family="'Segoe UI', system-ui, sans-serif" font-size="220" font-weight="900" letter-spacing="14" fill="#D4AF37" fill="url(#vertexGoldMain)">
                             ERTEX
                         </text>
                     </g>
@@ -1247,7 +1251,6 @@
             document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
             document.querySelectorAll('.nav-link, .mobile-menu a').forEach(l => l.classList.remove('active'));
 
-            // Aggiungi active al link corrispondente (desktop + mobile)
             const link = document.querySelector(`.nav-link[data-target="${sectionId}"], .mobile-menu a[data-target="${sectionId}"]`);
             if (link) link.classList.add('active');
 
@@ -1264,7 +1267,6 @@
             document.getElementById('dropdownMenu').classList.toggle('open');
         }
 
-        // Chiudi il menu mobile cliccando fuori
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('dropdownMenu');
             const toggle = document.getElementById('menuToggleBtn');
@@ -1291,16 +1293,13 @@
             renderLeaderboard();
         }
 
-        // Inizializzazione con eventuale lingua salvata
         const savedLang = localStorage.getItem('vertex_lang');
         if (savedLang && (savedLang === 'it' || savedLang === 'en')) {
             currentLang = savedLang;
         }
 
         window.onload = () => {
-            // Applica la lingua salvata
             setLanguage(currentLang);
-            // Avvia le funzioni principali
             updateOEE();
             renderQuestion();
             renderLeaderboard();
