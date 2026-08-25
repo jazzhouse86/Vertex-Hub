@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERTEX - Hub di Cultura Operativa & Supply Chain Excellence</title>
     
-    <!-- MathJax per formule matematiche -->
+    <!-- MathJax per formule matematiche/KPI -->
     <script>
         MathJax = {
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -17,68 +17,87 @@
     <style>
         :root {
             --bg-dark: #030814;
-            --bg-card: #081120;
-            --bg-card-hover: #0F1D33;
+            --bg-card: #0A1326;
+            --bg-card-hover: #11203E;
+            --bg-accent: #0F1B33;
             --text-main: #E2E8F0;
             --text-muted: #94A3B8;
             --border-color: #1E293B;
             --border-gold: rgba(212, 175, 55, 0.35);
-            --correct-green: #10B981;
-            --wrong-red: #EF4444;
             --gold-main: #D4AF37;
             --gold-light: #FFE082;
-            --linkedin-blue: #0A66C2;
-            --nav-height: 70px;
+            --gold-dark: #997A15;
+            --correct-green: #10B981;
+            --wrong-red: #EF4444;
+            --nav-height: 75px;
+            --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            font-family: var(--font-family); 
         }
 
         body { 
             background-color: var(--bg-dark); 
             color: var(--text-main); 
             line-height: 1.6; 
-            padding-bottom: 40px; 
+            padding-bottom: 0; 
             overflow-x: hidden; 
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        ul {
-            list-style: none;
-        }
+        a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
+        ul { list-style: none; }
 
         /* --- HEADER & NAVIGAZIONE --- */
         header {
             background-color: rgba(3, 8, 20, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-gold);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 0 24px;
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: var(--nav-height);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        .brand-icon-link { 
-            display: flex; 
-            align-items: center; 
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
         }
 
         .nav-logo-svg { 
-            width: 38px; 
-            height: 38px; 
+            width: 42px; 
+            height: 42px; 
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.08);
         }
 
         .header-right { 
@@ -89,28 +108,34 @@
 
         .lang-switch { 
             display: flex; 
-            gap: 6px; 
+            gap: 4px; 
             font-size: 0.85rem; 
             font-weight: 700; 
-            color: var(--text-muted); 
+            background: rgba(255,255,255,0.05);
+            padding: 3px 6px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
         }
 
         .lang-btn { 
             cursor: pointer; 
-            padding: 3px 8px; 
-            border-radius: 4px; 
+            padding: 3px 10px; 
+            border-radius: 14px; 
             transition: 0.3s; 
             opacity: 0.6; 
+            color: var(--text-main);
         }
 
         .lang-btn.active { 
             opacity: 1; 
             color: #030814; 
             background: linear-gradient(135deg, #FFF8D6, #D4AF37); 
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
         }
 
         .menu-toggle { 
-            font-size: 1.5rem; 
+            display: none;
+            font-size: 1.6rem; 
             color: var(--gold-light); 
             cursor: pointer; 
             background: none; 
@@ -134,16 +159,14 @@
             overflow-y: auto;
         }
 
-        .mobile-menu.open { 
-            display: flex; 
-        }
+        .mobile-menu.open { display: flex; }
 
         .mobile-menu a { 
             display: block; 
-            padding: 15px 30px; 
+            padding: 16px 30px; 
             color: var(--text-main); 
             font-weight: 600; 
-            font-size: 1rem; 
+            font-size: 1.05rem; 
             border-bottom: 1px solid rgba(255,255,255,0.05); 
         }
 
@@ -152,20 +175,33 @@
             background-color: var(--bg-card-hover); 
         }
 
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+        }
+
         /* --- HERO SECTION --- */
         .hero {
             position: relative;
             text-align: center;
-            padding: 80px 20px 60px;
-            background: #030814;
+            padding: 90px 20px 70px;
+            background: radial-gradient(circle at 50% 30%, #0F203D 0%, #030814 70%);
             border-bottom: 1px solid var(--border-gold);
-            margin-bottom: 35px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.8;
         }
 
         .hero-content { 
             position: relative; 
             z-index: 2; 
-            max-width: 900px; 
+            max-width: 920px; 
             margin: 0 auto; 
         }
 
@@ -173,30 +209,26 @@
             margin-bottom: 24px; 
             display: inline-block; 
             width: 100%; 
-        }
-
-        .hero-logo-svg { 
-            width: 100%; 
-            height: auto; 
-            display: block; 
+            max-width: 650px;
         }
 
         .hero-tagline { 
-            font-size: 1rem; 
+            font-size: 1.15rem; 
             font-weight: 800; 
             color: var(--gold-light); 
-            letter-spacing: 3px; 
+            letter-spacing: 4px; 
             text-transform: uppercase; 
             margin-bottom: 25px; 
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
 
         .hero-proposito { 
-            font-size: 1.1rem; 
+            font-size: 1.15rem; 
             color: #CBD5E1; 
-            line-height: 1.7; 
+            line-height: 1.8; 
             margin: 0 auto 35px; 
             font-weight: 400; 
-            max-width: 750px; 
+            max-width: 800px; 
         }
 
         .hero-proposito strong { 
@@ -204,219 +236,401 @@
             font-weight: 600; 
         }
 
-        /* Pulsante Oro */
+        /* Pulsante Oro & Glossy */
         .btn-gold {
-            display: inline-block;
-            padding: 14px 30px;
-            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            border-radius: 8px;
             font-weight: 800;
             background: linear-gradient(135deg, #FFF8D6 0%, #D4AF37 50%, #9A7410 100%);
             color: #030814;
             border: none;
             cursor: pointer;
-            transition:all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
         }
 
         .btn-gold:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.45); 
         }
 
-        /* --- STRUTTURA GENERALE --- */
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            background: transparent;
+            color: var(--gold-light);
+            border: 2px solid var(--gold-main);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn-linkedin {
+            background: #0A66C2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-linkedin:hover {
+            background: #084e96;
+        }
+
+        /* --- STRUTTURA LAYOUT --- */
         .container { 
-            max-width: 1100px; 
+            max-width: 1180px; 
             margin: 0 auto; 
-            padding: 0 20px; 
+            padding: 50px 20px; 
         }
 
         .section-title { 
-            font-size: 1.5rem; 
+            font-size: 1.8rem; 
             color: var(--gold-light); 
-            margin-bottom: 25px; 
-            border-left: 4px solid var(--gold-main); 
-            padding-left: 15px; 
+            margin-bottom: 30px; 
+            border-left: 5px solid var(--gold-main); 
+            padding-left: 18px; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .card { 
             background-color: var(--bg-card); 
             border: 1px solid var(--border-gold); 
-            border-radius: 8px; 
-            padding: 30px; 
+            border-radius: 12px; 
+            padding: 35px; 
             margin-bottom: 40px; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Gestione sezioni SPA */
-        .app-section { display: none; }
-        .app-section.active-section { display: block; }
-
-        /* --- SALA GIOCHI --- */
-        .sala-giochi-layout { 
-            display: grid; 
-            grid-template-columns: 280px 1fr; 
-            gap: 25px; 
-        }
-        
-        @media (max-width: 850px) { 
-            .sala-giochi-layout { grid-template-columns: 1fr; } 
+        .card:hover {
+            border-color: rgba(212, 175, 55, 0.6);
         }
 
-        .game-sidebar { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border-gold); 
-            border-radius: 8px; 
-            padding: 20px; 
-            height: fit-content;
-        }
-
-        .game-nav-item {
-            padding: 15px; 
-            border: 1px solid var(--border-color); 
-            border-radius: 6px; 
-            background: #02050D;
-            margin-bottom: 12px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            font-size: 0.9rem;
-        }
-
-        .game-nav-item:hover, .game-nav-item.active { 
-            border-color: var(--gold-main); 
-            background: var(--bg-card-hover); 
-        }
-
-        .game-badge { 
-            display: inline-block; 
-            font-size: 0.7rem; 
-            background: rgba(212, 175, 55, 0.15); 
-            color: var(--gold-light); 
-            padding: 3px 7px; 
-            border-radius: 4px; 
-            margin-bottom: 6px; 
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: bold;
+            margin-bottom: 12px;
+            text-transform: uppercase;
         }
 
-        .game-stage { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border-gold); 
-            border-radius: 8px; 
-            padding: 30px; 
+        .badge-gold { background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border: 1px solid var(--gold-main); }
+        .badge-easy { background: rgba(16, 185, 129, 0.2); color: #A7F3D0; border: 1px solid var(--correct-green); }
+        .badge-medium { background: rgba(245, 158, 11, 0.2); color: #FDE68A; border: 1px solid #F59E0B; }
+        .badge-hard { background: rgba(239, 68, 68, 0.2); color: #FECACA; border: 1px solid var(--wrong-red); }
+
+        .app-section { display: none; }
+        .app-section.active-section { display: block; animation: fadeIn 0.4s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .game-panel { display: none; }
-        .game-panel.active { display: block; }
-
-        /* Canvas Temporizzato per Vignetta */
-        .vignette-canvas {
-            position: relative; 
-            width: 100%; 
-            height: auto;
-            aspect-ratio: 700 / 320;
-            background: #070D18; 
-            border: 1px solid var(--border-gold);
-            border-radius: 8px; 
-            margin: 20px 0; 
-            overflow: hidden; 
-            cursor: crosshair; 
-            user-select: none;
-            display: block;
-        }
-        
-        .workshop-svg { width: 100%; height: 100%; display: block; }
-
-        .attempts-counter { 
-            font-size: 0.9rem; 
-            font-weight: bold; 
-            color: var(--gold-light); 
-            margin-bottom: 10px; 
+        /* --- DASHBOARD / HOME FEATURE CARDS --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
-        .feedback-box { 
-            margin-top: 20px; 
-            font-weight: bold; 
-            font-size: 0.95rem; 
-            min-height: 24px; 
-        }
-
-        /* Evidenziazione Soluzione */
-        @keyframes pulseGlow {
-            0% { stroke-opacity: 0.5; r: 25; }
-            50% { stroke-opacity: 1; r: 35; }
-            100% { stroke-opacity: 0.5; r: 25; }
-        }
-        .solution-highlight {
-            fill: none; 
-            stroke: var(--correct-green); 
-            stroke-width: 3; 
-            stroke-dasharray: 5,5;
-            animation: pulseGlow 1.5s infinite ease-in-out; 
-            display: none;
-        }
-        .solution-highlight.visible { display: block; }
-
-        /* --- CLASSIFICA --- */
-        .leaderboard-section {
-            margin-top: 40px;
+        .feature-box {
+            background: var(--bg-accent);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
             padding: 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-main);
+            background: var(--bg-card-hover);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        /* --- SIMULATORE INTERATTIVO (OEE & LEAN) --- */
+        .sim-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 850px) {
+            .sim-container { grid-template-columns: 1fr; }
+        }
+
+        .sim-controls {
+            background: rgba(3, 8, 20, 0.6);
+            padding: 25px;
+            border-radius: 10px;
             border: 1px solid var(--border-color);
         }
 
+        .sim-input-group {
+            margin-bottom: 20px;
+        }
+
+        .sim-input-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .sim-input-group input[type="range"] {
+            width: 100%;
+            accent-color: var(--gold-main);
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .sim-output {
+            background: var(--bg-accent);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .oee-score {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #FFF8D6, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .oee-metrics {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .metric-item {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-top: 4px;
+        }
+
+        /* --- SALA GIOCHI INTERATTIVA & QUIZ STRATEGICO --- */
+        .quiz-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .quiz-question {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .quiz-option {
+            background: #030814;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.98rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--gold-main);
+            background: var(--bg-card-hover);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--gold-main);
+            background: rgba(212, 175, 55, 0.12);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--correct-green);
+            background: rgba(16, 185, 129, 0.15);
+            color: #A7F3D0;
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--wrong-red);
+            background: rgba(239, 68, 68, 0.15);
+            color: #FECACA;
+        }
+
+        .quiz-feedback {
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 15px;
+            display: none;
+        }
+
+        /* --- CLASSIFICA --- */
         .leaderboard-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .leaderboard-table th, 
         .leaderboard-table td {
-            padding: 12px 15px;
+            padding: 14px 18px;
             text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .leaderboard-table th {
             color: var(--gold-light);
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.8rem;
+            background: rgba(0,0,0,0.3);
         }
-        
-        .leaderboard-table tr:last-child td {
-            border-bottom: none;
+
+        /* --- TERMINI E CONDIZIONI (LEGAL) --- */
+        .legal-content {
+            color: #CBD5E1;
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+        .legal-content h3 {
+            color: var(--gold-light);
+            margin: 24px 0 10px;
+            font-size: 1.15rem;
+        }
+
+        .legal-content p, .legal-content ul {
+            margin-bottom: 14px;
+        }
+
+        .legal-content ul {
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .privacy-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--gold-main);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
         }
 
         /* --- FOOTER --- */
-        .footer-banner { 
+        footer { 
             text-align: center; 
-            padding: 40px 20px; 
-            margin-top: 50px; 
+            padding: 50px 20px 30px; 
             border-top: 1px solid var(--border-gold); 
             background: #010307; 
+            margin-top: 60px;
         }
         
         .footer-claim { 
-            font-size: 1.1rem; 
+            font-size: 1.15rem; 
             font-weight: 800; 
             color: var(--gold-light); 
             text-transform: uppercase; 
             letter-spacing: 2px; 
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
         }
     </style>
 </head>
 <body>
 
-    <!-- --- HEADER & NAV --- -->
+    <!-- --- HEADER & NAVIGAZIONE --- -->
     <header>
-        <a href="javascript:void(0)" onclick="navigateTo('home-section')" class="brand-icon-link">
-            <!-- LOGO V AGGIORNATO CON MONTAGNA -->
+        <div class="brand-container" onclick="navigateTo('home-section')">
             <svg class="nav-logo-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="navGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -425,29 +639,37 @@
                         <stop offset="100%" stop-color="#997A15" />
                     </linearGradient>
                 </defs>
-                <!-- V Base -->
                 <polygon points="60,80 140,80 250,380 360,80 440,80 290,420 210,420" fill="url(#navGoldGrad)" />
-                <!-- Cima Montuosa -->
                 <polygon points="250,180 180,310 320,310" fill="#030814" stroke="url(#navGoldGrad)" stroke-width="5" />
                 <polygon points="250,180 220,235 250,220 280,235" fill="url(#navGoldGrad)" />
             </svg>
-        </a>
+        </div>
+
+        <nav class="nav-links">
+            <span class="nav-link active" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</span>
+            <span class="nav-link" onclick="navigateTo('simulatore-section')" data-i18n="nav-sim">📊 Simulatore OEE</span>
+            <span class="nav-link" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Challenge Hub</span>
+            <span class="nav-link" onclick="navigateTo('divulgazione-section')" data-i18n="nav-archive">📚 Divulgazione</span>
+            <span class="nav-link" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</span>
+            <span class="nav-link" onclick="navigateTo('termini-section')" data-i18n="nav-terms">⚖️ Termini & Legale</span>
+        </nav>
 
         <div class="header-right">
             <div class="lang-switch">
-                <span class="lang-btn active" id="btn-it" onclick="setLanguage('it')">🇮🇹 IT</span>
-                <span>|</span>
-                <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</span>
+                <span class="lang-btn active" id="btn-it" onclick="setLanguage('it')">IT</span>
+                <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</span>
             </div>
             <button class="menu-toggle" id="menuToggleBtn" onclick="toggleMenu(event)">☰</button>
         </div>
 
-        <!-- Menu Dropdown Mobile -->
+        <!-- Menu Mobile Dropdown -->
         <nav class="mobile-menu" id="dropdownMenu">
             <a href="javascript:void(0)" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</a>
-            <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Sala Giochi</a>
+            <a href="javascript:void(0)" onclick="navigateTo('simulatore-section')" data-i18n="nav-sim">📊 Simulatore OEE</a>
+            <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Challenge Hub</a>
+            <a href="javascript:void(0)" onclick="navigateTo('divulgazione-section')" data-i18n="nav-archive">📚 Divulgazione</a>
             <a href="javascript:void(0)" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</a>
-            <a href="javascript:void(0)" onclick="navigateTo('contatti-section')" data-i18n="nav-contact">✉️ Contatti</a>
+            <a href="javascript:void(0)" onclick="navigateTo('termini-section')" data-i18n="nav-terms">⚖️ Termini e Condizioni</a>
         </nav>
     </header>
 
@@ -455,7 +677,6 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-logo-container">
-                <!-- WORDMARK VERTEX AGGIORNATO (V con Montagna) -->
                 <svg viewBox="0 0 1000 240" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="vertexGoldMain" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -464,20 +685,15 @@
                             <stop offset="100%" stop-color="#997A15" />
                         </linearGradient>
                     </defs>
-
                     <g transform="translate(15, 15)">
-                        <!-- V INIZIALE LOGO -->
                         <g>
                             <polygon points="10,25 68,25 128,190 188,25 246,25 158,225 98,225" fill="url(#vertexGoldMain)" />
-                            <!-- Cima Montuosa Proporzionata -->
                             <g>
                                 <polygon points="128,95 86,170 170,170" fill="#030814" stroke="url(#vertexGoldMain)" stroke-width="2.5" />
                                 <polygon points="128,95 112,125 128,118 144,125" fill="url(#vertexGoldMain)" />
                                 <polygon points="98,170 128,128 142,170" fill="rgba(212, 175, 55, 0.25)" />
                             </g>
                         </g>
-
-                        <!-- ERTEX (Allineato) -->
                         <text x="245" y="225" font-family="'Segoe UI', system-ui, sans-serif" font-size="220" font-weight="900" letter-spacing="14" fill="url(#vertexGoldMain)">
                             ERTEX
                         </text>
@@ -487,364 +703,720 @@
 
             <div class="hero-tagline" data-i18n="hero-tagline">Hub di Cultura Operativa & Supply Chain Excellence</div>
             <p class="hero-proposito" data-i18n="hero-proposito">
-                Un <strong>osservatorio indipendente</strong> dedicato all'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong> in uno spazio aperto di divulgazione.
+                Un <strong>osservatorio indipendente</strong> dedicato all'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong>.
             </p>
-            <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" class="btn-gold" data-i18n="hero-btn">Partecipa alla Sfida</a>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="navigateTo('simulatore-section')" class="btn-gold" data-i18n="hero-btn-sim">📊 Calcola OEE Industriale</button>
+                <button onclick="navigateTo('sala-giochi-section')" class="btn-outline" data-i18n="hero-btn-challenge">🎮 Challenge Strategiche</button>
+            </div>
         </div>
     </section>
 
-    <!-- --- MAIN CONTENT --- -->
+    <!-- --- MAIN CONTAINER --- -->
     <div class="container">
 
-        <!-- HOME SECTION -->
+        <!-- 1. HOME SECTION -->
         <div id="home-section" class="app-section active-section">
-            <div class="card" style="text-align: center; padding: 50px 20px;">
-                <h2 style="color: var(--gold-light); margin-bottom: 20px;" data-i18n="home-welcome-title">Benvenuto nell'Hub VERTEX</h2>
-                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 30px; font-size: 1.05rem;" data-i18n="home-welcome-desc">
-                    Mettiti alla prova nelle sfide interattive della Sala Giochi. Analisi e casi studio sono in arrivo.
+            <div class="card" style="border: 2px solid var(--gold-main);">
+                <span class="badge badge-gold" data-i18n="home-weekly-badge">Topic della Settimana</span>
+                <h2 style="color: var(--gold-light); margin: 10px 0;" id="home-topic-title" data-i18n="home-topic-title">Ottimizzazione OEE nei Processi Produttivi</h2>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 20px;" id="home-topic-desc" data-i18n="home-topic-desc">
+                    Analisi delle tre componenti fondamentali dell'OEE (Disponibilità, Efficienza, Qualità) e metodologie pratiche per ridurre i tempi di fermo impianto non pianificati nelle linee automatizzate.
                 </p>
-                <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" class="btn-gold" data-i18n="nav-games">🎮 Vai alla Sala Giochi</a>
+                <button class="btn-linkedin" onclick="shareLinkedIn('Topic Settimanale: Ottimizzazione OEE nei Processi Produttivi')">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    <span data-i18n="btn-share-linkedin">Pubblica su LinkedIn</span>
+                </button>
+            </div>
+
+            <div class="card">
+                <h2 style="color: var(--gold-light); margin-bottom: 15px;" data-i18n="home-welcome-title">Benvenuto nell'Hub Strategico VERTEX</h2>
+                <p style="color: var(--text-muted); max-width: 850px; font-size: 1.05rem;" data-i18n="home-welcome-desc">
+                    La nostra piattaforma fornisce strumenti pratici di calcolo, simulazioni operative e casi di studio formulati per l'ottimizzazione dei processi manifatturieri e logistici.
+                </p>
+
+                <div class="grid-3">
+                    <div class="feature-box" onclick="navigateTo('simulatore-section')" style="cursor: pointer;">
+                        <span class="feature-icon">📈</span>
+                        <div class="feature-title" data-i18n="card-oee-title">Calcolatore & Simulatore OEE</div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="card-oee-desc">
+                            Valuta l'Efficienza Globale degli Impianti integrando le tre componenti cardine: Disponibilità, Prestazione e Qualità.
+                        </p>
+                    </div>
+
+                    <div class="feature-box" onclick="navigateTo('sala-giochi-section')" style="cursor: pointer;">
+                        <span class="feature-icon">🎯</span>
+                        <div class="feature-title" data-i18n="card-quiz-title">Operational Excellence Challenge</div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="card-quiz-desc">
+                            Testa le tue competenze su metodologie Lean (5S, Kaizen, Kanban) e logistica di produzione con scenari reali.
+                        </p>
+                    </div>
+
+                    <div class="feature-box" onclick="navigateTo('termini-section')" style="cursor: pointer;">
+                        <span class="feature-icon">⚖️</span>
+                        <div class="feature-title" data-i18n="card-legal-title">Governance & Compliance</div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="card-legal-desc">
+                            Trasparenza operativa, sicurezza nei luoghi di lavoro (ISO 45001) e conformità privacy GDPR in ambito aziendale.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- SALA GIOCHI -->
-        <div id="sala-giochi-section" class="app-section">
-            <h2 class="section-title" data-i18n="game-title">🎮 Sala Giochi — Interactive Testing Hub</h2>
+        <!-- 2. SIMULATORE OEE SECTION -->
+        <div id="simulatore-section" class="app-section">
+            <div class="section-title">
+                <span data-i18n="sim-title">📊 Simulatore Interattivo OEE (Overall Equipment Effectiveness)</span>
+            </div>
+            
+            <div class="card">
+                <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 0.95rem;" data-i18n="sim-desc">
+                    L'OEE è il KPI fondamentale delle Operations per misurare la produttività reale degli impianti manifatturieri:
+                    <br><br>
+                    $$\text{OEE} = \text{Disponibilità (A)} \times \text{Efficienza (P)} \times \text{Qualità (Q)}$$
+                </p>
 
-            <div class="sala-giochi-layout">
-                <aside class="game-sidebar">
-                    <div style="font-weight: 700; color: var(--gold-light); margin-bottom: 15px; font-size: 0.95rem;" data-i18n="sidebar-title">🕹️ Seleziona Modalità</div>
-                    
-                    <div class="game-nav-item active" onclick="loadGame('mode3', this)">
-                        <span class="game-badge">Mode 3</span>
-                        <div style="font-weight: 600;" data-i18n="m3-title">Trova l'Errore (5S & Safety)</div>
-                        <small style="color: var(--text-muted);" data-i18n="m3-sub">Vignetta interattiva</small>
-                    </div>
-                    
-                    <div style="font-size: 0.8rem; color: var(--text-muted); padding: 10px; text-align: center; border: 1px dashed var(--border-color); border-radius: 6px;">
-                        Altre modalità in arrivo
-                    </div>
-                </aside>
-
-                <main class="game-stage">
-                    <!-- MODE 3 (UNICA ATTIVA) -->
-                    <div id="mode3" class="game-panel active">
-                        <h3 style="color: var(--gold-light);" data-i18n="m3-head">Trova l'Anomalia nell'Officina</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; margin-bottom: 15px;" data-i18n="m3-q">Identifica il rischio operativo o la violazione 5S nella vignetta e cliccaci sopra:</p>
-                        
-                        <div class="attempts-counter" id="attempts-display">Tentativi rimasti: 2</div>
-
-                        <div class="vignette-canvas" id="vignette-canvas" onclick="handleCanvasClick(event)">
-                            <svg class="workshop-svg" viewBox="0 0 700 320">
-                                <!-- Sfondo Officina -->
-                                <rect x="0" y="0" width="700" height="200" fill="#0F172A"/> <!-- Parete -->
-                                <polygon points="0,200 700,200 700,320 0,320" fill="#1E293B"/> <!-- Pavimento -->
-                                <line x1="0" y1="200" x2="700" y2="200" stroke="#334155" stroke-width="2"/>
-                                
-                                <!-- Macchinario CNC (Stato OK, Luce Verde) -->
-                                <g transform="translate(100, 80)">
-                                    <rect x="0" y="0" width="180" height="120" rx="4" fill="#334155" stroke="#64748B" stroke-width="2"/>
-                                    <rect x="20" y="20" width="80" height="50" fill="#064E3B" stroke="#10B981" opacity="0.8"/> <!-- Finestra -->
-                                    <circle cx="160" cy="20" r="6" fill="#10B981"/> <!-- Luce Verde OK -->
-                                </g>
-
-                                <!-- Carrello Utensili Ordinato -->
-                                <g transform="translate(320, 110)">
-                                    <rect x="0" y="0" width="60" height="90" rx="2" fill="#D4AF37"/>
-                                    <rect x="5" y="10" width="50" height="15" fill="#030814" rx="1"/>
-                                    <rect x="5" y="35" width="50" height="15" fill="#030814" rx="1"/>
-                                </g>
-
-                                <!-- Zona Operatore con Linea Gialla -->
-                                <line x1="100" y1="210" x2="400" y2="210" stroke="#D4AF37" stroke-width="3" stroke-dasharray="8,5"/>
-
-                                <!-- **ANOMALIA (ERRORE): PALLET OBSTRUISCE PASSAGGIO VICINO A USCITA SICUREZZA** -->
-                                <g id="anomaly-target" transform="translate(500, 130)">
-                                    <!-- Porta Uscita Sicurezza (Sfondo) -->
-                                    <rect x="30" y="-30" width="60" height="100" fill="#7F1D1D" stroke="#EF4444" stroke-width="2"/>
-                                    <text x="60" y="-10" fill="#EF4444" font-size="10" font-weight="bold" text-anchor="middle">EXIT</text>
-                                    
-                                    <!-- Pallet che ostruisce (L'Errore da cliccare) -->
-                                    <rect x="0" y="40" width="80" height="50" rx="2" fill="#92400E" stroke="#B45309"/>
-                                    <rect x="10" y="50" width="60" height="15" fill="#F59E0B" opacity="0.8"/> <!-- Carico instabile -->
-                                    <rect x="10" y="70" width="60" height="15" fill="#F59E0B" opacity="0.8"/>
-                                </g>
-
-                                <!-- Quadro 5S Ordinato -->
-                                <g transform="translate(20, 50)">
-                                    <rect x="0" y="0" width="50" height="70" fill="#081120" stroke="#10B981" stroke-dasharray="3,3"/>
-                                    <line x1="10" y1="10" x2="10" y2="50" stroke="#94A3B8" stroke-width="3"/> <!-- Scopa -->
-                                    <text x="25" y="65" fill="#10B981" font-size="8" text-anchor="middle">5S Area</text>
-                                </g>
-
-                                <!-- Highlight Soluzione (Invisibile di default) -->
-                                <circle id="solution-circle" class="solution-highlight" cx="540" cy="195" r="30"/>
-                            </svg>
+                <div class="sim-container">
+                    <div class="sim-controls">
+                        <div class="sim-input-group">
+                            <label>
+                                <span data-i18n="sim-label-a">Disponibilità (Availability)</span>
+                                <span id="val-a" style="color: var(--gold-light);">90%</span>
+                            </label>
+                            <input type="range" id="slider-a" min="40" max="100" value="90" oninput="updateOEE()">
+                            <small style="color: var(--text-muted); font-size: 0.78rem;" data-i18n="sim-sub-a">Rapporto tra Tempo di Funzionamento Effettivo e Tempo Pianificato.</small>
                         </div>
 
-                        <div id="fb-3" class="feedback-box"></div>
+                        <div class="sim-input-group">
+                            <label>
+                                <span data-i18n="sim-label-p">Prestazione (Performance)</span>
+                                <span id="val-p" style="color: var(--gold-light);">85%</span>
+                            </label>
+                            <input type="range" id="slider-p" min="40" max="100" value="85" oninput="updateOEE()">
+                            <small style="color: var(--text-muted); font-size: 0.78rem;" data-i18n="sim-sub-p">Rapporto tra Velocità Reale di Produzione e Velocità Nominale.</small>
+                        </div>
+
+                        <div class="sim-input-group">
+                            <label>
+                                <span data-i18n="sim-label-q">Qualità (Quality)</span>
+                                <span id="val-q" style="color: var(--gold-light);">98%</span>
+                            </label>
+                            <input type="range" id="slider-q" min="50" max="100" value="98" oninput="updateOEE()">
+                            <small style="color: var(--text-muted); font-size: 0.78rem;" data-i18n="sim-sub-q">Rapporto tra Pezzi Conformi (Prima Scelta) e Totale Pezzi Prodotti.</small>
+                        </div>
                     </div>
-                </main>
+
+                    <div class="sim-output">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);" data-i18n="sim-res-title">Indice OEE Calcolato</div>
+                        <div class="oee-score" id="oee-total">74.97%</div>
+                        <div id="oee-status" style="font-weight: 700; color: var(--gold-light); font-size: 1.05rem;">Accettabile (Benchmark Industriale: 85%)</div>
+
+                        <div class="oee-metrics">
+                            <div class="metric-item">
+                                Availability
+                                <div class="metric-value" id="m-val-a">90.0%</div>
+                            </div>
+                            <div class="metric-item">
+                                Performance
+                                <div class="metric-value" id="m-val-p">85.0%</div>
+                            </div>
+                            <div class="metric-item">
+                                Quality
+                                <div class="metric-value" id="m-val-q">98.0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SALA GIOCHI / CHALLENGE HUB SECTION -->
+        <div id="sala-giochi-section" class="app-section">
+            <div class="section-title">
+                <span data-i18n="game-title">🎮 Operational Excellence Challenge Hub</span>
             </div>
 
-            <!-- Sezione Classifica -->
-            <div class="leaderboard-section card">
-                <h3 style="color: var(--gold-light); margin-bottom: 10px;">🏆 Classifica Top 3 (Mode 3)</h3>
-                <div id="leaderboard-container">
-                    <!-- Tabella generata via JS -->
+            <!-- GIOCO DELLA SETTIMANA -->
+            <div class="card" style="border: 2px solid var(--gold-main);">
+                <span class="badge badge-easy" id="gotw-badge" data-i18n="gotw-badge">GIOCO DELLA SETTIMANA</span>
+                <h2 style="color: var(--gold-light); margin-bottom: 10px;" id="gotw-title" data-i18n="gotw-title">1. Visual 5S Challenge</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;" id="gotw-desc" data-i18n="gotw-desc">Trova e correggi le anomalie di postazione entro il tempo limite per ottimizzare il workflow.</p>
+                
+                <div class="quiz-card" style="background: var(--bg-dark); border: 1px dashed var(--gold-main); margin-bottom: 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <span style="font-size: 0.85rem; background: rgba(212, 175, 55, 0.15); color: var(--gold-light); padding: 4px 10px; border-radius: 4px; font-weight: bold;" id="quiz-step-tag">Domanda 1 di 3</span>
+                        <span style="font-size: 0.9rem; color: var(--gold-light); font-weight: bold;" id="quiz-score-tag">Punti: 0</span>
+                    </div>
+
+                    <div class="quiz-question" id="quiz-question-text">Loading question...</div>
+
+                    <div class="quiz-options" id="quiz-options-container">
+                        <!-- Opzioni generate da JS -->
+                    </div>
+
+                    <div class="quiz-feedback" id="quiz-feedback"></div>
+
+                    <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                        <button id="quiz-next-btn" class="btn-gold" style="display: none;" onclick="nextQuestion()" data-i18n="quiz-next">Prossima Domanda ➔</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- ARCHIVIO 9 MINIGIOCHI -->
+            <h3 style="color: var(--gold-light); margin: 40px 0 20px 0;" data-i18n="archive-games-title">Archivio Storico Minigiochi</h3>
+            <div class="grid-3" id="games-archive-grid">
+                <!-- Generato via JS -->
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="card" style="margin-top: 40px;">
+                <h3 style="color: var(--gold-light); margin-bottom: 15px;" data-i18n="lead-title">🏆 Classifica Generale Challenge Operations</h3>
+                <div id="leaderboard-container">
+                    <!-- Generato via JS -->
+                </div>
+                <div class="privacy-box" style="margin-top: 20px; font-size: 0.82rem;">
+                    🔒 <strong>Nota Privacy (GDPR):</strong> La classifica è salvata esclusivamente sul dispositivo locale dell'utente (LocalStorage) e non comporta alcun trasferimento di dati personali verso server esterni.
+                </div>
+            </div>
         </div>
 
-        <!-- CHI SIAMO & CONTATTI (Segnaposto) -->
-        <div id="chi-siamo-section" class="app-section">
-            <h2 class="section-title">👥 Chi Siamo</h2>
-            <div class="card">Contenuto in arrivo.</div>
+        <!-- 4. DIVULGAZIONE & CASE STUDIES SECTION -->
+        <div id="divulgazione-section" class="app-section">
+            <div class="section-title">
+                <span data-i18n="archive-title">📚 Archivio Divulgazione & Case Studies</span>
+            </div>
+            
+            <div id="divulgazione-list">
+                <!-- Generato via JS -->
+            </div>
         </div>
-        <div id="contatti-section" class="app-section">
-            <h2 class="section-title">✉️ Contatti</h2>
-            <div class="card">Contenuto in arrivo.</div>
+
+        <!-- 5. CHI SIAMO SECTION -->
+        <div id="chi-siamo-section" class="app-section">
+            <div class="section-title">👥 Chi Siamo — Osservatorio Indipendente</div>
+            <div class="card">
+                <h3 style="color: var(--gold-light); margin-bottom: 15px;">Visione & Missione</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem;">
+                    VERTEX nasce come spazio divulgativo e analitico orientato al miglioramento continuo dei flussi produttivi e logistici. Il nostro focus si rivolge alle Piccole e Medie Imprese manifatturiere, colmando il divario tra la teoria accademica Lean e l'operatività quotidiana di stabilimento.
+                </p>
+                <div class="grid-3">
+                    <div class="feature-box">
+                        <div class="feature-title">⚙️ Process & Operations</div>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Mappatura dei flussi del valore (VSM), riduzione degli sprechi (Muda) e metodologie Kaizen.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-title">📦 Supply Chain Strategy</div>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Pianificazione MRP, coordinamento fornitori (OTIF) e gestione avanzata delle scorte.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-title">💻 Digital Transformation</div>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Integrazione di sistemi MES, ERP e tracciabilità dati per la fabbrica 4.0/5.0.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. TERMINI E CONDIZIONI (LEGAL & GOVERNANCE) SECTION -->
+        <div id="termini-section" class="app-section">
+            <div class="section-title">⚖️ Termini e Condizioni di Utilizzo & Note Legali</div>
+            <div class="card legal-content">
+                <p><strong>Ultimo aggiornamento: 25 Agosto 2026</strong></p>
+                
+                <h3>1. Oggetto e Ambito di Applicazione</h3>
+                <p>
+                    Il presente sito web VERTEX (di seguito "Hub") opera come piattaforma indipendente di divulgazione tecnica, analisi e simulazione in materia di Operations, Supply Chain, Lean Management e Quality. L'accesso e la navigazione sul sito comportano l'accettazione incondizionata dei presenti Termini e Condizioni.
+                </p>
+
+                <h3>2. Esclusione di Responsabilità (Disclaimer Professionale)</h3>
+                <p>
+                    I calcolatori interattivi, gli indici di performance (es. OEE), i modelli e le informazioni strategiche forniti all'interno di questo Hub hanno scopo esclusivamente illustrativo, divulgativo e didattico. Essi non costituiscono consulenza professionale formale o garanzia di risultato aziendale. VERTEX declina ogni responsabilità per decisioni operative o di investimento assunte sulla base delle simulazioni presenti nel sito.
+                </p>
+
+                <h3>3. Proprietà Intellettuale</h3>
+                <p>
+                    Tutti i contenuti presenti su VERTEX (inclusi marchi, loghi SVG, codice sorgente, testi, modelli grafici e logiche degli algoritmi di calcolo) sono di proprietà esclusiva di VERTEX o utilizzati su licenza. Ne è vietata la riproduzione o distribuzione non autorizzata.
+                </p>
+
+                <h3>4. Protezione dei Dati Personali (GDPR EU 2016/679)</h3>
+                <div class="privacy-box">
+                    <strong>Informativa Privacy sintetica:</strong> VERTEX rispetta la tua privacy. Nessun dato identificativo o tracciamento profilante viene inviato a server terzi senza consenso. Le funzionalità di gioco e classifica salvano i punteggi inseriti esclusivamente nella memoria temporanea locale del tuo browser web (<code>window.localStorage</code>). È possibile cancellare tali dati in qualsiasi momento pulendo la cache del browser.
+                </div>
+
+                <h3>5. Normative di Riferimento in Ambito Operativo e Sicurezza</h3>
+                <p>
+                    VERTEX promuove attivamente il rispetto della sicurezza nei luoghi di lavoro (conforme agli standard ISO 45001 e D.Lgs. 81/08) e i principi della Qualità industriale (ISO 9001). I riferimenti metodologici sono orientati alla prevenzione dei rischi ed all'eliminazione delle inefficienze nel pieno rispetto dei lavoratori.
+                </p>
+            </div>
         </div>
 
     </div>
 
     <!-- --- FOOTER --- -->
-    <footer class="footer-banner">
-        <div class="footer-claim">Connettiamo Idee e Professionisti</div>
-        <div style="color: var(--text-muted); font-size: 0.85rem;">© VERTEX — Hub di Cultura Operativa & Supply Chain Excellence</div>
+    <footer>
+        <div class="footer-claim">VERTEX — Connettiamo Idee, Flussi e Professionisti</div>
+        <div class="footer-links">
+            <a href="javascript:void(0)" onclick="navigateTo('home-section')">Home</a> •
+            <a href="javascript:void(0)" onclick="navigateTo('simulatore-section')">Simulatore OEE</a> •
+            <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')">Challenge Hub</a> •
+            <a href="javascript:void(0)" onclick="navigateTo('divulgazione-section')">Divulgazione</a> •
+            <a href="javascript:void(0)" onclick="navigateTo('chi-siamo-section')">Chi Siamo</a> •
+            <a href="javascript:void(0)" onclick="navigateTo('termini-section')">Termini & Condizioni</a>
+        </div>
+        <div style="color: var(--text-muted); font-size: 0.85rem;">© 2026 VERTEX — Hub di Cultura Operativa & Supply Chain Excellence. Tutti i diritti riservati.</div>
     </footer>
 
+    <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
-        /* --- CONFIGURAZIONE & i18n --- */
+        /* --- TRADUZIONI I18N --- */
         const translations = {
             it: {
-                'nav-home': '🏠 Home', 'nav-games': '🎮 Sala Giochi', 'nav-about': '👥 Chi Siamo', 'nav-contact': '✉️ Contatti',
+                'nav-home': '🏠 Home',
+                'nav-sim': '📊 Simulatore OEE',
+                'nav-games': '🎮 Challenge Hub',
+                'nav-archive': '📚 Divulgazione',
+                'nav-about': '👥 Chi Siamo',
+                'nav-terms': '⚖️ Termini & Legale',
                 'hero-tagline': 'Hub di Cultura Operativa & Supply Chain Excellence',
                 'hero-proposito': 'Un <strong>osservatorio indipendente</strong> dedicato all\'analisi dei flussi industriali nelle PMI. Connettiamo esperienza di campo e visione strategica: integrando <strong>Supply Chain, Operations, Lean Improvement e Sistemi ERP/MRP</strong>.',
-                'hero-btn': 'Partecipa alla Sfida',
-                'home-welcome-title': 'Benvenuto nell\'Hub VERTEX',
-                'home-welcome-desc': 'Mettiti alla prova nelle sfide interattive della Sala Giochi. Analisi e casi studio sono in arrivo.',
-                'game-title': '🎮 Sala Giochi — Interactive Testing Hub',
-                'sidebar-title': '🕹️ Seleziona Modalità',
-                'm3-title': 'Trova l\'Errore (5S & Safety)', 'm3-sub': 'Vignetta interattiva',
-                'm3-head': 'Trova l'Anomalia nell'Officina',
-                'm3-q': 'Identifica il rischio operativo o la violazione 5S nella vignetta e cliccaci sopra:',
-                'attempts': 'Tentativi rimasti',
-                'fb-solved': '🎉 Eccellente! Hai individuato l\'ostruzione (Pallet) davanti all\'Uscita di Sicurezza. Violazione grave di Sicurezza e 5S.',
-                'fb-wrong': 'Nessuna anomalia critica qui. Osserva meglio i flussi e la sicurezza.',
-                'fb-failed': 'Tentativi esauriti. L\'anomalia era il pallet che ostruiva l\'uscita di sicurezza (EXIT).',
-                'rank': 'Pos.', 'player': 'Giocatore', 'score': 'Punti', 'time': 'Tempo (s)'
+                'hero-btn-sim': '📊 Calcola OEE Industriale',
+                'hero-btn-challenge': '🎮 Challenge Strategiche',
+                'home-weekly-badge': 'Topic della Settimana',
+                'home-topic-title': 'Ottimizzazione OEE nei Processi Produttivi',
+                'home-topic-desc': 'Analisi delle tre componenti fondamentali dell\'OEE (Disponibilità, Efficienza, Qualità) e metodologie pratiche per ridurre i tempi di fermo impianto non pianificati nelle linee automatizzate.',
+                'btn-share-linkedin': 'Pubblica su LinkedIn',
+                'home-welcome-title': 'Benvenuto nell\'Hub Strategico VERTEX',
+                'home-welcome-desc': 'La nostra piattaforma fornisce strumenti pratici di calcolo, simulazioni operative e casi di studio formulati per l\'ottimizzazione dei processi manifatturieri e logistici.',
+                'card-oee-title': 'Calcolatore & Simulatore OEE',
+                'card-oee-desc': 'Valuta l\'Efficienza Globale degli Impianti integrando le tre componenti cardine: Disponibilità, Prestazione e Qualità.',
+                'card-quiz-title': 'Operational Excellence Challenge',
+                'card-quiz-desc': 'Testa le tue competenze su metodologie Lean (5S, Kaizen, Kanban) e logistica di produzione con scenari reali.',
+                'card-legal-title': 'Governance & Compliance',
+                'card-legal-desc': 'Trasparenza operativa, sicurezza nei luoghi di lavoro (ISO 45001) e conformità privacy GDPR in ambito aziendale.',
+                'sim-title': '📊 Simulatore Interattivo OEE (Overall Equipment Effectiveness)',
+                'sim-desc': 'L\'OEE è il KPI fondamentale delle Operations per misurare la produttività reale degli impianti manifatturieri:',
+                'sim-label-a': 'Disponibilità (Availability)',
+                'sim-sub-a': 'Rapporto tra Tempo di Funzionamento Effettivo e Tempo Pianificato.',
+                'sim-label-p': 'Prestazione (Performance)',
+                'sim-sub-p': 'Rapporto tra Velocità Reale di Produzione e Velocità Nominale.',
+                'sim-label-q': 'Qualità (Quality)',
+                'sim-sub-q': 'Rapporto tra Pezzi Conformi (Prima Scelta) e Totale Pezzi Prodotti.',
+                'sim-res-title': 'Indice OEE Calcolato',
+                'game-title': '🎮 Operational Excellence Challenge Hub',
+                'gotw-badge': 'GIOCO DELLA SETTIMANA',
+                'gotw-title': '1. Visual 5S Challenge',
+                'gotw-desc': 'Trova e correggi le anomalie di postazione entro il tempo limite per ottimizzare il workflow.',
+                'archive-games-title': 'Archivio Storico Minigiochi',
+                'archive-title': '📚 Archivio Divulgazione & Case Studies',
+                'lead-title': '🏆 Classifica Generale Challenge Operations',
+                'quiz-next': 'Prossima Domanda ➔',
+                'btn-play': 'Gioca Ora'
             },
             en: {
-                'nav-home': '🏠 Home', 'nav-games': '🎮 Arcade', 'nav-about': '👥 About Us', 'nav-contact': '✉️ Contact',
+                'nav-home': '🏠 Home',
+                'nav-sim': '📊 OEE Simulator',
+                'nav-games': '🎮 Challenge Hub',
+                'nav-archive': '📚 Knowledge Hub',
+                'nav-about': '👥 About Us',
+                'nav-terms': '⚖️ Terms & Legal',
                 'hero-tagline': 'Operational Culture & Supply Chain Excellence Hub',
                 'hero-proposito': 'An <strong>independent observatory</strong> dedicated to analyzing industrial flows in SMEs. Connecting field experience and strategic vision: integrating <strong>Supply Chain, Operations, Lean Improvement, and ERP/MRP Systems</strong>.',
-                'hero-btn': 'Take the Challenge',
-                'home-welcome-title': 'Welcome to VERTEX Hub',
-                'home-welcome-desc': 'Test your skills in our Arcade interactive challenges. Insights and case studies are coming soon.',
-                'game-title': '🎮 Arcade — Interactive Testing Hub',
-                'sidebar-title': '🕹️ Select Mode',
-                'm3-title': 'Spot the Error (5S & Safety)', 'm3-sub': 'Interactive shopfloor',
-                'm3-head': 'Spot the Shopfloor Anomaly',
-                'm3-q': 'Identify the operational risk or 5S violation in the vignette and click on it:',
-                'attempts': 'Attempts left',
-                'fb-solved': '🎉 Excellent! You spotted the obstruction (Pallet) in front of the Emergency Exit. Serious Safety and 5S violation.',
-                'fb-wrong': 'No critical anomaly here. Look closer at flows and safety.',
-                'fb-failed': 'Out of attempts. The anomaly was the pallet obstructing the emergency exit (EXIT).',
-                'rank': 'Pos.', 'player': 'Player', 'score': 'Points', 'time': 'Time (s)'
+                'hero-btn-sim': '📊 Calculate Plant OEE',
+                'hero-btn-challenge': '🎮 Take Challenges',
+                'home-weekly-badge': 'Topic of the Week',
+                'home-topic-title': 'OEE Optimization in Production Processes',
+                'home-topic-desc': 'Analysis of the three fundamental components of OEE (Availability, Performance, Quality) and practical methodologies to reduce unplanned downtime in automated lines.',
+                'btn-share-linkedin': 'Post to LinkedIn',
+                'home-welcome-title': 'Welcome to VERTEX Strategic Hub',
+                'home-welcome-desc': 'Our platform provides practical calculation tools, operational simulations, and case studies for optimizing manufacturing and logistical flows.',
+                'card-oee-title': 'OEE Calculator & Simulator',
+                'card-oee-desc': 'Evaluate Overall Equipment Effectiveness integrating Availability, Performance, and Quality metrics.',
+                'card-quiz-title': 'Operational Excellence Challenge',
+                'card-quiz-desc': 'Test your skills on Lean methodologies (5S, Kaizen, Kanban) and shopfloor logistics with realistic scenarios.',
+                'card-legal-title': 'Governance & Compliance',
+                'card-legal-desc': 'Operational transparency, workplace safety (ISO 45001), and GDPR privacy compliance.',
+                'sim-title': '📊 Interactive OEE Simulator (Overall Equipment Effectiveness)',
+                'sim-desc': 'OEE is the key Operations KPI for measuring real manufacturing plant productivity:',
+                'sim-label-a': 'Availability',
+                'sim-sub-a': 'Ratio between Actual Operating Time and Planned Production Time.',
+                'sim-label-p': 'Performance',
+                'sim-sub-p': 'Ratio between Actual Production Speed and Ideal Cycle Speed.',
+                'sim-label-q': 'Quality',
+                'sim-sub-q': 'Ratio between Good Units Produced and Total Units Started.',
+                'sim-res-title': 'Calculated OEE Index',
+                'game-title': '🎮 Operational Excellence Challenge Hub',
+                'gotw-badge': 'GAME OF THE WEEK',
+                'gotw-title': '1. Visual 5S Challenge',
+                'gotw-desc': 'Find and fix workstation anomalies within the time limit to optimize workflow.',
+                'archive-games-title': 'Minigames Historical Archive',
+                'archive-title': '📚 Knowledge & Case Studies Archive',
+                'lead-title': '🏆 Operations Challenge Leaderboard',
+                'quiz-next': 'Next Question ➔',
+                'btn-play': 'Play Now'
             }
         };
 
+        /* --- 9 MINIGIOCHI D'ARCHIVIO --- */
+        const archivedGamesData = {
+            it: [
+                { title: "2. Kanban Pull System Simulator", diff: "Medio", badge: "badge-medium", cat: "Logistica", desc: "Gestisci i flussi dei cartellini per evitare rotture di stock in asservimento linea." },
+                { title: "3. Quick Changeover (SMED) Puzzle", diff: "Difficile", badge: "badge-hard", cat: "Lean", desc: "Separa le operazioni interne ed esterne per abbattere i tempi di attrezzaggio." },
+                { title: "4. Line Balancing Game", diff: "Medio", badge: "badge-medium", cat: "Processi", desc: "Bilancia il carico di lavoro tra le stazioni per eliminare i colli di bottiglia." },
+                { title: "5. Poka-Yoke Error Proofing", diff: "Facile", badge: "badge-easy", cat: "Qualità", desc: "Progetta dispositivi a prova d'errore per prevenire difetti di assemblaggio." },
+                { title: "6. Value Stream Map Quest", diff: "Difficile", badge: "badge-hard", cat: "Strategia", desc: "Traccia i tempi di attraversamento ed elimina gli sprechi (Muda) nel valore." },
+                { title: "7. Heijunka Leveling Matrix", diff: "Difficile", badge: "badge-hard", cat: "Pianificazione", desc: "Livella i volumi e i mix di produzione per mitigare l'effetto Bullwhip." },
+                { title: "8. Ishikawa Cause Finder", diff: "Facile", badge: "badge-easy", cat: "Problem Solving", desc: "Categorizza le cause radice secondo il diagramma a lisca di pesce (6M)." },
+                { title: "9. Just-In-Time Route Planner", diff: "Medio", badge: "badge-medium", cat: "Logistica", desc: "Ottimizza i percorsi delle navette di asservimento materiali Kitting." },
+                { title: "10. TPM Autonomous Maintenance", diff: "Facile", badge: "badge-easy", cat: "Manutenzione", desc: "Esegui le ispezioni e pulizie di routine per preservare la salute del macchinario." }
+            ],
+            en: [
+                { title: "2. Kanban Pull System Simulator", diff: "Medium", badge: "badge-medium", cat: "Logistics", desc: "Manage card flows to prevent stockouts during line feeding." },
+                { title: "3. Quick Changeover (SMED) Puzzle", diff: "Hard", badge: "badge-hard", cat: "Lean", desc: "Separate internal and external operations to slash setup times." },
+                { title: "4. Line Balancing Game", diff: "Medium", badge: "badge-medium", cat: "Processes", desc: "Balance workload across stations to eliminate bottlenecks." },
+                { title: "5. Poka-Yoke Error Proofing", diff: "Easy", badge: "badge-easy", cat: "Quality", desc: "Design error-proofing mechanisms to prevent assembly defects." },
+                { title: "6. Value Stream Map Quest", diff: "Hard", badge: "badge-hard", cat: "Strategy", desc: "Map lead times and eliminate waste (Muda) along the stream." },
+                { title: "7. Heijunka Leveling Matrix", diff: "Hard", badge: "badge-hard", cat: "Planning", desc: "Level production volumes and mix to mitigate the Bullwhip effect." },
+                { title: "8. Ishikawa Cause Finder", diff: "Easy", badge: "badge-easy", cat: "Problem Solving", desc: "Categorize root causes using the Fishbone diagram (6M)." },
+                { title: "9. Just-In-Time Route Planner", diff: "Medium", badge: "badge-medium", cat: "Logistics", desc: "Optimize tugger paths for precise kitting material delivery." },
+                { title: "10. TPM Autonomous Maintenance", diff: "Easy", badge: "badge-easy", cat: "Maintenance", desc: "Perform routine inspections and cleaning to protect asset health." }
+            ]
+        };
+
+        /* --- ARTICOLI DIVULGAZIONE (TOPIC PASSATI + CASO STUDIO) --- */
+        const divulgazioneData = {
+            it: [
+                { type: "Topic Passato", badge: "badge-gold", title: "Riduzione dei tempi di Changeover con approccio SMED", desc: "Analisi metodologica per trasformare le attività interne a macchina ferma in attività esterne, riducendo i tempi di riattrezzaggio del 40%." },
+                { type: "Topic Passato", badge: "badge-gold", title: "Mappatura dei flussi di valore (VSM) nell'assemblaggio", desc: "Come identificare il Lead Time totale di stabilimento e distinguere chiaramente le attività a valore aggiunto dagli sprechi di processo." },
+                { type: "Caso Studio Mensile", badge: "badge-easy", title: "CASO STUDIO: Efficientamento della linea di taglio e sagomatura metalmeccanica", desc: "Analisi reale di un intervento di ottimizzazione di processo che ha portato a una riduzione del 18% degli scarti e al miglioramento dell'OEE complessivo del reparto." }
+            ],
+            en: [
+                { type: "Past Topic", badge: "badge-gold", title: "Reducing Changeover Times via SMED Methodology", desc: "Methodological approach to convert internal setup steps into external operations, slashing setup times by 40%." },
+                { type: "Past Topic", badge: "badge-gold", title: "Value Stream Mapping (VSM) in Assembly Operations", desc: "How to identify total plant Lead Time and clearly separate value-added tasks from process waste." },
+                { type: "Monthly Case Study", badge: "badge-easy", title: "CASE STUDY: Efficiency Enhancement in Sheet Metal Cutting Line", desc: "Real-world process optimization case study achieving an 18% scrap reduction and increased overall shop-floor OEE." }
+            ]
+        };
+
         let currentLang = 'it';
-        let startTime = 0;
-        let mode3Attempts = 2;
-        let mode3Solved = false;
 
-        /* --- NAVIGAZIONE & UI --- */
-        function toggleMenu(e) {
-            if(e) e.stopPropagation();
-            document.getElementById('dropdownMenu').classList.toggle('open');
-        }
-
-        // Chiude il menu se si clicca fuori
-        document.addEventListener('click', (e) => {
-            const menu = document.getElementById('dropdownMenu');
-            const toggleBtn = document.getElementById('menuToggleBtn');
-            if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== toggleBtn) {
-                menu.classList.remove('open');
+        /* --- DOMANDE QUIZ / CHALLENGE --- */
+        const quizQuestions = [
+            {
+                q_it: "Quale tra i seguenti costituisce un segnale visivo primario per il ripristino delle scorte in un sistema Pull Lean?",
+                q_en: "Which of the following serves as the primary visual signal for stock replenishment in a Lean Pull system?",
+                options_it: [
+                    "Un piano stimato di produzione trimestrale (Forecast)",
+                    "Un cartellino o segnale Kanban fisico/digitale",
+                    "Un sollecito e-mail dal dipartimento Acquisti",
+                    "L'accumulo di isola WIP non identificata"
+                ],
+                options_en: [
+                    "A quarterly production forecast plan",
+                    "A physical/digital Kanban card or signal",
+                    "An email reminder from Procurement",
+                    "Unidentified WIP inventory buildup"
+                ],
+                correct: 1,
+                exp_it: "Corretto! Il Kanban è il dispositivo visivo cardine per regolare la produzione Pull, attivando il ripristino solo a consumo avvenuto.",
+                exp_en: "Correct! Kanban is the key visual device regulating Pull production, triggering replenishment only upon actual consumption."
+            },
+            {
+                q_it: "Qual è il significato del pilastro 'Seiton' nella metodologia delle 5S?",
+                q_en: "What is the meaning of the 'Seiton' pillar in 5S methodology?",
+                options_it: [
+                    "Sistemare / Ordinare ogni attrezzatura definendo un posto per ogni cosa",
+                    "Separare il necessario dall'inutile scartando il superfluo (Seiri)",
+                    "Standardizzare le procedure operative (Seiketsu)",
+                    "Pulire ed ispezionare l'area di lavoro (Seiso)"
+                ],
+                options_en: [
+                    "Set in order / Arrange equipment providing a place for everything",
+                    "Sort out necessary items from unnecessary ones (Seiri)",
+                    "Standardize operational procedures (Seiketsu)",
+                    "Shine and inspect the workstation (Seiso)"
+                ],
+                correct: 0,
+                exp_it: "Esatto! 'Seiton' (Set in Order) stabilisce 'un posto per ogni cosa ed ogni cosa al suo posto', riducendo i tempi di ricerca.",
+                exp_en: "Spot on! 'Seiton' means 'a place for everything and everything in its place', minimizing search times."
+            },
+            {
+                q_it: "In un impianto produttivo con tempo operativo 8 ore, tempo ciclico ideale 1 min/pezzo e 400 pezzi conformi prodotti su 480 totali, quale fattore influisce negativamente sulla Qualità?",
+                q_en: "In a plant running 8 hours, ideal cycle 1 min/piece, with 400 good parts out of 480 produced, what affects Quality negatively?",
+                options_it: [
+                    "Gli scarti ed i pezzi da rilavorare (80 pezzi non conformi)",
+                    "Il tempo di setup del macchinario",
+                    "Le micro-fermate di linea",
+                    "Il costo della materia prima"
+                ],
+                options_en: [
+                    "Scrap and rework (80 non-conforming units)",
+                    "Machine setup duration",
+                    "Minor line stoppages",
+                    "Raw material costs"
+                ],
+                correct: 0,
+                exp_it: "Esatto! La Qualità misura il rapporto $400 / 480 = 83.3\%$. Gli 80 pezzi difettosi degradano direttamente l'indice di Qualità.",
+                exp_en: "Correct! Quality measures $400 / 480 = 83.3\%$. The 80 defective parts directly reduce the Quality index."
             }
-        });
+        ];
 
-        function navigateTo(sectionId) {
-            document.getElementById('dropdownMenu').classList.remove('open');
-            document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
-            
-            const target = document.getElementById(sectionId);
-            if(target) {
-                target.classList.add('active-section');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // Start timer if entering game section
-                if (sectionId === 'sala-giochi-section' && !mode3Solved) {
-                    startTime = Date.now();
-                }
-            }
+        let currentQuizIndex = 0;
+        let currentQuizScore = 0;
+
+        /* --- CONDIVISIONE LINKEDIN SIMULATA --- */
+        function shareLinkedIn(title) {
+            const url = encodeURIComponent(window.location.href);
+            const shareTitle = encodeURIComponent(`VERTEX Platform: ${title}`);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${shareTitle}`, '_blank', 'width=600,height=500');
         }
 
-        function loadGame(gameId, el) {
-            // Placeholder per multi-modalità, al momento solo Mode 3 è attiva
-            document.querySelectorAll('.game-nav-item').forEach(i => i.classList.remove('active'));
-            el.classList.add('active');
-            if (!mode3Solved) startTime = Date.now();
-        }
+        /* --- SIMULATORE OEE LOGIC --- */
+        function updateOEE() {
+            const a = parseFloat(document.getElementById('slider-a').value);
+            const p = parseFloat(document.getElementById('slider-p').value);
+            const q = parseFloat(document.getElementById('slider-q').value);
 
-        /* --- LOGICA GIOCO (MODE 3) & CLASSIFICA --- */
-        function handleCanvasClick(event) {
-            if (mode3Solved || mode3Attempts <= 0) return;
+            document.getElementById('val-a').innerText = a + '%';
+            document.getElementById('val-p').innerText = p + '%';
+            document.getElementById('val-q').innerText = q + '%';
 
-            const canvas = document.getElementById('vignette-canvas');
-            const rect = canvas.getBoundingClientRect();
-            
-            // Coordinate relative normalizzate sul viewBox 700x320
-            const scaleX = 700 / rect.width;
-            const scaleY = 320 / rect.height;
-            const x = (event.clientX - rect.left) * scaleX;
-            const y = (event.clientY - rect.top) * scaleY;
+            document.getElementById('m-val-a').innerText = a.toFixed(1) + '%';
+            document.getElementById('m-val-p').innerText = p.toFixed(1) + '%';
+            document.getElementById('m-val-q').innerText = q.toFixed(1) + '%';
 
-            const fb = document.getElementById('fb-3');
-            const attemptsDisplay = document.getElementById('attempts-display');
+            const oee = (a / 100) * (p / 100) * (q / 100) * 100;
+            const oeeElem = document.getElementById('oee-total');
+            const statusElem = document.getElementById('oee-status');
 
-            // Target area dell'anomalia (Pallet davanti a porta Exit)
-            // Centro approssimativo X: 540, Y: 195. Raggio tolleranza ~35
-            const targetX = 540;
-            const targetY = 195;
-            const distance = Math.hypot(x - targetX, y - targetY);
+            oeeElem.innerText = oee.toFixed(2) + '%';
 
-            if (distance < 40) {
-                // CORRETTO
-                mode3Solved = true;
-                const timeTaken = ((Date.now() - startTime) / 1000).toFixed(2);
-                document.getElementById('solution-circle').classList.add('visible');
-                fb.style.color = "var(--correct-green)";
-                fb.innerText = translations[currentLang]['fb-solved'];
-                canvas.style.cursor = 'default';
-                
-                attemptsDisplay.innerText = translations[currentLang==='it'?'it':'en']['rank'].replace(':',''); // Pulizia display
-
-                saveScore(100, parseFloat(timeTaken));
-
+            if (oee >= 85) {
+                statusElem.innerText = currentLang === 'it' ? "Eccellente (World Class OEE >= 85%)" : "World Class Standard (>= 85%)";
+                statusElem.style.color = "var(--correct-green)";
+            } else if (oee >= 70) {
+                statusElem.innerText = currentLang === 'it' ? "Buono / Accettabile (Benchmark: 75%-84%)" : "Good / Acceptable (Benchmark: 75%-84%)";
+                statusElem.style.color = "var(--gold-light)";
             } else {
-                // ERRORE
-                mode3Attempts--;
-                if (mode3Attempts > 0) {
-                    fb.style.color = "var(--wrong-red)";
-                    fb.innerText = translations[currentLang]['fb-wrong'];
-                    attemptsDisplay.innerText = `${translations[currentLang]['attempts']}: ${mode3Attempts}`;
-                } else {
-                    // FALLITO
-                    mode3Solved = true; // Blocca gioco
-                    document.getElementById('solution-circle').classList.add('visible'); // Mostra comunque dov'era
-                    document.getElementById('solution-circle').style.stroke = "var(--wrong-red)";
-                    fb.style.color = "var(--wrong-red)";
-                    fb.innerText = translations[currentLang]['fb-failed'];
-                    attemptsDisplay.innerText = `${translations[currentLang]['attempts']}: 0`;
-                    canvas.style.cursor = 'default';
-                    
-                    saveScore(0, 0); // Score 0, tempo irrilevante
-                }
+                statusElem.innerText = currentLang === 'it' ? "Critico — Richiede Intervento Lean (< 70%)" : "Critical — Lean Action Required (< 70%)";
+                statusElem.style.color = "var(--wrong-red)";
             }
         }
 
-        // Gestione Classifica con localStorage
-        function saveScore(points, time) {
-            if (points === 0 && time === 0) {
-                renderLeaderboard(); // Aggiorna solo la vista se ha perso
-                return;
-            }
+        /* --- RENDERING ARCHIVIO GIOCHI & DIVULGAZIONE --- */
+        function renderDynamicSections() {
+            // Render 9 giochi archivio
+            const gamesGrid = document.getElementById('games-archive-grid');
+            gamesGrid.innerHTML = '';
+            const gList = archivedGamesData[currentLang];
+            const btnPlayText = translations[currentLang]['btn-play'];
 
-            const playerName = prompt(currentLang === 'it' ? "Ottimo lavoro! Inserisci il tuo nome per la classifica:" : "Great job! Enter your name for the leaderboard:") || "Anon";
-            
-            const scoreEntry = {
-                name: playerName.substring(0, 15), // Limite caratteri
-                points: points,
-                time: time,
-                timestamp: Date.now() // Criterio 3: ordine cronologico
-            };
-
-            let leaderboard = JSON.parse(localStorage.getItem('vertex_vignette_leaderboard')) || [];
-            leaderboard.push(scoreEntry);
-
-            // Ordinamento: Punti (Decrescente) -> Tempo (Crescente) -> Timestamp (Crescente)
-            leaderboard.sort((a, b) => {
-                if (b.points !== a.points) return b.points - a.points;
-                if (a.time !== b.time) return a.time - b.time;
-                return a.timestamp - b.timestamp;
+            gList.forEach(g => {
+                const box = document.createElement('div');
+                box.className = 'feature-box';
+                box.innerHTML = `
+                    <div>
+                        <span class="badge ${g.badge}">${g.diff}</span>
+                        <span style="color: var(--text-muted); font-size: 0.8rem; float: right;">${g.cat}</span>
+                    </div>
+                    <div class="feature-title" style="font-size: 1.05rem;">${g.title}</div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">${g.desc}</p>
+                    <button class="btn-outline" style="width: 100%; padding: 8px; font-size: 0.8rem;" onclick="alert('${g.title}')">${btnPlayText}</button>
+                `;
+                gamesGrid.appendChild(box);
             });
 
-            // Mantieni solo top 10 nel storage
-            leaderboard = leaderboard.slice(0, 10);
-            localStorage.setItem('vertex_vignette_leaderboard', JSON.stringify(leaderboard));
+            // Render articoli divulgazione
+            const divList = document.getElementById('divulgazione-list');
+            divList.innerHTML = '';
+            const dList = divulgazioneData[currentLang];
+            const shareText = translations[currentLang]['btn-share-linkedin'];
 
+            dList.forEach(art => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="badge ${art.badge}">${art.type}</span>
+                    <h2 style="color: var(--gold-light); margin: 10px 0;">${art.title}</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">${art.desc}</p>
+                    <button class="btn-linkedin" onclick="shareLinkedIn('${art.title.replace(/'/g, "\\'")}')">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                        ${shareText}
+                    </button>
+                `;
+                divList.appendChild(card);
+            });
+        }
+
+        /* --- QUIZ LOGIC --- */
+        function renderQuestion() {
+            const qData = quizQuestions[currentQuizIndex];
+            const isIt = currentLang === 'it';
+            
+            document.getElementById('quiz-step-tag').innerText = isIt ? `Domanda ${currentQuizIndex + 1} di ${quizQuestions.length}` : `Question ${currentQuizIndex + 1} of ${quizQuestions.length}`;
+            document.getElementById('quiz-score-tag').innerText = `${isIt ? 'Punti' : 'Score'}: ${currentQuizScore}`;
+
+            document.getElementById('quiz-question-text').innerText = isIt ? qData.q_it : qData.q_en;
+
+            const optsContainer = document.getElementById('quiz-options-container');
+            optsContainer.innerHTML = '';
+
+            const options = isIt ? qData.options_it : qData.options_en;
+            options.forEach((optText, idx) => {
+                const optDiv = document.createElement('div');
+                optDiv.className = 'quiz-option';
+                optDiv.innerHTML = `<span style="font-weight:bold; color:var(--gold-light);">${String.fromCharCode(65 + idx)}.</span> <span>${optText}</span>`;
+                optDiv.onclick = () => selectOption(idx, optDiv);
+                optsContainer.appendChild(optDiv);
+            });
+
+            const fb = document.getElementById('quiz-feedback');
+            fb.style.display = 'none';
+            document.getElementById('quiz-next-btn').style.display = 'none';
+
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+
+        function selectOption(selectedIndex, optElem) {
+            const qData = quizQuestions[currentQuizIndex];
+            const isIt = currentLang === 'it';
+            const allOpts = document.querySelectorAll('.quiz-option');
+
+            allOpts.forEach(o => o.onclick = null);
+
+            const fb = document.getElementById('quiz-feedback');
+            fb.style.display = 'block';
+
+            if (selectedIndex === qData.correct) {
+                optElem.classList.add('correct');
+                fb.style.background = "rgba(16, 185, 129, 0.15)";
+                fb.style.color = "#A7F3D0";
+                fb.style.border = "1px solid var(--correct-green)";
+                fb.innerText = isIt ? qData.exp_it : qData.exp_en;
+                currentQuizScore += 100;
+            } else {
+                optElem.classList.add('incorrect');
+                allOpts[qData.correct].classList.add('correct');
+                fb.style.background = "rgba(239, 68, 68, 0.15)";
+                fb.style.color = "#FECACA";
+                fb.style.border = "1px solid var(--wrong-red)";
+                fb.innerText = (isIt ? "Sbagliato. " : "Incorrect. ") + (isIt ? qData.exp_it : qData.exp_en);
+            }
+
+            document.getElementById('quiz-score-tag').innerText = `${isIt ? 'Punti' : 'Score'}: ${currentQuizScore}`;
+            document.getElementById('quiz-next-btn').style.display = 'inline-flex';
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizQuestions.length) {
+                renderQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            const isIt = currentLang === 'it';
+            const card = document.querySelector('.quiz-card');
+            card.innerHTML = `
+                <div style="text-align:center; padding: 20px 0;">
+                    <h2 style="color:var(--gold-light); margin-bottom:15px;">🎉 ${isIt ? 'Challenge Completata!' : 'Challenge Completed!'}</h2>
+                    <p style="font-size:1.2rem; color:var(--text-main); margin-bottom:20px;">
+                        ${isIt ? 'Punteggio Finale:' : 'Final Score:'} <strong style="color:var(--gold-main); font-size:1.8rem;">${currentQuizScore}</strong> / ${quizQuestions.length * 100}
+                    </p>
+                    <button class="btn-gold" onclick="resetQuiz()">${isIt ? 'Ricomincia Challenge' : 'Restart Challenge'}</button>
+                </div>
+            `;
+            saveScore(currentQuizScore);
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            currentQuizScore = 0;
+            location.reload();
+        }
+
+        /* --- CLASSIFICA (LOCALSTORAGE) --- */
+        function saveScore(score) {
+            if (score <= 0) return;
+            const isIt = currentLang === 'it';
+            const name = prompt(isIt ? "Inserisci il tuo nome per la classifica:" : "Enter your name for the leaderboard:") || "User";
+            
+            let leaderboard = JSON.parse(localStorage.getItem('vertex_quiz_leaderboard')) || [];
+            leaderboard.push({
+                name: name.substring(0, 18),
+                score: score,
+                date: new Date().toLocaleDateString()
+            });
+
+            leaderboard.sort((a, b) => b.score - a.score);
+            leaderboard = leaderboard.slice(0, 5);
+            localStorage.setItem('vertex_quiz_leaderboard', JSON.stringify(leaderboard));
             renderLeaderboard();
         }
 
         function renderLeaderboard() {
-            const leaderboard = JSON.parse(localStorage.getItem('vertex_vignette_leaderboard')) || [];
+            const leaderboard = JSON.parse(localStorage.getItem('vertex_quiz_leaderboard')) || [
+                { name: "Marco V. (Lean Spec)", score: 300, date: "25/08/2026" },
+                { name: "Elena R. (Supply Chain)", score: 200, date: "24/08/2026" }
+            ];
+
             const container = document.getElementById('leaderboard-container');
-            const lang = currentLang;
+            const isIt = currentLang === 'it';
 
-            if (leaderboard.length === 0) {
-                container.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); font-style:italic;">Nessun punteggio registrato.</p>`;
-                return;
-            }
-
-            // Mostra solo Top 3
-            const top3 = leaderboard.slice(0, 3);
-
-            let tableHtml = `
+            let html = `
                 <table class="leaderboard-table">
                     <thead>
                         <tr>
-                            <th>${translations[lang]['rank']}</th>
-                            <th>${translations[lang]['player']}</th>
-                            <th>${translations[lang]['score']}</th>
-                            <th>${translations[lang]['time']}</th>
+                            <th>Pos.</th>
+                            <th>${isIt ? 'Partecipante' : 'Participant'}</th>
+                            <th>${isIt ? 'Punti' : 'Score'}</th>
+                            <th>Data</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
 
-            top3.forEach((entry, index) => {
-                let rowStyle = "";
-                if (index === 0) rowStyle = "color: var(--gold-light); font-weight:bold;";
-                
-                tableHtml += `
-                    <tr style="${rowStyle}">
-                        <td>#${index + 1}</td>
+            leaderboard.forEach((entry, idx) => {
+                html += `
+                    <tr>
+                        <td style="font-weight:bold; color:var(--gold-light);">#${idx + 1}</td>
                         <td>${escapeHtml(entry.name)}</td>
-                        <td>${entry.points}</td>
-                        <td>${entry.points > 0 ? entry.time + 's' : '-'}</td>
+                        <td><strong style="color:var(--gold-main);">${entry.score}</strong></td>
+                        <td style="color:var(--text-muted); font-size:0.85rem;">${entry.date}</td>
                     </tr>
                 `;
             });
 
-            tableHtml += `</tbody></table>`;
-            container.innerHTML = tableHtml;
+            html += `</tbody></table>`;
+            container.innerHTML = html;
         }
 
         function escapeHtml(text) {
-            if (!text) return text;
-            return text.replace(/[&<>"']/g, m => ({'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#039;'})[m]);
+            return text ? text.replace(/[&<>"']/g, m => ({'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#039;'})[m]) : '';
         }
 
-        /* --- MULTILINGUA --- */
+        /* --- NAVIGAZIONE SPA --- */
+        function navigateTo(sectionId) {
+            document.getElementById('dropdownMenu').classList.remove('open');
+            document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active-section');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMenu(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('dropdownMenu').classList.toggle('open');
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
             document.getElementById('btn-it').classList.toggle('active', lang === 'it');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
-            // Aggiorna elementi statici HTML
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
@@ -852,27 +1424,18 @@
                 }
             });
 
-            // Aggiorna elementi dinamici JS (se il gioco è in corso/finito)
-            const fb = document.getElementById('fb-3');
-            const attemptsDisplay = document.getElementById('attempts-display');
-            
-            if (mode3Solved) {
-                if (mode3Attempts > 0) fb.innerText = translations[lang]['fb-solved'];
-                else fb.innerText = translations[lang]['fb-failed'];
-                attemptsDisplay.innerText = translations[lang==='it'?'it':'en']['rank'].replace(':','');
-            } else {
-                attemptsDisplay.innerText = `${translations[lang]['attempts']}: ${mode3Attempts}`;
-                if (fb.innerText !== "") fb.innerText = translations[lang]['fb-wrong']; // Aggiorna solo se c'era un errore
-            }
-
-            renderLeaderboard(); // Aggiorna intestazioni tabella
+            updateOEE();
+            renderQuestion();
+            renderDynamicSections();
+            renderLeaderboard();
         }
 
-        // Inizializzazione
         window.onload = () => {
+            updateOEE();
+            renderQuestion();
+            renderDynamicSections();
             renderLeaderboard();
         };
-
     </script>
 </body>
 </html>
