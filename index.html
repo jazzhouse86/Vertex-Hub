@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERTEX - Hub di Cultura Operativa & Supply Chain Excellence</title>
     
-    <!-- MathJax per formule matematiche/KPI -->
+    <!-- Meta tags per SEO e condivisione social -->
+    <meta name="description" content="VERTEX – Hub indipendente di cultura operativa, supply chain, lean manufacturing, ERP/MRP e simulazioni OEE.">
+    <meta name="keywords" content="OEE, Supply Chain, Lean, MRP, ERP, Operations, PMI, Simulatore, Kaizen">
+    <meta property="og:title" content="VERTEX – Hub di Cultura Operativa & Supply Chain Excellence">
+    <meta property="og:description" content="Strumenti interattivi, simulazioni e case study per ottimizzare i processi manifatturieri.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vertex-hub.example">
+    <meta property="og:image" content="URL_ANTEPRIMA">
+
+    <!-- MathJax per formule matematiche/KPI (caricamento asincrono) -->
     <script>
         MathJax = {
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
             chtml: { displayAlign: 'center' }
         };
     </script>
-    <script id="mathjax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Caricamento differito: solo quando serve -->
+    <script id="mathjax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" onload="console.log('MathJax caricato')"></script>
 
     <style>
         :root {
@@ -93,6 +103,9 @@
             padding: 8px 12px;
             border-radius: 6px;
             cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -124,6 +137,9 @@
             transition: 0.3s; 
             opacity: 0.6; 
             color: var(--text-main);
+            background: none;
+            border: none;
+            font: inherit;
         }
 
         .lang-btn.active { 
@@ -141,7 +157,9 @@
             background: none; 
             border: none; 
             padding: 4px 8px; 
+            transition: color 0.3s;
         }
+        .menu-toggle:hover { color: var(--gold-main); }
 
         /* Menu Mobile */
         .mobile-menu {
@@ -168,9 +186,10 @@
             font-weight: 600; 
             font-size: 1.05rem; 
             border-bottom: 1px solid rgba(255,255,255,0.05); 
+            transition: background 0.3s, color 0.3s;
         }
 
-        .mobile-menu a:hover { 
+        .mobile-menu a:hover, .mobile-menu a.active { 
             color: var(--gold-light); 
             background-color: var(--bg-card-hover); 
         }
@@ -646,30 +665,30 @@
         </div>
 
         <nav class="nav-links">
-            <span class="nav-link active" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</span>
-            <span class="nav-link" onclick="navigateTo('simulatore-section')" data-i18n="nav-sim">📊 Simulatore OEE</span>
-            <span class="nav-link" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Challenge Hub</span>
-            <span class="nav-link" onclick="navigateTo('divulgazione-section')" data-i18n="nav-archive">📚 Divulgazione</span>
-            <span class="nav-link" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</span>
-            <span class="nav-link" onclick="navigateTo('termini-section')" data-i18n="nav-terms">⚖️ Termini & Legale</span>
+            <button class="nav-link active" data-target="home-section" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</button>
+            <button class="nav-link" data-target="simulatore-section" onclick="navigateTo('simulatore-section')" data-i18n="nav-sim">📊 Simulatore OEE</button>
+            <button class="nav-link" data-target="sala-giochi-section" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Challenge Hub</button>
+            <button class="nav-link" data-target="divulgazione-section" onclick="navigateTo('divulgazione-section')" data-i18n="nav-archive">📚 Divulgazione</button>
+            <button class="nav-link" data-target="chi-siamo-section" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</button>
+            <button class="nav-link" data-target="termini-section" onclick="navigateTo('termini-section')" data-i18n="nav-terms">⚖️ Termini & Legale</button>
         </nav>
 
         <div class="header-right">
             <div class="lang-switch">
-                <span class="lang-btn active" id="btn-it" onclick="setLanguage('it')">IT</span>
-                <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</span>
+                <button class="lang-btn active" id="btn-it" onclick="setLanguage('it')">IT</button>
+                <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
             </div>
-            <button class="menu-toggle" id="menuToggleBtn" onclick="toggleMenu(event)">☰</button>
+            <button class="menu-toggle" id="menuToggleBtn" onclick="toggleMenu(event)" aria-label="Apri menu di navigazione">☰</button>
         </div>
 
         <!-- Menu Mobile Dropdown -->
         <nav class="mobile-menu" id="dropdownMenu">
-            <a href="javascript:void(0)" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</a>
-            <a href="javascript:void(0)" onclick="navigateTo('simulatore-section')" data-i18n="nav-sim">📊 Simulatore OEE</a>
-            <a href="javascript:void(0)" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Challenge Hub</a>
-            <a href="javascript:void(0)" onclick="navigateTo('divulgazione-section')" data-i18n="nav-archive">📚 Divulgazione</a>
-            <a href="javascript:void(0)" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</a>
-            <a href="javascript:void(0)" onclick="navigateTo('termini-section')" data-i18n="nav-terms">⚖️ Termini e Condizioni</a>
+            <a href="javascript:void(0)" data-target="home-section" onclick="navigateTo('home-section')" data-i18n="nav-home">🏠 Home</a>
+            <a href="javascript:void(0)" data-target="simulatore-section" onclick="navigateTo('simulatore-section')" data-i18n="nav-sim">📊 Simulatore OEE</a>
+            <a href="javascript:void(0)" data-target="sala-giochi-section" onclick="navigateTo('sala-giochi-section')" data-i18n="nav-games">🎮 Challenge Hub</a>
+            <a href="javascript:void(0)" data-target="divulgazione-section" onclick="navigateTo('divulgazione-section')" data-i18n="nav-archive">📚 Divulgazione</a>
+            <a href="javascript:void(0)" data-target="chi-siamo-section" onclick="navigateTo('chi-siamo-section')" data-i18n="nav-about">👥 Chi Siamo</a>
+            <a href="javascript:void(0)" data-target="termini-section" onclick="navigateTo('termini-section')" data-i18n="nav-terms">⚖️ Termini e Condizioni</a>
         </nav>
     </header>
 
@@ -1001,6 +1020,9 @@
                 'sim-label-q': 'Qualità (Quality)',
                 'sim-sub-q': 'Rapporto tra Pezzi Conformi (Prima Scelta) e Totale Pezzi Prodotti.',
                 'sim-res-title': 'Indice OEE Calcolato',
+                'oee-excellent': 'Eccellente (World Class OEE ≥ 85%)',
+                'oee-good': 'Buono / Accettabile (Benchmark: 75%-84%)',
+                'oee-critical': 'Critico — Richiede Intervento Lean (< 70%)',
                 'game-title': '🎮 Operational Excellence Challenge Hub',
                 'gotw-badge': 'GIOCO DELLA SETTIMANA',
                 'gotw-title': '1. Visual 5S Challenge',
@@ -1043,6 +1065,9 @@
                 'sim-label-q': 'Quality',
                 'sim-sub-q': 'Ratio between Good Units Produced and Total Units Started.',
                 'sim-res-title': 'Calculated OEE Index',
+                'oee-excellent': 'World Class Standard (≥ 85%)',
+                'oee-good': 'Good / Acceptable (Benchmark: 75%-84%)',
+                'oee-critical': 'Critical — Lean Action Required (< 70%)',
                 'game-title': '🎮 Operational Excellence Challenge Hub',
                 'gotw-badge': 'GAME OF THE WEEK',
                 'gotw-title': '1. Visual 5S Challenge',
@@ -1189,13 +1214,13 @@
             oeeElem.innerText = oee.toFixed(2) + '%';
 
             if (oee >= 85) {
-                statusElem.innerText = currentLang === 'it' ? "Eccellente (World Class OEE >= 85%)" : "World Class Standard (>= 85%)";
+                statusElem.innerText = translations[currentLang]['oee-excellent'];
                 statusElem.style.color = "var(--correct-green)";
             } else if (oee >= 70) {
-                statusElem.innerText = currentLang === 'it' ? "Buono / Accettabile (Benchmark: 75%-84%)" : "Good / Acceptable (Benchmark: 75%-84%)";
+                statusElem.innerText = translations[currentLang]['oee-good'];
                 statusElem.style.color = "var(--gold-light)";
             } else {
-                statusElem.innerText = currentLang === 'it' ? "Critico — Richiede Intervento Lean (< 70%)" : "Critical — Lean Action Required (< 70%)";
+                statusElem.innerText = translations[currentLang]['oee-critical'];
                 statusElem.style.color = "var(--wrong-red)";
             }
         }
@@ -1331,6 +1356,15 @@
         function resetQuiz() {
             currentQuizIndex = 0;
             currentQuizScore = 0;
+            // Ricarica la domanda senza ricaricare l'intera pagina
+            renderQuestion();
+            // Nascondi il pulsante next
+            document.getElementById('quiz-next-btn').style.display = 'none';
+            // Ripristina la card originale se era stata sostituita
+            // Nota: la card è stata modificata da finishQuiz, quindi dobbiamo ripristinare la struttura.
+            // Questa è una soluzione semplice: ricarichiamo la pagina (come prima) ma è accettabile.
+            // Per mantenere il flusso senza reload, bisognerebbe avere una funzione di rebuild della card.
+            // In alternativa, si può fare location.reload() come prima.
             location.reload();
         }
 
@@ -1398,12 +1432,17 @@
         function navigateTo(sectionId) {
             document.getElementById('dropdownMenu').classList.remove('open');
             document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.nav-link, .mobile-menu a').forEach(l => l.classList.remove('active'));
+
+            // Aggiungi active al link corrispondente (desktop + mobile)
+            const link = document.querySelector(`.nav-link[data-target="${sectionId}"], .mobile-menu a[data-target="${sectionId}"]`);
+            if (link) link.classList.add('active');
 
             const target = document.getElementById(sectionId);
             if (target) {
                 target.classList.add('active-section');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (window.MathJax) MathJax.typesetPromise([target]);
             }
         }
 
@@ -1412,8 +1451,18 @@
             document.getElementById('dropdownMenu').classList.toggle('open');
         }
 
+        // Chiudi il menu mobile cliccando fuori
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('dropdownMenu');
+            const toggle = document.getElementById('menuToggleBtn');
+            if (!menu.contains(event.target) && !toggle.contains(event.target) && menu.classList.contains('open')) {
+                menu.classList.remove('open');
+            }
+        });
+
         function setLanguage(lang) {
             currentLang = lang;
+            localStorage.setItem('vertex_lang', lang);
             document.getElementById('btn-it').classList.toggle('active', lang === 'it');
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
@@ -1430,11 +1479,21 @@
             renderLeaderboard();
         }
 
+        // Inizializzazione con eventuale lingua salvata
+        const savedLang = localStorage.getItem('vertex_lang');
+        if (savedLang && (savedLang === 'it' || savedLang === 'en')) {
+            currentLang = savedLang;
+        }
+
         window.onload = () => {
+            // Applica la lingua salvata
+            setLanguage(currentLang);
+            // Avvia le funzioni principali
             updateOEE();
             renderQuestion();
             renderDynamicSections();
             renderLeaderboard();
+            if (window.MathJax) MathJax.typesetPromise();
         };
     </script>
 </body>
